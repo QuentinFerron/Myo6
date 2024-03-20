@@ -235,7 +235,7 @@ export default function Home(props) {
 
                    <div className="flex h-96  w-1/2 mt-3 m-1 bg-white rounded-lg justify-center items-center justify-items-center shadow-xl border-2 border-gray-400">
                {/* <iframe src={"http://localhost:3000/testGraph5"} width="90%" height="100%" frameBorder="0" allowFullScreen></iframe> */}
-               <iframe src={baseUrl + 'testGraph6?id_user='+ selectedValue } width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
+               <iframe src={baseUrl + 'testGraph5?id_user='+ selectedValue } width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
 
                </div>
 

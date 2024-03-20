@@ -21,6 +21,18 @@ ChartJS.register(
   Legend
 );
 
+export default function Home(props) {
+
+  let baseUrl = "s";
+  if (props.DEBUG_MODE === 'true') {
+    baseUrl = "http://localhost:3000/";
+    console.log("DEBUG_MODE");
+  } else {
+    baseUrl = "https://myo6.vercel.app/";
+    console.log(baseUrl);
+  }
+
+
 const options = {
   responsive: true,
   plugins: {
@@ -106,11 +118,11 @@ const options = {
   },
 };
 
-const GraphiqueATL = () => {
+
  const [data, setData] = useState([]);
 
  useEffect(() => {
-    fetch('http://localhost:3000/api/getSpecificUserLoad?id_user=' + window.location.href.split("=")[1])
+    fetch(baseUrl + 'api/getSpecificUserLoad?id_user=' + window.location.href.split("=")[1])
       .then(response => response.json())
       .then(data => setData(data));
  }, []);
@@ -165,6 +177,11 @@ const GraphiqueATL = () => {
       <Line data={chartData} options={options}/>
     </div>
  );
-};
-
-export default GraphiqueATL;
+}
+export async function getServerSideProps() {
+  // fetch env.local variables named DEBUG_MODE
+console.log(process.env.DEBUG_MODE);
+  return {
+    props: { DEBUG_MODE: process.env.DEBUG_MODE },
+  };
+}
