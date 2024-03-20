@@ -30,11 +30,56 @@ export default function Home({  }) {
         <div className='flex h-[calc(100%-84px)] '>
           {/* <SideBar></SideBar> */}
 
-          <div id="main_code" className="flex h-fit  w-full bg-gray-300"> 
+          <div id="main_code" className="flex h-full  w-full bg-gray-300"> 
           <div className=" w-full p-2 ">
+            Version 1.0.0
             
-            </div>
 
+
+          <div className=" flex w-fit p-6 justify-center items-center justify-items-center ml-auto mr-auto ">
+              <div className=" bg-white rounded-lg shadow-xl border-2 mb-4 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+                  <div className="text-xl font-bold text-[#082431] text-center">
+                    Contact
+                  </div>
+                  <div className="text-lg font-bold text-[#082431]">
+                    Tel : 01 89 62 36 72
+                    <br></br>
+                    Mail : contact@innowide.fr
+                    <br></br>
+                    Adresse : Chemin de Moulon, 91190 Gif-sur-Yvette
+                    <br></br>
+                    <div className="text-blue-500">
+                    <a href="https://www.innowide.fr/">Innowide.fr</a>
+                    </div>
+                  </div>
+                </div>
+                </div>
+           
+
+            <div className=" flex w-fit p-6 justify-center items-center justify-items-center ml-auto mr-auto">
+              <div className=" bg-white rounded-lg shadow-xl border-2 mb-4 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+                  <div className="text-xl font-bold text-[#082431] text-center">
+                    Nos réseaux sociaux
+                  </div>
+                  <div className="flex text-lg font-bold text-[#082431]">
+                  <div className="social-links">
+      <a href="https://www.facebook.com/votreprofil" className="social-link">
+        <img src="chemin/vers/icone/facebook.png" alt="Facebook" />
+      </a>
+      <a href="https://twitter.com/votreprofil" className="social-link">
+        <img src="chemin/vers/icone/twitter.png" alt="Twitter" />
+      </a>
+      <a href="https://www.instagram.com/votreprofil" className="social-link">
+        <img src="chemin/vers/icone/instagram.png" alt="Instagram" />
+      </a>
+    </div>
+                    <br></br>
+                    
+                  </div>
+                </div>
+                </div>
+          
+                </div>
 
             
         </div>
@@ -45,38 +90,3 @@ export default function Home({  }) {
   </>
   )
 }
-
-
-
-
-
-{/* <div className="bg-black rounded-lg w-full m-6 h-1/4 shadow-xl ">
-              <div className=" justify-center items-center justify-items-center h-full">
-                <div className="text-2xl font-bold text-[#ffffff]">
-                  Welcome to Myo6
-                </div>
-
-                <div className="flex">
-                <img src="/assets/images/logo.png" alt="Logo" className="h-full rounded-md ml-5" />
-                
-                <div className=" text-[#ffffff] text-justify justify-center items-center justify-items-center">
-                Innowide lance sa marque SportElevate dédiée à la performance 
-                sportive des athlètes de haut niveau par la conception et la commercialisation 
-                d’une gamme de dispositifs de mesure (IoT) et d’analyse de données par l’IA.
-                </div>
-                </div>
-
-                <div className=" text-[#ffffff] text-justify justify-center items-center justify-items-center">
-
-                La pupillométrie, méthode qui consiste à mesurer le diamètre de la pupille en 
-                fonction de stimuli lumineux, est utilisée en médecine pour détecter certaines 
-                pathologies et pour mesurer les éventuelles séquelles neurologiques d’un gros 
-                choc sur la tête. Plusieurs études ont montré que la pupille est également 
-                sensible à notre état de fatigue. Notre première solution nommée Myo6 est 
-                un dispositif embarqué et une plateforme d’IA utilisant la pupillométrie dynamique 
-                pour évaluer la fatigue des sportifs de haut niveau et leur permettre d’ajuster 
-                au mieux leur entraînement.
-                </div>
-              </div>
-              
-            </div> */}
