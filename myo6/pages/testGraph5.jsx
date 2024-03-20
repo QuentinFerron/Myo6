@@ -21,11 +21,22 @@ ChartJS.register(
   Legend
 );
 
-const GraphiqueATL = () => {
+export default function Home(props) {
+
+  let baseUrl = "s";
+  if (props.DEBUG_MODE === 'true') {
+    baseUrl = "http://localhost:3000/";
+    console.log("DEBUG_MODE");
+  } else {
+    baseUrl = "https://myo6.vercel.app/";
+    console.log(baseUrl);
+  }
+
+
  const [data, setData] = useState([]);
 
  useEffect(() => {
-    fetch('http://localhost:3000/api/getSpecificUserLoadTest')
+    fetch(baseUrl + 'api/getSpecificUserLoadTest')
       .then(response => response.json())
       .then(data => setData(data));
  }, []);
@@ -80,6 +91,13 @@ const GraphiqueATL = () => {
         }}/>
     </div>
  );
-};
+}
+export async function getServerSideProps() {
+  // fetch env.local variables named DEBUG_MODE
+console.log(process.env.DEBUG_MODE);
+  return {
+    props: { DEBUG_MODE: process.env.DEBUG_MODE },
+  };
+}
 
-export default GraphiqueATL;
+
