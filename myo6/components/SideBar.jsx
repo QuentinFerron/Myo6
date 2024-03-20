@@ -23,7 +23,7 @@ export default function SideBar({setISideBarOpen}) {
                     <Link className=" shadow-md hover:shadow-xl  transition ease-in-out  duration-500 rounded bg-bleuclair py-2 px-4 my-3 w-full flex justify-start items-center justify-items-start "
                      href="/">               
                         <div className="">
-                            <Image src="/assets/icons/dash.svg" className="w-4 h-4 mr-1" />
+                            <Image src="/assets/icons/dash.svg" alt="Home" className="w-4 h-4 mr-1" />
                         </div>
                         Home
                     </Link>              
@@ -34,7 +34,7 @@ export default function SideBar({setISideBarOpen}) {
                     <Link className="shadow-md hover:shadow-xl  transition ease-in-out  duration-500  rounded bg-bleuclair py-2 px-4 my-3 w-full flex justify-start items-center justify-items-start "
                     href="choixuser3">
                         <div className="">
-                            <Image src="/assets/icons/documentation.svg" className="w-4 h-4 mr-1" />
+                            <Image src="/assets/icons/documentation.svg" alt="Choix utilisateur" className="w-4 h-4 mr-1" />
                         </div>
                         Choix Utilisateur
                     </Link>              
@@ -44,7 +44,7 @@ export default function SideBar({setISideBarOpen}) {
                     <Link className="shadow-md hover:shadow-xl  transition ease-in-out  duration-500  rounded bg-bleuclair py-2 px-4 my-3 w-full flex justify-start items-center justify-items-start "
                     href="directmesure6">
                         <div className="">
-                            <Image src="/assets/icons/settings.svg" className="w-4 h-4 mr-1" />
+                            <Image src="/assets/icons/settings.svg" alt="Mesure en direct" className="w-4 h-4 mr-1" />
                         </div>
                         Mesure en direct
                     </Link>              
@@ -55,7 +55,7 @@ export default function SideBar({setISideBarOpen}) {
                     <Link className="shadow-md hover:shadow-xl  transition ease-in-out  duration-500  rounded bg-bleuclair py-2 px-4 my-3 w-full flex justify-start items-center justify-items-start "
                     href="createUser">
                         <div className="">
-                            <Image src="/assets/icons/documentation.svg" className="w-4 h-4 mr-1" />
+                            <Image src="/assets/icons/documentation.svg" alt="Créer utilisateur" className="w-4 h-4 mr-1" />
                         </div>
                         Créer Utilisateur
                     </Link>              
@@ -68,7 +68,7 @@ export default function SideBar({setISideBarOpen}) {
                     <Link className="shadow-md hover:shadow-xl  transition ease-in-out  duration-500  rounded bg-bleuclair py-2 px-4 my-3 w-full flex justify-start items-center justify-items-start "
                     href="questionnaire2">
                         <div className="">
-                            <Image src="/assets/icons/documentation.svg" className="w-4 h-4 mr-1" />
+                            <Image src="/assets/icons/documentation.svg" alt="Questionnaire" className="w-4 h-4 mr-1" />
                         </div>
                         Remplir Questionnaire
                     </Link>              
