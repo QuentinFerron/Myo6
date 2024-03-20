@@ -37,10 +37,10 @@ export default function Home(props) {
   }
 //récupérer les vidéos de l'utilisateur
   async function getVideo(userId) {
-    // const baUrl = "http://141.145.200.146:5000/api/";
+     const baUrl = "http://141.145.200.146:5000/api/";
 
     try {
-      const url = `${baseUrl}api/${userId}/get_all_videos_data`;
+      const url = `${baUrl}${userId}/get_all_videos_data`;
 
       const response = await fetch(url);
       if (!response.ok) {
