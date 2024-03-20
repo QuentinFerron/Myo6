@@ -78,7 +78,7 @@ export default function Home(props) {
               <tbody>
                 {users.map((user) => (
                   <tr key={user.id_user} style={{ borderBottom: '1px solid #ddd', padding: '12px   15px', cursor: 'pointer' }} 
-                    onClick={ () => {window.location.href = `/coachPage5?id_user=` + user.id_user}}>
+                    onClick={ () => {window.location.href = `/coachPage6?id_user=` + user.id_user}}>
                     <td>
                       {user.id_user}
                     </td>
