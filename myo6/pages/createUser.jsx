@@ -12,7 +12,19 @@ import { Component } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-export default function Home({ projects }) {
+export default function Home({ props }) {
+
+  let baseUrl = " scooby";
+  if (props.DEBUG_MODE === 'true') {
+    baseUrl = "http://localhost:3000/";
+    console.log("DEBUG_MODE");
+  } else {
+    baseUrl = "https://myo6.vercel.app/";
+    console.log(baseUrl);
+  }
+
+
+
   const [users, setUsers] = useState([]);
   const [selectedValue, setSelectedValue] = useState(0);
 
@@ -26,7 +38,7 @@ export default function Home({ projects }) {
 
 
   async function getUser() {
-    const res = await fetch('http://localhost:3000/api/getAllUser', {
+    const res = await fetch(baseUrl + 'api/getAllUser', {
       //const res = await fetch('http://localhost:3000/api/getUsers_Test', {
       method: 'GET',
       headers: {
@@ -259,4 +271,11 @@ export default function Home({ projects }) {
       </div> */}
     </>
   )
+}
+export async function getServerSideProps() {
+  // fetch env.local variables named DEBUG_MODE
+console.log(process.env.DEBUG_MODE);
+  return {
+    props: { DEBUG_MODE: process.env.DEBUG_MODE },
+  };
 }
