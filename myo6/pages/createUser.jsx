@@ -12,22 +12,7 @@ import { Component } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-export default function Home({ props }) {
-
-  let baseUrl = " scooby";
-  if (props.DEBUG_MODE === 'true') {
-    baseUrl = "http://localhost:3000/";
-    console.log("DEBUG_MODE");
-  } else {
-    baseUrl = "https://myo6.vercel.app/";
-    console.log(baseUrl);
-  }
-
-
-
-  const [users, setUsers] = useState([]);
-  const [selectedValue, setSelectedValue] = useState(0);
-
+export default function Home({  }) {
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -35,29 +20,6 @@ export default function Home({ props }) {
   const [emailAddress, setEmailAddress] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [sex, setSex] = useState(0);
-
-
-  async function getUser() {
-    const res = await fetch(baseUrl + 'api/getAllUser', {
-      //const res = await fetch('http://localhost:3000/api/getUsers_Test', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await res.json();
-    console.log(data);
-    setUsers(data);
-  }
-
-  const handleSelectChange = (event) => {
-    const selectedOption = event.target.value;
-    setSelectedValue(selectedOption);
-  };
-
-  useEffect(() => {
-    getUser()
-  }, []);
 
 
 
@@ -271,11 +233,4 @@ export default function Home({ props }) {
       </div> */}
     </>
   )
-}
-export async function getServerSideProps() {
-  // fetch env.local variables named DEBUG_MODE
-console.log(process.env.DEBUG_MODE);
-  return {
-    props: { DEBUG_MODE: process.env.DEBUG_MODE },
-  };
 }
