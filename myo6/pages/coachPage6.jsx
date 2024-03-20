@@ -37,10 +37,10 @@ export default function Home(props) {
   }
 //récupérer les vidéos de l'utilisateur
   async function getVideo(userId) {
-     const baUrl = "http://141.145.200.146:5000/api/";
+    //  const baUrl = "http://141.145.200.146:5000/api/";
 
     try {
-      const url = `${baUrl}${userId}/get_all_videos_data`;
+      const url = baseUrl + 'api/getAllUserVideo?id_user=' + userId;
 
       const response = await fetch(url);
       if (!response.ok) {
@@ -279,7 +279,7 @@ export default function Home(props) {
               isVideo ? 
               (
               <div className='h-screen'>
-              <iframe src={"http://localhost:3000/directMesureEmbeded?video_id="+ selectedValueMeasure } width="100%" height="100%" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
+              <iframe src={baseUrl+ "/directMesureEmbeded?video_id="+ selectedValueMeasure } width="100%" height="100%" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
               </div>
               ) : (
               <div className="flex w-full mt-3 m-1 justify-center items-center justify-items-center">
