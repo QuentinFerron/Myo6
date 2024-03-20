@@ -5,7 +5,16 @@ import SideBar from '../components/SideBar'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-export default function Home({ projects }) {
+export default function Home({ props }) {
+
+  let baseUrl = " scooby";
+  if (props.DEBUG_MODE === 'true') {
+    baseUrl = "http://localhost:3000/";
+    console.log("DEBUG_MODE");
+  } else {
+    baseUrl = "https://myo6.vercel.app/";
+    console.log(baseUrl);
+  }
 
   const [users, setUsers] = useState([]);
   const [videos, setVideo] = useState([]);
@@ -20,7 +29,7 @@ export default function Home({ projects }) {
 
 //récupérer les utilisateurs
   async function getUser() {
-    const res = await fetch('http://localhost:3000/api/getAllUser', {});
+    const res = await fetch(baseUrl + 'api/getAllUser', {});
     //const res = await fetch('http://localhost:3000/api/getUsers_Test', {});
 
     const data = await res.json();
@@ -28,10 +37,10 @@ export default function Home({ projects }) {
   }
 //récupérer les vidéos de l'utilisateur
   async function getVideo(userId) {
-    const baseUrl = "http://141.145.200.146:5000/api/";
+    // const baUrl = "http://141.145.200.146:5000/api/";
 
     try {
-      const url = `${baseUrl}${userId}/get_all_videos_data`;
+      const url = `${baseUrl}api/${userId}/get_all_videos_data`;
 
       const response = await fetch(url);
       if (!response.ok) {
@@ -226,14 +235,14 @@ export default function Home({ projects }) {
 
                    <div className="flex h-96  w-1/2 mt-3 m-1 bg-white rounded-lg justify-center items-center justify-items-center shadow-xl border-2 border-gray-400">
                {/* <iframe src={"http://localhost:3000/testGraph5"} width="90%" height="100%" frameBorder="0" allowFullScreen></iframe> */}
-               <iframe src={"http://localhost:3000/testGraph6?id_user="+ selectedValue } width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
+               <iframe src={baseUrl + 'testGraph6?id_user='+ selectedValue } width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
 
                </div>
 
 
                <div className="flex h-96  w-1/2 mt-3 m-1 bg-white rounded-lg justify-center items-center justify-items-center shadow-xl border-2 border-gray-400">
                {/* <iframe src={"http://localhost:3000/testGraph5"} width="90%" height="100%" frameBorder="0" allowFullScreen></iframe> */}
-               <iframe src={"http://localhost:3000/graphHooper?id_user="+ selectedValue } width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
+               <iframe src={baseUrl + 'graphHooper?id_user='+ selectedValue } width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
 
                </div>
 
@@ -245,7 +254,7 @@ export default function Home({ projects }) {
 
 
                <div className="flex h-96 w-1/2 mt-3 m-1 bg-white rounded-lg justify-center items-center justify-items-center shadow-xl border-2 border-gray-400">
-               <iframe src={"http://localhost:3000/UserWeb"} width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
+               <iframe src={baseUrl + 'UserWeb'} width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
                </div>
 
 
@@ -296,4 +305,11 @@ export default function Home({ projects }) {
       </div>
     </>
   )
+}
+export async function getServerSideProps() {
+  // fetch env.local variables named DEBUG_MODE
+console.log(process.env.DEBUG_MODE);
+  return {
+    props: { DEBUG_MODE: process.env.DEBUG_MODE },
+  };
 }
