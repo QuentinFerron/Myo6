@@ -5,9 +5,8 @@ import SideBar from '../components/SideBar'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-export default function Home({ props }) {
+export default function Home(props) {
 
-  let baseUrl = " scooby";
   if (props.DEBUG_MODE === 'true') {
     baseUrl = "http://localhost:3000/";
     console.log("DEBUG_MODE");
