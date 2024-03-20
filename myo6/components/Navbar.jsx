@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import Link from "next/link";
 import SideBar from "./SideBar";
+import Image from "next/image";
 
 export default function Navbar() {
 
