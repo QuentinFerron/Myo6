@@ -30,7 +30,8 @@ export default function Navbar() {
                         </button>
 
                         <img src="/assets/images/logo.png" alt="Logo" className="h-full rounded-md ml-5" />
-                        <h1 className="text-4xl text-white pl-5">Myo6</h1>
+                        {/* <h1 className="text-4xl text-white pl-5">Myo6</h1> */}
+                        <Link href="/" className="text-white text-4xl pl-5 pr-10">Myo6</Link>
 
                     </div>
 
@@ -39,9 +40,9 @@ export default function Navbar() {
 
                 <div className="flex justify-end items-center justify-items-center h-full w-full p-2">
 
-                    <a href="/help" className="text-white text-xl pr-10">Help</a>
+                    <Link href="/Help" className="text-white text-xl pr-10">Help</Link>
 
-                    <a href="/about" className="text-white text-xl pr-10">A propos</a>
+                    <Link href="/About" className="text-white text-xl pr-10">A propos</Link>
 
                     <button className="h-full">
 
