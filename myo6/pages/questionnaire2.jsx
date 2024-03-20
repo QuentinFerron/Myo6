@@ -94,7 +94,7 @@ export default function Home(props) {
     const travel = parseInt(selectedOptionTravel, 10);
     const sickness = parseInt(selectedOptionSickness, 10);
 
-    const url_upload_form = 'http://141.145.200.146:5000/upload/form';
+    const url_upload_form = 'https://141.145.200.146:443/upload/form';
     const data_form = {
       "id_user": selectedValue,
      // "date_record":date1,
