@@ -30,7 +30,7 @@ export default function Navbar() {
                             ||||
                         </button>
 
-                        <Image src="/assets/images/logo.png" alt="Logo" className="h-full rounded-md ml-5" />
+                        <img src="/assets/images/logo.png" alt="Logo" className="h-full w-auto rounded-md ml-5" />
                         {/* <h1 className="text-4xl text-white pl-5">Myo6</h1> */}
                         <Link href="/" className="text-white text-4xl pl-5 pr-10">Myo6</Link>
 
@@ -47,7 +47,7 @@ export default function Navbar() {
 
                     <button className="h-full">
 
-                        <Image src="/assets/icons/user.svg" alt="Logo" className="h-2/3 rounded-md mr-5" />
+                        <img src="/assets/icons/user.svg" alt="Logo" className="h-2/3 rounded-md mr-5" />
 
                     </button>
                     
