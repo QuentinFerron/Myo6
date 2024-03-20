@@ -17,7 +17,7 @@ export default function handler(req, res) {
     };     
  
 
-    fetch("https://141.145.200.146:443/api/get_last_video_data", requestOptions)
+    fetch("http://141.145.200.146:5000/api/get_last_video_data", requestOptions)
       .then(response => response.json())
       .then(result => res.status(200).json(result))
       .catch(error => console.log('error', error));
