@@ -9,7 +9,7 @@ import { Line as LineJS } from 'chart.js/auto'
 export default function Home(props) {
 
 
-
+  let baseUrl = "s";
   if (props.DEBUG_MODE === 'true') {
     baseUrl = "http://localhost:3000/";
     console.log("DEBUG_MODE");
