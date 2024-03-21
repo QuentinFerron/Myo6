@@ -197,10 +197,10 @@ export default function Home(props) {
       
         <hr className="w-full h-[4px] bg-beige"></hr>
       
-        <div className='flex h-[calc(100%-90px)] '>
+        <div className='flex h-[calc(100%-68px)] '>
           {/* <SideBar></SideBar> */}
       
-          <div id="main_code" className=" h-fit  w-full bg-gray-300"> 
+          <div id="main_code" className=" h-full  w-full bg-gray-300"> 
       
             <div className=" w-full p-0">
               {/* <div className="flex bg-white rounded-lg shadow-xl border-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
