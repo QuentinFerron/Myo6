@@ -20,7 +20,7 @@ export default function handler(req, res) {
     };     
  
 
-    fetch("http://141.145.200.146:5000/api/"+id_user+"/get_all_videos_data", requestOptions)
+    fetch("https://myo6.duckdns.org/api/"+id_user+"/get_all_videos_data", requestOptions)
       .then(response => response.json())
       .then(result => res.status(200).json(result))
       .catch(error => console.log('error', error));

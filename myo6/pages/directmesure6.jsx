@@ -281,6 +281,24 @@ export default function Home(props) {
                             mm/s
                           </div>
                         </div>
+
+                        <div className="flex  justify-center items-center justify-items-center">
+                          <div className=" p-4 text-lg flex font-bold text-[#082431]  ">
+                            Aire de la pupille minimale:
+                            {'  '} 
+                            { video && video.measure_metric && video.measure_metric.min_area }
+                            
+                            {'  '} 
+                            mm²
+                          </div>
+                          <div className=" p-4 pl-20 text-lg flex font-bold text-[#082431]  ">
+                            Aire de la pupille maximale: 
+                            {'  '} 
+                            { video && video.measure_metric && video.measure_metric.max_area }
+                            {'  '} 
+                            mm²
+                          </div>
+                        </div>
                       
                       </div>
 

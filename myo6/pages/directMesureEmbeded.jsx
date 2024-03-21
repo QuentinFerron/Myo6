@@ -225,7 +225,7 @@ export default function Home(props) {
                 <div className="flex">
                   <div className=" m-4  flex justify-center items-center justify-items-center w-1/3 ">
                     <div className="text-xl font-bold text-[#082431] bg-white rounded-lg shadow-xl border-2 w-full  border-gray-400 flex justify-center items-center justify-items-center">
-                      <video  autoPlay muted src={'http://141.145.200.146:5000/api/video/' + video.id_video + '/video_traitement.mp4'} type="video/mp4"></video>
+                      <video  autoPlay muted src={'https://myo6.duckdns.org/api/video/' + video.id_video + '/video_traitement.mp4'} type="video/mp4"></video>
 
                     </div>
                   </div>
