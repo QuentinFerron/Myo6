@@ -202,12 +202,12 @@ export default function Home(props) {
       
           <div id="main_code" className=" h-full  w-full bg-gray-300"> 
       
-            <div className=" w-full p-0">
-              {/* <div className="flex bg-white rounded-lg shadow-xl border-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+            <div className=" w-full p-2">
+              <div className="flex bg-white rounded-lg shadow-xl border-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
                   <div className="text-xl font-bold text-[#082431]">
                     Mesure en Direct
                   </div>
-                </div> */}
+                </div>
       
             
                 <div className=" text-lg p-4 font-bold text-[#082431]">
