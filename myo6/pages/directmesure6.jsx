@@ -210,7 +210,7 @@ export default function Home(props) {
                 </div> */}
       
             
-                <div className=" text-xs p-1 font-bold text-[#082431]">
+                <div className=" text-lg p-4 font-bold text-[#082431]">
                     Vidéo n° 
                   {
                     video && video.id 
@@ -227,14 +227,14 @@ export default function Home(props) {
       
                           
                 <div className="flex">
-                  <div className=" ml-4  flex justify-center items-center justify-items-center w-1/3 ">
+                  <div className=" m-4  flex justify-center items-center justify-items-center w-1/3 ">
                     <div className="text-xl font-bold text-[#082431] bg-white rounded-lg shadow-xl border-2 w-full  border-gray-400 flex justify-center items-center justify-items-center">
                       <video  autoPlay muted>
                         <source src="https://myo6.duckdns.org/api/video/last_video/video_traitement.mp4" width="auto"/>
                         </video>   
                     </div>
                   </div>
-                  <div className="ml-4 flex justify-center items-center justify-items-center w-1/2">
+                  <div className="m-4 flex justify-center items-center justify-items-center w-1/2">
                     <div className="text-xl font-bold text-[#082431] bg-white rounded-lg shadow-xl border-2 w-full h-full border-gray-400 flex justify-center items-center justify-items-center">
                       {
                         chartData && options &&
@@ -252,22 +252,22 @@ export default function Home(props) {
 
                   <div className="flex ">
                     <div className="m-4  bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-5/6 ">
-                        <div className="text-lg flex font-bold text-[#082431] justify-center items-center justify-items-center">
+                        <div className="text-2xl flex font-bold text-[#082431] justify-center items-center justify-items-center">
                           Résultats
                         </div>
 
                         <div className="flex justify-center items-center justify-items-center">
 
 
-                          <div className="">
-                          <div className="pl-4 text-base flex font-bold text-[#082431]  ">
+                          <div className="text-lg">
+                          <div className="p-2 flex font-bold text-[#082431]  ">
                             Temps de réaction:
                             {'  '} 
                             { video && video.measure_metric && video.measure_metric.reaction_time }
                             {'  '} 
                             s
                           </div>
-                          <div className="pl-4 text-base flex font-bold text-[#082431]  ">
+                          <div className="p-2 flex font-bold text-[#082431]  ">
                           Temps de constriction:
                             {'  '} 
                             { video && video.measure_metric && video.measure_metric.time_constriction }
@@ -277,15 +277,15 @@ export default function Home(props) {
                         </div>
 
 
-                        <div className="  justify-center items-center justify-items-center">
-                          <div className="pl-4 text-base flex font-bold text-[#082431]  ">
+                        <div className="text-lg">
+                          <div className="p-2 flex font-bold text-[#082431]  ">
                             Vitesse de constriction moyenne: 
                             {'  '} 
                             { video && video.measure_metric && video.measure_metric.average_constriction_velocity_area }
                             {'  '} 
                             mm/s
                           </div>
-                          <div className="pl-4 text-base flex font-bold text-[#082431]  ">
+                          <div className="p-2 flex font-bold text-[#082431]  ">
                             Vitesse de constriction maximale: 
                             {'  '} 
                             { video && video.measure_metric && video.measure_metric.max_constriction_velocity_area }
@@ -294,8 +294,8 @@ export default function Home(props) {
                           </div>
                         </div>
 
-                        <div className="  justify-center items-center justify-items-center">
-                          <div className="pl-4 text-base flex font-bold text-[#082431]  ">
+                        <div className="text-lg">
+                          <div className="p-2 flex font-bold text-[#082431]  ">
                             Aire de la pupille minimale:
                             {'  '} 
                             { video && video.measure_metric && video.measure_metric.min_area }
@@ -303,7 +303,7 @@ export default function Home(props) {
                             {'  '} 
                             mm²
                           </div>
-                          <div className=" pl-4 text-base flex font-bold text-[#082431]  ">
+                          <div className="p-2 flex font-bold text-[#082431]  ">
                             Aire de la pupille maximale: 
                             {'  '} 
                             { video && video.measure_metric && video.measure_metric.max_area }
