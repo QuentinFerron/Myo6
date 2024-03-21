@@ -20,7 +20,7 @@ export default function Navbar() {
         <div className="w-full flex">
             
             
-            <div className="flex  w-full shadow-md h-20  bg-bleugris">
+            <div className="flex  w-full shadow-md h-16  bg-bleugris">
                 
                 <div className="w-1/2  ">
 
