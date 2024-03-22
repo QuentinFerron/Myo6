@@ -61,8 +61,9 @@ export default function Home({  }) {
                   <div className="text-xl font-bold text-[#082431] text-center">
                     Nos réseaux sociaux
                   </div>
+
+                  
                   <div className="text-lg font-bold text-[#082431]">
-                  <div className="social-links">
                     <div className="p-3">
       <a href="https://www.linkedin.com/company/innowide/" className="social-link">
         <img src="/assets/images/linkedin.svg" alt="Linkedin" />
@@ -79,11 +80,7 @@ export default function Home({  }) {
       <a href="https://twitter.com/innowide91" className="social-link">
         <img src="/assets/images/twitter-x.svg" alt="X" />
       </a>
-      </div>
-
-    </div>
-                    <br></br>
-                    
+      </div>                    
                   </div>
                 </div>
                 </div>
