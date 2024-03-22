@@ -324,7 +324,7 @@ export default function Home(props) {
                         </div>
                         
                         <div className="text-4xl p-2 flex font-bold text-[#082431] justify-center items-center justify-items-center">
-                          {Math.round(4*(video && video.measure_metric && video.measure_metric.average_constriction_velocity_area)) }%
+                          {Math.round(5*(video && video.measure_metric && video.measure_metric.average_constriction_velocity_area)) }%
                         
                         </div>
                         
