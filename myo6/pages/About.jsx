@@ -61,17 +61,26 @@ export default function Home({  }) {
                   <div className="text-xl font-bold text-[#082431] text-center">
                     Nos réseaux sociaux
                   </div>
-                  <div className="flex text-lg font-bold text-[#082431]">
+                  <div className="text-lg font-bold text-[#082431]">
                   <div className="social-links">
-      <a href="https://www.facebook.com/votreprofil" className="social-link">
-        <img src="chemin/vers/icone/facebook.png" alt="Facebook" />
+                    <div className="p-3">
+      <a href="https://www.linkedin.com/company/innowide/" className="social-link">
+        <img src="/assets/images/linkedin.svg" alt="Linkedin" />
       </a>
-      <a href="https://twitter.com/votreprofil" className="social-link">
-        <img src="chemin/vers/icone/twitter.png" alt="Twitter" />
+      </div>
+
+      <div className="p-1">
+      <a href="https://www.welcometothejungle.com/fr/companies/innowide" className="social-link">
+        <img src="/assets/images/welcome-to-the-jungle.svg" alt="Welcome To The Jungle" />
       </a>
-      <a href="https://www.instagram.com/votreprofil" className="social-link">
-        <img src="chemin/vers/icone/instagram.png" alt="Instagram" />
+      </div>
+
+      <div className="p-1">
+      <a href="https://twitter.com/innowide91" className="social-link">
+        <img src="/assets/images/twitter-x.svg" alt="X" />
       </a>
+      </div>
+
     </div>
                     <br></br>
                     
