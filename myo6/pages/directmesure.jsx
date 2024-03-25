@@ -148,7 +148,7 @@ export default function Home(props) {
       MyDate = MyDate.toString().replace(" Oct ", "/10/");
       MyDate = MyDate.toString().replace(" Nov ", "/11/");
       MyDate = MyDate.toString().replace(" Dec ", "/12/");
-      setDate(MyDate); 
+      setDate(MyDate);
 
 
     }
@@ -188,19 +188,12 @@ export default function Home(props) {
   }, [area]);
 
 
-
-
-  function renderElement(score) {
-    if (score < -1.5) {
-       return <div className='text-[#ff0000]'>Mauvais</div>;
-    }if (score < 0 && score > -1.5) {
-      return <div className='text-[#ffa600]'>Moyen</div>;
-    }if (score > 0 && score < 1.5) {
-    return <div className='text-[#1eb0ff]'>Bon</div>;
-    } else {
-       return <div className='text-[#09ff00]'>Très Bon</div>;
-    }
-   }
+//   useEffect(() => {
+//     // Générer un timestamp unique
+//     const timestamp = new Date().getTime();
+//     // Ajouter le timestamp comme paramètre de requête à l'URL
+//     window.location.href = `${window.location.pathname}?${timestamp}`;
+//  }, []);
 
 
   return (
@@ -352,10 +345,9 @@ export default function Home(props) {
                           <br></br>
                           {((video && video.measure_metric && video.measure_metric.max_area))}    
                           <br></br>
-                          {(((video && video.measure_metric && video.measure_metric.max_area) - (video && video.measure_metric && video.measure_metric.min_area))/(video && video.measure_metric && video.measure_metric.max_area)).toFixed(2)}%  
+                          {(((video && video.measure_metric && video.measure_metric.max_area) - (video && video.measure_metric && video.measure_metric.min_area))/(video && video.measure_metric && video.measure_metric.max_area)).toFixed(2)}%   */}
                           {(((video && video.measure_metric && video.measure_metric.max_area) - (video && video.measure_metric && video.measure_metric.max_area) + (video && video.measure_metric && video.measure_metric.score))).toFixed(2)}
-                          <br></br> */}
-                          {renderElement(video && video.measure_metric && video.measure_metric.score)}                
+                                                  
                         </div>
                         
                       </div>

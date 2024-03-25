@@ -279,7 +279,7 @@ export default function Home(props) {
               isVideo ? 
               (
               <div className='h-screen'>
-              <iframe src={baseUrl+ "/directMesureEmbeded?video_id="+ selectedValueMeasure } width="100%" height="100%" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
+              <iframe src={baseUrl+ "directMesureEmbeded?video_id="+ selectedValueMeasure } width="100%" height="100%" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
               </div>
               ) : (
               <div className="flex w-full mt-3 m-1 justify-center items-center justify-items-center">
