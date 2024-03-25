@@ -2,7 +2,7 @@ import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import SideBar from '../components/SideBar'
 import React, { useEffect, useState } from 'react';
-import { Line } from 'react-chartjs-2';
+import { Doughnut, Line } from 'react-chartjs-2';
 import { Line as LineJS } from 'chart.js/auto'
 //import styles from '@/styles/Home.module.css'
 
@@ -76,6 +76,8 @@ export default function Home(props) {
       duration:  0, // Durée de l'animation pour chaque point
     },
   });
+
+
 
 
   useEffect(() => {
@@ -190,7 +192,122 @@ export default function Home(props) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
   function renderElement(score) {
+    if (score < -1.5) {
+      const dataJauge = {
+        labels: [],
+        datasets: [{
+          data: [21, 3, 21, 45, 45, 45],
+          backgroundColor: [
+            'rgb(255, 0, 0)',
+            'rgb(0, 0, 0)',
+            'rgb(255, 0, 0)',
+            'rgb(255, 150, 0)',
+            'rgb(54, 162, 235)',
+            'rgb(0, 255, 0)'
+          ],
+          hoverOffset: 0
+        }]
+      };
+    
+      const config = {
+        type: 'doughnut',
+        data: dataJauge,
+        circumference: 180,
+        rotation: -90,
+      };  
+       return <Doughnut data={dataJauge} options={config} />;
+    }if (score < 0 && score > -1.5) {
+      const dataJauge = {
+        zoomOutPercentage: 10,
+        labels: [],
+        datasets: [{
+          data: [45, 21, 3, 21, 45, 45],
+          backgroundColor: [
+            'rgb(255, 0, 0)',
+            'rgb(255, 150, 0)',
+            'rgb(0, 0, 0)',
+            'rgb(255, 150, 0)',
+            'rgb(54, 162, 235)',
+            'rgb(0, 255, 0)'
+          ],
+          hoverOffset: 0
+        }]
+      };
+    
+      const config = {
+        type: 'doughnut',
+        data: dataJauge,
+        circumference: 180,
+        rotation: -90,
+      };  
+       return <Doughnut data={dataJauge} options={config} />;
+    }if (score > 0 && score < 1.5) {
+      const dataJauge = {
+        labels: [],
+        datasets: [{
+          data: [45, 45, 21, 3, 21, 45],
+          backgroundColor: [
+            'rgb(255, 0, 0)',
+            'rgb(255, 150, 0)',
+            'rgb(54, 162, 235)',
+            'rgb(0, 0, 0)',
+            'rgb(54, 162, 235)',
+            'rgb(0, 255, 0)'
+          ],
+          hoverOffset: 0
+        }]
+      };
+    
+      const config = {
+        type: 'doughnut',
+        data: dataJauge,
+        circumference: 180,
+        rotation: -90,
+      };  
+       return <Doughnut data={dataJauge} options={config} />;
+    } else {
+      const dataJauge = {
+        labels: [],
+        datasets: [{
+          data: [45, 45, 45, 21, 3, 21],
+          backgroundColor: [
+            'rgb(255, 0, 0)',
+            'rgb(255, 150, 0)',
+            'rgb(54, 162, 235)',
+            'rgb(0, 255, 0)',
+            'rgb(0, 0, 0)',
+            'rgb(0, 255, 0)'
+          ],
+          hoverOffset: 0
+        }]
+      };
+    
+      const config = {
+        type: 'doughnut',
+        data: dataJauge,
+        circumference: 180,
+        rotation: -90,
+      };  
+       return <Doughnut data={dataJauge} options={config} />;
+    }
+   }
+
+
+   function renderElement2(score) {
     if (score < -1.5) {
        return <div className='text-[#ff0000]'>Mauvais</div>;
     }if (score < 0 && score > -1.5) {
@@ -201,6 +318,13 @@ export default function Home(props) {
        return <div className='text-[#09ff00]'>Très Bon</div>;
     }
    }
+
+
+
+
+
+
+
 
 
   return (
@@ -355,7 +479,14 @@ export default function Home(props) {
                           {(((video && video.measure_metric && video.measure_metric.max_area) - (video && video.measure_metric && video.measure_metric.min_area))/(video && video.measure_metric && video.measure_metric.max_area)).toFixed(2)}%  
                           {(((video && video.measure_metric && video.measure_metric.max_area) - (video && video.measure_metric && video.measure_metric.max_area) + (video && video.measure_metric && video.measure_metric.score))).toFixed(2)}
                           <br></br> */}
-                          {renderElement(video && video.measure_metric && video.measure_metric.score)}                
+                          <div className=' text-center'>
+                          {renderElement2(video && video.measure_metric && video.measure_metric.score)} 
+                          {renderElement(video && video.measure_metric && video.measure_metric.score)} 
+                          </div>
+
+                          {/* <Doughnut data={dataJauge} options={config} /> */}
+
+                                       
                         </div>
                         
                       </div>
