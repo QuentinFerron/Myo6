@@ -187,6 +187,15 @@ export default function Home(props) {
     }
   }, [area]);
 
+
+//   useEffect(() => {
+//     // Générer un timestamp unique
+//     const timestamp = new Date().getTime();
+//     // Ajouter le timestamp comme paramètre de requête à l'URL
+//     window.location.href = `${window.location.pathname}?${timestamp}`;
+//  }, []);
+
+
   return (
     <>  
       <Header></Header>
@@ -230,7 +239,7 @@ export default function Home(props) {
                   <div className=" m-4  flex justify-center items-center justify-items-center w-1/3 ">
                     <div className="text-xl font-bold text-[#082431] bg-white rounded-none shadow-xl border-2 w-full  border-gray-400 flex justify-center items-center justify-items-center">
                       <video  autoPlay muted>
-                        <source src="https://myo6.duckdns.org/api/video/last_video/video_traitement.mp4" width="auto"/>
+                        <source src="https://myo6.duckdns.org/api/video/last_video/video_traitement.mp4?t=${new Date().getTime()}" width="auto"/>
                         </video>   
                     </div>
                   </div>
@@ -324,7 +333,18 @@ export default function Home(props) {
                         </div>
                         
                         <div className="text-4xl p-2 flex font-bold text-[#082431] justify-center items-center justify-items-center">
-                          {Math.round(5*(video && video.measure_metric && video.measure_metric.average_constriction_velocity_area)) }%
+                          {/* {Math.round(5*(video && video.measure_metric && video.measure_metric.average_constriction_velocity_area)) }% */}
+                          {/* {Math.round((video && video.measure_metric && video.measure_metric.average_constriction_velocity_area)*((video && video.measure_metric && video.measure_metric.max_area) - (video && video.measure_metric && video.measure_metric.min_area))*(1/(video && video.measure_metric && video.measure_metric.average_constriction_velocity_area))*(video && video.measure_metric && video.measure_metric.max_area)) }
+                          <br></br> */}
+                          {/* {Math.round((video && video.measure_metric && video.measure_metric.average_constriction_velocity_area))}  
+                          <br></br>
+                          {((video && video.measure_metric && video.measure_metric.max_area) - (video && video.measure_metric && video.measure_metric.min_area))}  
+                          <br></br>
+                          {Math.round(1/(video && video.measure_metric && video.measure_metric.reaction_time))} 
+                          <br></br>
+                          {((video && video.measure_metric && video.measure_metric.max_area))}    
+                          <br></br> */}
+                          {100*(((video && video.measure_metric && video.measure_metric.max_area) - (video && video.measure_metric && video.measure_metric.min_area))/(video && video.measure_metric && video.measure_metric.max_area)).toFixed(2)}%  
                         
                         </div>
                         
