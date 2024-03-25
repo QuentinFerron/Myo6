@@ -232,8 +232,10 @@ export default function Home(props) {
        return <Doughnut data={dataJauge} options={config} />;
     }if (score < 0 && score > -1.5) {
       const dataJauge = {
-        zoomOutPercentage: 10,
         labels: [],
+        layout: {
+          margin : -5
+        },
         datasets: [{
           data: [45, 21, 3, 21, 45, 45],
           backgroundColor: [
@@ -250,6 +252,7 @@ export default function Home(props) {
     
       const config = {
         type: 'doughnut',
+        zoomOutPercentage: 10,
         data: dataJauge,
         circumference: 180,
         rotation: -90,
@@ -480,9 +483,11 @@ export default function Home(props) {
                           {(((video && video.measure_metric && video.measure_metric.max_area) - (video && video.measure_metric && video.measure_metric.max_area) + (video && video.measure_metric && video.measure_metric.score))).toFixed(2)}
                           <br></br> */}
                           <div className=' text-center'>
-                          {renderElement2(video && video.measure_metric && video.measure_metric.score)} 
+                          {renderElement2(video && video.measure_metric && video.measure_metric.score)}
+                          <div className=' pt--1'>
                           {renderElement(video && video.measure_metric && video.measure_metric.score)} 
                           </div>
+                          </div> 
 
                           {/* <Doughnut data={dataJauge} options={config} /> */}
 
