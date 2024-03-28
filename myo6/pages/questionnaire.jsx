@@ -121,8 +121,8 @@ export default function Home(props) {
     const url_upload_form = 'https://myo6.duckdns.org/upload/form';
     const data_form = {
       "id_user": selectedValue,
-     // "date_record":date1,
-       "date_record": "2021-11-01",
+      "date_record":date1,
+    //"date_record": "2021-11-01",
       "sleep_quality": sleepQuality,
       // "asleep_time": "23:15",
       // "wakeup_time": "07:35",
