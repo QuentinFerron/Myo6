@@ -79,21 +79,10 @@ export default function Home(props) {
 
   const isFormValid = () => {
     if (
-      !selectedWeight ||
-      !selectedAsleepTime ||
-      !selectedWakeupTime ||
       !selectedOptionSleepQuality ||
-      !selectedOptionTrainLastDay ||
-      !selectedOptionTrainPerf ||
-      !selectedOptionPhysCond ||
       !selectedOptionStress ||
       !selectedOptionMuscleSore ||
-      !selectedOptionFatigueSubj ||
-      !selectedOptionInjuried ||
-      !selectedOptionAlcohol ||
-      (selectedUserGender === 'F' && !selectedOptionMenstruation) ||
-      !selectedOptionTravel ||
-      !selectedOptionSickness
+      !selectedOptionFatigueSubj
     ) {
       return false;
     }
