@@ -45,8 +45,26 @@ export default function Home(props) {
   const [submissionMessage, setSubmissionMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  // ... (reste du code inchangé)
 
+
+  async function setVar() {
+    setSelectedOptionSleepQuality(null);
+    setSelectedOptionTrainLastDay(null);
+    setSelectedOptionTrainPerf(null);
+    setSelectedOptionPhysCond(null);
+    setSelectedOptionStress(null);
+    setSelectedOptionMuscleSore(null);
+    setSelectedOptionFatigueSubj(null);
+    setSelectedOptionInjuried(null);
+    setSelectedOptionAlcohol(null);
+    setSelectedOptionMenstruation(null);
+    setSelectedOptionTravel(null);
+    setSelectedOptionSickness(null);
+  }
+
+  useEffect(() => {
+    setVar()
+  }, []);
   
   async function getUser() {
 
@@ -60,6 +78,8 @@ export default function Home(props) {
     const data = await res.json();
     console.log(data);
     setUsers(data);
+
+
   }
 
   const handleSelectChange = (event) => {
@@ -122,13 +142,13 @@ export default function Home(props) {
     const data_form = {
       "id_user": selectedValue,
       "date_record":date1,
-    //"date_record": "2021-11-01",
+    //"date_record": "2024-03-27",
       "sleep_quality": sleepQuality,
       // "asleep_time": "23:15",
       // "wakeup_time": "07:35",
       "asleep_time": selectedAsleepTime,
       "wakeup_time": selectedWakeupTime,
-      "weight": selectedWeight,
+      "weight": parseFloat(selectedWeight),
       "train_lastday": trainLastDay,
       "train_perf": trainPerf,
       "phys_cond": physCond,
@@ -191,6 +211,7 @@ export default function Home(props) {
             
 
             <select value={selectedValue} onChange={handleSelectChange} className="bg-white rounded-lg m-4 w-auto shadow-xl border-2 border-gray-400 text-lg">
+            <option value="">Sélectionner un utilisateur</option>
               {users.map(user => (
                 <option key={user.id_user} value={user.id_user}>
                   {user.firstname} {user.lastname}
@@ -199,6 +220,10 @@ export default function Home(props) {
             </select>
             </div>
 
+
+            <div className="pl-2">
+*Champs Obligatoires
+</div>
 
 
             <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
@@ -260,7 +285,13 @@ export default function Home(props) {
 
 
                 <form>
-                  <p>Quelle est votre qualité de sommeil ?</p>
+                  <p>Quelle est votre qualité de sommeil ?*</p>
+
+                  <div className="flex justify-center items-center justify-items-center text-center">
+                  <div className="pr-6">
+                    Excellent
+                    </div>
+
 
                   <input
                     type="radio"
@@ -344,6 +375,12 @@ export default function Home(props) {
                   />
                   <label htmlFor="quality5">7</label>
 
+                  <div className="pl-6">
+                    Très mauvais
+                    </div>
+                  </div>
+
+
 
                 </form>
 
@@ -365,6 +402,11 @@ export default function Home(props) {
 
                 <form>
                   <p>Comment était votre journée d&apos;entrainement d&apos;hier ?</p>
+
+                  <div className="flex justify-center items-center justify-items-center text-center">
+                  <div className="pr-6">
+                    Repos
+                    </div>
 
                   <input
                     type="radio"
@@ -424,6 +466,11 @@ export default function Home(props) {
                   />
                   <label htmlFor="trainld5">5</label>
 
+                  <div className="pl-6">
+                    Intensive
+                    </div>
+                  </div>
+
 
                 </form>
 
@@ -444,6 +491,11 @@ export default function Home(props) {
 
                 <form>
                   <p>Quel était votre performance à l&apos;entrainement hier par rapport à celle attendue/prévue ? </p>
+
+                  <div className="flex justify-center items-center justify-items-center text-center pl-8">
+                  <div className="pr-6">
+                    Pire
+                    </div>
 
                   <input
                     type="radio"
@@ -503,6 +555,11 @@ export default function Home(props) {
                   />
                   <label htmlFor="perf5">5</label>
 
+                  <div className="pl-6">
+                    Meilleur
+                    </div>
+                  </div>
+
 
                 </form>
 
@@ -527,6 +584,12 @@ export default function Home(props) {
 
                 <form>
                   <p>Comment est votre condition physique en ce moment ? </p>
+
+                  <div className="flex justify-center items-center justify-items-center text-center pl-8">
+                  <div className="pr-6">
+                    Très mauvaise
+                    </div>
+                    
 
                   <input
                     type="radio"
@@ -586,6 +649,11 @@ export default function Home(props) {
                   />
                   <label htmlFor="physicalc5">5</label>
 
+                  <div className="pl-6">
+                    Très bonne
+                    </div>
+                  </div>
+
 
                 </form>
 
@@ -609,7 +677,13 @@ export default function Home(props) {
 
 
                 <form>
-                  <p>Quel est votre niveau de stress ce matin ? </p>
+                  <p>Quel est votre niveau de stress ce matin ?* </p>
+
+                  <div className="flex justify-center items-center justify-items-center text-center pl-8">
+                  <div className="pr-6">
+                    Pas stressé
+                    </div>
+                    
 
                   <input
                     type="radio"
@@ -695,6 +769,11 @@ export default function Home(props) {
                   />
                   <label htmlFor="stress7">7</label>
 
+                  <div className="pl-6">
+                    Très stessé
+                    </div>
+                  </div>
+
                 </form>
 
               </div>
@@ -717,7 +796,12 @@ export default function Home(props) {
 
 
                 <form>
-                  <p>Comment évaluez vous votre niveau de douleurs musculaires/courbatures ce matin ? </p>
+                  <p>Comment évaluez vous votre niveau de douleurs musculaires/courbatures ce matin ?* </p>
+
+                  <div className="flex justify-center items-center justify-items-center text-center pl-8">
+                  <div className="pr-6">
+                    Aucune
+                    </div>
 
                   <input
                     type="radio"
@@ -803,6 +887,11 @@ export default function Home(props) {
                   />
                   <label htmlFor="sore7">7</label>
 
+                  <div className="pl-6">
+                    Extrêmement élevé
+                    </div>
+                  </div>
+
 
                 </form>
 
@@ -827,7 +916,12 @@ export default function Home(props) {
 
 
                 <form>
-                  <p>Quel est votre niveau de fatigue ressenti ? </p>
+                  <p>Quel est votre niveau de fatigue ressenti ?* </p>
+
+                  <div className="flex justify-center items-center justify-items-center text-center pl-8">
+                  <div className="pr-6">
+                    Aucune
+                    </div>
 
                   <input
                     type="radio"
@@ -913,6 +1007,11 @@ export default function Home(props) {
                     onChange={(e) => setSelectedOptionFatigueSubj(e.target.value)}
                   />
                   <label htmlFor="fatigue7">7</label>
+
+                  <div className="pl-6">
+                    Extrêmement importante
+                    </div>
+                  </div>
 
                 </form>
 
