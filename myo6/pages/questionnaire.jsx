@@ -115,7 +115,7 @@ export default function Home(props) {
     event.preventDefault();
 
     if (!isFormValid()) {
-      setErrorMessage('Veuillez remplir tous les champs.');
+      setErrorMessage('Veuillez remplir tous les champs');
       return;
     }
   
@@ -178,11 +178,11 @@ export default function Home(props) {
       if (response.ok) {
         setSubmissionMessage('Le questionnaire a été envoyé avec succès.');
       } else {
-        setSubmissionMessage('Une erreur s\'est produite lors de l\'envoi du questionnaire.');
+        setSubmissionMessage('Une erreur s\'est produite lors de l\'envoi du questionnaire');
       }
     } catch (error) {
       console.error('Erreur:', error);
-      setSubmissionMessage('Une erreur s\'est produite lors de l\'envoi du questionnaire.');
+      setSubmissionMessage('Une erreur s\'est produite lors de l\'envoi du questionnaire');
     }
   };
 

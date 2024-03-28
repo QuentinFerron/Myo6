@@ -21,10 +21,37 @@ export default function Home({  }) {
   const [birthDate, setBirthDate] = useState('');
   const [sex, setSex] = useState(0);
 
+  const [submissionMessage, setSubmissionMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+
+  const isFormValid = () => {
+    if (
+      !firstName ||
+      !lastName ||
+      !password ||
+      !emailAddress ||
+      !birthDate ||
+      !sex
+    ) {
+      return false;
+    }
+    return true;
+  };
+
 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (!isFormValid()) {
+      setErrorMessage('Veuillez remplir tous les champs');
+      return;
+    }
+  
+    setErrorMessage('');
+
+
 
     let date = new Date();
     let date1 = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
@@ -56,16 +83,14 @@ export default function Home({  }) {
         body: JSON.stringify(data_form),
       });
 
-      if (!response.ok) {
-        throw new Error('Erreur lors de l\'envoi des données');
+      if (response.ok) {
+        setSubmissionMessage('Utilisateur créé avec succès');
+      } else {
+        setSubmissionMessage('Une erreur s\'est produite lors de la création de l\'utilisateur');
       }
-
-      const responseData = await response.json();
-      console.log(responseData);
-      // Gérer la réponse du serveur ici
     } catch (error) {
       console.error('Erreur:', error);
-      // Gérer l'erreur ici
+      setSubmissionMessage('Une erreur s\'est produite lors de la création de l\'utilisateur');
     }
   };
 
@@ -81,7 +106,7 @@ export default function Home({  }) {
         <hr className="w-full h-[4px] bg-beige"></hr>
         <div className='flex h-auto min-h-[calc(100%-84px)]'>
           {/* <SideBar></SideBar> */}
-          <div id="main_code" className=" h-full w-full bg-gray-300">
+          <div id="main_code" className=" h-fit w-full bg-gray-300">
             <div className="w-full p-2 ">
               <div className="flex bg-white rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-fit">
                 <div className="text-xl font-bold text-[#082431]">
@@ -217,6 +242,12 @@ export default function Home({  }) {
 
               </div>
             </div>
+
+            <div className="flex w-full p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+              {errorMessage && <div className="bg-red-500 text-white rounded-lg shadow-xl border-2 border-gray-400 p-2">{errorMessage}</div>}
+              {submissionMessage && <div className="bg-green-500 text-white rounded-lg shadow-xl border-2 border-gray-400 p-2">{submissionMessage}</div>}
+            </div>
+
 
             <div className="flex w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-sky-600 text-center text-white rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
