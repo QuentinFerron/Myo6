@@ -129,7 +129,8 @@ export default function Home(props) {
 
               {videos.map(video => (
                 <option key={video.id_video} value={video.id_video}>
-                  {video.date_record} {video.id_video}
+                  {video.date_record.slice(4, -7)}
+                  {/* {video.id_video} */}
                 </option>
               ))}
             </select>
