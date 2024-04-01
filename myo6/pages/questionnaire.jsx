@@ -226,7 +226,7 @@ export default function Home(props) {
 </div>
 
 
-            <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+            <div className="w-4/5 sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className=" bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -242,7 +242,7 @@ export default function Home(props) {
 
 
 
-<div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+<div className="w-4/5 sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className=" bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -492,7 +492,7 @@ export default function Home(props) {
                 <form>
                   <p>Quel était votre performance à l&apos;entrainement hier par rapport à celle attendue/prévue ? </p>
 
-                  <div className="flex justify-center items-center justify-items-center text-center pl-8">
+                  <div className="flex justify-center items-center justify-items-center text-center">
                   <div className="pr-6">
                     Pire
                     </div>
@@ -585,7 +585,7 @@ export default function Home(props) {
                 <form>
                   <p>Comment est votre condition physique en ce moment ? </p>
 
-                  <div className="flex justify-center items-center justify-items-center text-center pl-8">
+                  <div className="flex justify-center items-center justify-items-center text-center ">
                   <div className="pr-6">
                     Très mauvaise
                     </div>

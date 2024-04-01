@@ -32,18 +32,18 @@ export default function Navbar() {
 
                         <img src="/assets/images/logo.png" alt="Logo" className="h-full w-auto rounded-md ml-5" />
                         {/* <h1 className="text-4xl text-white pl-5">Myo6</h1> */}
-                        <Link href="/" className="text-white text-4xl pl-5 pr-10">Myo6</Link>
+                        <Link href="/" className="text-white text-lg sm:text-3xl pl-5 pr-10 ">Myo6</Link>
 
                     </div>
 
                 </div>
-                <div className="w-1/2 ">
+                <div className="w-1/2">
 
                 <div className="flex justify-end items-center justify-items-center h-full w-full p-2">
 
-                    <Link href="/Help" className="text-white text-xl pr-10">Help</Link>
+                    <Link href="/Help" className="text-white text-sm sm:text-3xl pr-10">Help</Link>
 
-                    <Link href="/About" className="text-white text-xl pr-10">A propos</Link>
+                    <Link href="/About" className="text-white text-sm sm:text-3xl pr-10">A propos</Link>
 
                     <button className="h-full">
 
