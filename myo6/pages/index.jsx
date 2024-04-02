@@ -38,8 +38,8 @@ export default function Home({  }) {
                 </div>
             </div> */}
 
-            <div className='flex p-8 ml-5'>
-              <img src="/assets/images/logo.png" alt="Logo" className="h-1/3 sm:h-auto rounded-md  " />
+            <div className='sm:flex sm:p-8 sm:ml-5'>
+              <img src="/assets/images/logo.png" alt="Logo" className="w-auto rounded-md  " />
                   <div className="text-[#082431] p-8 text-justify justify-center items-center justify-items-center w-auto">
                   Innowide lance sa marque SportElevate dédiée à la performance 
                   sportive des athlètes de haut niveau par la conception et la commercialisation 
@@ -48,9 +48,9 @@ export default function Home({  }) {
                   </div>
 
 
-                  <div className='flex p-8 ml-5'>
+                  <div className='sm:flex sm:p-8 sm:ml-5'>
               
-                  <div className="text-[#082431] w-auto  text-justify justify-center items-center justify-items-center">
+                  <div className="text-[#082431] w-auto p-8 sm:p-0 text-justify justify-center items-center justify-items-center">
                   La pupillométrie, méthode qui consiste à mesurer le diamètre de la pupille en 
                 fonction de stimuli lumineux, est utilisée en médecine pour détecter certaines 
                 pathologies et pour mesurer les éventuelles séquelles neurologiques d’un gros 
@@ -60,7 +60,7 @@ export default function Home({  }) {
                 pour évaluer la fatigue des sportifs de haut niveau et leur permettre d’ajuster 
                 au mieux leur entraînement.
                   </div>
-                  <img src="/assets/images/pres1.png" alt="Logo" className="h-auto rounded-md ml-5" />
+                  <img src="/assets/images/pres1.png" alt="Logo" className="w-auto rounded-md sm:ml-5" />
                   </div>
             </div>
 
