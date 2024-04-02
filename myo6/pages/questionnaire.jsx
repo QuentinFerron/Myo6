@@ -287,7 +287,7 @@ export default function Home(props) {
                 <form>
                   <p>Quelle est votre qualité de sommeil ?*</p>
 
-                  <div className="flex justify-center items-center justify-items-center text-center">
+                  <div className="pt-3 flex justify-center items-center justify-items-center text-center">
                   <div className="pr-6 text-xs sm:text-lg">
                     Excellent
                     </div>
@@ -397,14 +397,14 @@ export default function Home(props) {
 
 
             <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
                 <form>
                   <p>Comment était votre journée d&apos;entrainement d&apos;hier ?</p>
 
-                  <div className="flex justify-center items-center justify-items-center text-center">
-                  <div className="pr-6">
+                  <div className="pt-3 flex justify-center items-center justify-items-center text-center">
+                  <div className="pr-6 text-xs sm:text-lg">
                     Repos
                     </div>
 
@@ -466,7 +466,7 @@ export default function Home(props) {
                   />
                   <label htmlFor="trainld5">5</label>
 
-                  <div className="pl-6">
+                  <div className="pl-6 text-xs sm:text-lg">
                     Intensive
                     </div>
                   </div>
@@ -486,14 +486,14 @@ export default function Home(props) {
 
 
             <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
                 <form>
                   <p>Quel était votre performance à l&apos;entrainement hier par rapport à celle attendue/prévue ? </p>
 
-                  <div className="flex justify-center items-center justify-items-center text-center">
-                  <div className="pr-6">
+                  <div className="pt-3 flex justify-center items-center justify-items-center text-center">
+                  <div className="pr-6 text-xs sm:text-lg">
                     Pire
                     </div>
 
@@ -555,7 +555,7 @@ export default function Home(props) {
                   />
                   <label htmlFor="perf5">5</label>
 
-                  <div className="pl-6">
+                  <div className="pl-6 text-xs sm:text-lg">
                     Meilleur
                     </div>
                   </div>
@@ -579,14 +579,14 @@ export default function Home(props) {
 
 
             <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
                 <form>
                   <p>Comment est votre condition physique en ce moment ? </p>
 
-                  <div className="flex justify-center items-center justify-items-center text-center ">
-                  <div className="pr-6">
+                  <div className="pt-3 flex justify-center items-center justify-items-center text-center ">
+                  <div className="pr-6 text-xs sm:text-lg">
                     Très mauvaise
                     </div>
                     
@@ -649,7 +649,7 @@ export default function Home(props) {
                   />
                   <label htmlFor="physicalc5">5</label>
 
-                  <div className="pl-6">
+                  <div className="pl-6 text-xs sm:text-lg">
                     Très bonne
                     </div>
                   </div>
@@ -673,14 +673,14 @@ export default function Home(props) {
 
 
             <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
                 <form>
                   <p>Quel est votre niveau de stress ce matin ?* </p>
 
-                  <div className="flex justify-center items-center justify-items-center text-center pl-8">
-                  <div className="pr-6">
+                  <div className="pt-3 flex justify-center items-center justify-items-center text-center pl-8">
+                  <div className="pr-6 text-xs sm:text-lg">
                     Pas stressé
                     </div>
                     
@@ -769,7 +769,7 @@ export default function Home(props) {
                   />
                   <label htmlFor="stress7">7</label>
 
-                  <div className="pl-6">
+                  <div className="pl-6 text-xs sm:text-lg">
                     Très stessé
                     </div>
                   </div>
@@ -792,14 +792,14 @@ export default function Home(props) {
 
 
             <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
                 <form>
                   <p>Comment évaluez vous votre niveau de douleurs musculaires/courbatures ce matin ?* </p>
 
-                  <div className="flex justify-center items-center justify-items-center text-center pl-8">
-                  <div className="pr-6">
+                  <div className="pt-3 flex justify-center items-center justify-items-center text-center pl-8">
+                  <div className="pr-6 text-xs sm:text-lg">
                     Aucune
                     </div>
 
@@ -887,7 +887,7 @@ export default function Home(props) {
                   />
                   <label htmlFor="sore7">7</label>
 
-                  <div className="pl-6">
+                  <div className="pl-6 text-xs sm:text-lg">
                     Extrêmement élevé
                     </div>
                   </div>
@@ -912,14 +912,14 @@ export default function Home(props) {
 
 
             <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
                 <form>
                   <p>Quel est votre niveau de fatigue ressenti ?* </p>
 
-                  <div className="flex justify-center items-center justify-items-center text-center pl-8">
-                  <div className="pr-6">
+                  <div className="pt-3 flex justify-center items-center justify-items-center text-center pl-8">
+                  <div className="pr-6 text-xs sm:text-lg">
                     Aucune
                     </div>
 
@@ -1008,7 +1008,7 @@ export default function Home(props) {
                   />
                   <label htmlFor="fatigue7">7</label>
 
-                  <div className="pl-6">
+                  <div className="pl-6 text-xs sm:text-lg">
                     Extrêmement importante
                     </div>
                   </div>
@@ -1032,7 +1032,7 @@ export default function Home(props) {
 
 
             <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
                 <form>
@@ -1080,7 +1080,7 @@ export default function Home(props) {
 
 
             <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
                 <form>
@@ -1138,7 +1138,7 @@ export default function Home(props) {
 
 
             <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
                 <form>
@@ -1188,7 +1188,7 @@ export default function Home(props) {
 
 
             <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
                 <form>
@@ -1234,7 +1234,7 @@ export default function Home(props) {
 
 
             <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
                 <form>
