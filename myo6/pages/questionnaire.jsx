@@ -257,7 +257,7 @@ export default function Home(props) {
     </div>
     </div>
 
-    <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+    <div className="w-4/5 sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className=" bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
   <p>À quelle heure vous êtes-vous réveillé(e) ce matin ?</p>
@@ -280,7 +280,7 @@ export default function Home(props) {
 
 
 
-            <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+            <div className="w-4/5 sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -396,7 +396,7 @@ export default function Home(props) {
 
 
 
-            <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+            <div className="w-4/5 sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -485,7 +485,7 @@ export default function Home(props) {
 
 
 
-            <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+            <div className="w-4/5 sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -578,7 +578,7 @@ export default function Home(props) {
 
 
 
-            <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+            <div className="w-4/5 sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -672,7 +672,7 @@ export default function Home(props) {
 
 
 
-            <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+            <div className="w-4/5 sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -791,7 +791,7 @@ export default function Home(props) {
 
 
 
-            <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+            <div className="w-4/5 sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -911,7 +911,7 @@ export default function Home(props) {
 
 
 
-            <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+            <div className="w-4/5 sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -1031,7 +1031,7 @@ export default function Home(props) {
 
 
 
-            <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+            <div className="w-4/5 sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -1079,7 +1079,7 @@ export default function Home(props) {
 
 
 
-            <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+            <div className="w-4/5 sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -1137,7 +1137,7 @@ export default function Home(props) {
             {selectedUserGender === 'F' && (
 
 
-            <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+            <div className="w-4/5 sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -1187,7 +1187,7 @@ export default function Home(props) {
 
 
 
-            <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+            <div className="w-4/5 sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -1233,7 +1233,7 @@ export default function Home(props) {
 
 
 
-            <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+            <div className="w-4/5 sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
