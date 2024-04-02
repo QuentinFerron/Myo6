@@ -129,6 +129,7 @@ export default function Home({  }) {
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
         placeholder="Saisissez votre réponse"
+        style={{ width: '190px' }}
       />
     </div>
     </div>

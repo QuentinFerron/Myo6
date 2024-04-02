@@ -39,7 +39,7 @@ export default function Home({  }) {
             </div> */}
 
             <div className='flex p-8 ml-5'>
-              <img src="/assets/images/logo.png" alt="Logo" className="h-auto rounded-md  " />
+              <img src="/assets/images/logo.png" alt="Logo" className="h-1/3 sm:h-auto rounded-md  " />
                   <div className="text-[#082431] p-8 text-justify justify-center items-center justify-items-center w-auto">
                   Innowide lance sa marque SportElevate dédiée à la performance 
                   sportive des athlètes de haut niveau par la conception et la commercialisation 
