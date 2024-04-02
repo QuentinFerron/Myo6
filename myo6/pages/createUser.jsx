@@ -118,7 +118,7 @@ export default function Home({  }) {
 
 
 
-            <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+            <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -134,7 +134,7 @@ export default function Home({  }) {
     </div>
 
 
-    <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+    <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -151,7 +151,7 @@ export default function Home({  }) {
 
 
 
-    <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+    <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -168,7 +168,7 @@ export default function Home({  }) {
 
 
 
-    <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+    <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -185,7 +185,7 @@ export default function Home({  }) {
 
 
 
-<div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+<div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
@@ -208,7 +208,7 @@ export default function Home({  }) {
 
 
 
-            <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+            <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
