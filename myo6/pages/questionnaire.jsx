@@ -206,11 +206,11 @@ export default function Home(props) {
                 </div>
               </div>
             </div>
-            <div className="text-xl font-bold text-[#082431] pl-4">
+            <div className="text-sm sm:text-lg font-bold text-[#082431] pl-4">
               Utilisateur : 
             
 
-            <select value={selectedValue} onChange={handleSelectChange} className="bg-white rounded-lg m-4 w-auto shadow-xl border-2 border-gray-400 text-lg">
+            <select value={selectedValue} onChange={handleSelectChange} className="bg-white rounded-lg m-4 w-auto shadow-xl border-2 border-gray-400 text-sm sm:text-lg">
             <option value="">Sélectionner un utilisateur</option>
               {users.map(user => (
                 <option key={user.id_user} value={user.id_user}>
@@ -221,13 +221,13 @@ export default function Home(props) {
             </div>
 
 
-            <div className="pl-2">
+            <div className="pl-2 text-sm sm:text-lg">
 *Champs Obligatoires
 </div>
 
 
             <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className=" bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+              <div className=" bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
       <p>Quel est votre poids aujourd&apos;hui ?</p>
@@ -243,7 +243,7 @@ export default function Home(props) {
 
 
 <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className=" bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+              <div className=" bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
       <p>À quelle heure vous êtes-vous endormi(e) hier soir ?</p>
@@ -258,7 +258,7 @@ export default function Home(props) {
     </div>
 
     <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className=" bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+              <div className=" bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
   <p>À quelle heure vous êtes-vous réveillé(e) ce matin ?</p>
   <input
@@ -281,14 +281,14 @@ export default function Home(props) {
 
 
             <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
                 <form>
                   <p>Quelle est votre qualité de sommeil ?*</p>
 
                   <div className="flex justify-center items-center justify-items-center text-center">
-                  <div className="pr-6">
+                  <div className="pr-6 text-xs sm:text-lg">
                     Excellent
                     </div>
 
@@ -375,7 +375,7 @@ export default function Home(props) {
                   />
                   <label htmlFor="quality5">7</label>
 
-                  <div className="pl-6">
+                  <div className="pl-6 text-xs sm:text-lg">
                     Très mauvais
                     </div>
                   </div>
