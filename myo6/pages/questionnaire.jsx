@@ -288,7 +288,7 @@ export default function Home(props) {
                   <p>Quelle est votre qualité de sommeil ?*</p>
 
                   <div className="pt-3 flex justify-center items-center justify-items-center text-center">
-                  <div className="pr-6 text-xs sm:text-lg">
+                  <div className="pr-3 text-xs sm:text-lg">
                     Excellent
                     </div>
 
@@ -375,7 +375,7 @@ export default function Home(props) {
                   />
                   <label htmlFor="quality5">7</label>
 
-                  <div className="pl-6 text-xs sm:text-lg">
+                  <div className="pl-3 text-xs sm:text-lg">
                     Très mauvais
                     </div>
                   </div>
@@ -404,7 +404,7 @@ export default function Home(props) {
                   <p>Comment était votre journée d&apos;entrainement d&apos;hier ?</p>
 
                   <div className="pt-3 flex justify-center items-center justify-items-center text-center">
-                  <div className="pr-6 text-xs sm:text-lg">
+                  <div className="pr-3 text-xs sm:text-lg">
                     Repos
                     </div>
 
@@ -466,7 +466,7 @@ export default function Home(props) {
                   />
                   <label htmlFor="trainld5">5</label>
 
-                  <div className="pl-6 text-xs sm:text-lg">
+                  <div className="pl-3 text-xs sm:text-lg">
                     Intensive
                     </div>
                   </div>
@@ -493,7 +493,7 @@ export default function Home(props) {
                   <p>Quel était votre performance à l&apos;entrainement hier par rapport à celle attendue/prévue ? </p>
 
                   <div className="pt-3 flex justify-center items-center justify-items-center text-center">
-                  <div className="pr-6 text-xs sm:text-lg">
+                  <div className="pr-3 text-xs sm:text-lg">
                     Pire
                     </div>
 
@@ -555,7 +555,7 @@ export default function Home(props) {
                   />
                   <label htmlFor="perf5">5</label>
 
-                  <div className="pl-6 text-xs sm:text-lg">
+                  <div className="pl-3 text-xs sm:text-lg">
                     Meilleur
                     </div>
                   </div>
@@ -586,7 +586,7 @@ export default function Home(props) {
                   <p>Comment est votre condition physique en ce moment ? </p>
 
                   <div className="pt-3 flex justify-center items-center justify-items-center text-center ">
-                  <div className="pr-6 text-xs sm:text-lg">
+                  <div className="pr-3 text-xs sm:text-lg">
                     Très mauvaise
                     </div>
                     
@@ -649,7 +649,7 @@ export default function Home(props) {
                   />
                   <label htmlFor="physicalc5">5</label>
 
-                  <div className="pl-6 text-xs sm:text-lg">
+                  <div className="pl-3 text-xs sm:text-lg">
                     Très bonne
                     </div>
                   </div>
@@ -680,7 +680,7 @@ export default function Home(props) {
                   <p>Quel est votre niveau de stress ce matin ?* </p>
 
                   <div className="pt-3 flex justify-center items-center justify-items-center text-center pl-8">
-                  <div className="pr-6 text-xs sm:text-lg">
+                  <div className="pr-3 text-xs sm:text-lg">
                     Pas stressé
                     </div>
                     
@@ -769,7 +769,7 @@ export default function Home(props) {
                   />
                   <label htmlFor="stress7">7</label>
 
-                  <div className="pl-6 text-xs sm:text-lg">
+                  <div className="pl-3 text-xs sm:text-lg">
                     Très stessé
                     </div>
                   </div>
@@ -799,7 +799,7 @@ export default function Home(props) {
                   <p>Comment évaluez vous votre niveau de douleurs musculaires/courbatures ce matin ?* </p>
 
                   <div className="pt-3 flex justify-center items-center justify-items-center text-center pl-8">
-                  <div className="pr-6 text-xs sm:text-lg">
+                  <div className="pr-3 text-xs sm:text-lg">
                     Aucune
                     </div>
 
@@ -887,7 +887,7 @@ export default function Home(props) {
                   />
                   <label htmlFor="sore7">7</label>
 
-                  <div className="pl-6 text-xs sm:text-lg">
+                  <div className="pl-3 text-xs sm:text-lg">
                     Extrêmement élevé
                     </div>
                   </div>
@@ -919,7 +919,7 @@ export default function Home(props) {
                   <p>Quel est votre niveau de fatigue ressenti ?* </p>
 
                   <div className="pt-3 flex justify-center items-center justify-items-center text-center pl-8">
-                  <div className="pr-6 text-xs sm:text-lg">
+                  <div className="pr-3 text-xs sm:text-lg">
                     Aucune
                     </div>
 
@@ -1008,7 +1008,7 @@ export default function Home(props) {
                   />
                   <label htmlFor="fatigue7">7</label>
 
-                  <div className="pl-6 text-xs sm:text-lg">
+                  <div className="pl-3 text-xs sm:text-lg">
                     Extrêmement importante
                     </div>
                   </div>
@@ -1038,6 +1038,8 @@ export default function Home(props) {
                 <form>
                   <p>Avez vous une blessure ? </p>
 
+                  <div className="pt-3 flex justify-center items-center justify-items-center text-center">
+
                   <input
                     type="radio"
                     id="injuried1"
@@ -1059,6 +1061,8 @@ export default function Home(props) {
                     onChange={(e) => setSelectedOptionInjuried(e.target.value)}
                   />
                   <label htmlFor="injuried0">Non</label>
+
+                  </div>
 
                 </form>
 
@@ -1085,6 +1089,8 @@ export default function Home(props) {
 
                 <form>
                   <p>Avez vous bu de l&apos;alcool hier ? </p>
+
+                  <div className="pt-3 flex justify-center items-center justify-items-center text-center">
 
                   <input
                     type="radio"
@@ -1120,6 +1126,8 @@ export default function Home(props) {
                   />
                   <label htmlFor="alcohol2">Oui, plus de 2 verres</label>
 
+                  </div>
+
                 </form>
 
               </div>
@@ -1144,6 +1152,8 @@ export default function Home(props) {
                 <form>
                   <p>Etes vous actuellement en période menstruelle ? </p>
 
+                  <div className="pt-3 flex justify-center items-center justify-items-center text-center">
+
                   <input
                     type="radio"
                     id="menstruation1"
@@ -1165,6 +1175,8 @@ export default function Home(props) {
                     onChange={(e) => setSelectedOptionMenstruation(e.target.value)}
                   />
                   <label htmlFor="menstruation0">Non</label>
+
+                  </div>
 
                 </form>
 
@@ -1194,6 +1206,8 @@ export default function Home(props) {
                 <form>
                   <p>Avez vous effectuer un trajet de plus de 2h hier ? </p>
 
+                  <div className="pt-3 flex justify-center items-center justify-items-center text-center">
+
                   <input
                     type="radio"
                     id="travel1"
@@ -1215,6 +1229,8 @@ export default function Home(props) {
                     onChange={(e) => setSelectedOptionTravel(e.target.value)}
                   />
                   <label htmlFor="travel0">Non</label>
+
+                  </div>
 
                 </form>
 
@@ -1240,6 +1256,8 @@ export default function Home(props) {
                 <form>
                   <p>Etes vous malade actuellement ?  </p>
 
+                  <div className="pt-3 flex justify-center items-center justify-items-center text-center">
+
                   <input
                     type="radio"
                     id="sickness1"
@@ -1261,6 +1279,8 @@ export default function Home(props) {
                     onChange={(e) => setSelectedOptionSickness(e.target.value)}
                   />
                   <label htmlFor="sickness0">Non</label>
+
+                  </div>
 
 
                 </form>
