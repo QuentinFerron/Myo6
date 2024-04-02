@@ -146,6 +146,7 @@ export default function Home({  }) {
         value={lastName}
         onChange={(e) => setLastName(e.target.value)}
         placeholder="Saisissez votre réponse"
+        style={{ width: '190px' }}
       />
     </div>
     </div>
@@ -163,6 +164,7 @@ export default function Home({  }) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Saisissez votre réponse"
+        style={{ width: '190px' }}
       />
     </div>
     </div>
@@ -180,6 +182,7 @@ export default function Home({  }) {
         value={emailAddress}
         onChange={(e) => setEmailAddress(e.target.value)}
         placeholder="Saisissez votre réponse"
+        style={{ width: '190px' }}
       />
     </div>
     </div>
