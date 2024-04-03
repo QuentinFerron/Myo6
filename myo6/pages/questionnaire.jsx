@@ -236,7 +236,7 @@ export default function Home(props) {
         value={selectedWeight}
         onChange={(e) => setSelectedWeight(e.target.value)}
         placeholder="Saisissez votre réponse"
-        style={{ width: '190px' }}
+        style={{ width: '210px' }}
       />
     </div>
     </div>
