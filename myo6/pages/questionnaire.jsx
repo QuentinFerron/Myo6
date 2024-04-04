@@ -24,6 +24,7 @@ export default function Home(props) {
 
   const [users, setUsers] = useState([]);
   const [selectedValue, setSelectedValue] = useState(0);
+  const [Date2, setDate2] = useState('');
   const [selectedOptionSleepQuality, setSelectedOptionSleepQuality] = useState(0);
   const [selectedOptionTrainLastDay, setSelectedOptionTrainLastDay] = useState(0);
   const [selectedOptionTrainPerf, setSelectedOptionTrainPerf] = useState(0);
@@ -60,6 +61,7 @@ export default function Home(props) {
     setSelectedOptionMenstruation(null);
     setSelectedOptionTravel(null);
     setSelectedOptionSickness(null);
+    setDate2(new Date().toISOString().split('T')[0])
   }
 
   useEffect(() => {
@@ -85,11 +87,15 @@ export default function Home(props) {
   const handleSelectChange = (event) => {
     const selectedOption = event.target.value;
     setSelectedValue(selectedOption);
-
-    const selectedUser = users.find(user => user.id_user === selectedOption);
+    setDate2(new Date().toISOString().split('T')[0]);
+    console.log(selectedOption);
+    const selectedUser = users.find(user => user.id_user === parseInt(selectedOption, 10));
     if (selectedUser) {
-       setSelectedUserGender(selectedUser.sex);
+      setSelectedUserGender(selectedUser.sex);
+    } else {
+      setSelectedUserGender(''); // Réinitialiser le genre si aucun utilisateur n'est trouvé
     }
+    console.log(selectedUserGender);
   };
 
   useEffect(() => {
@@ -123,8 +129,8 @@ export default function Home(props) {
 
 
     
-    let date = new Date();
-    let date1 = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    // let date = new Date();
+    // let date1 = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
     const sleepQuality = parseInt(selectedOptionSleepQuality, 10);
     const trainLastDay = parseInt(selectedOptionTrainLastDay, 10);
     const trainPerf = parseInt(selectedOptionTrainPerf, 10);
@@ -141,7 +147,7 @@ export default function Home(props) {
     const url_upload_form = 'https://myo6.duckdns.org/upload/form';
     const data_form = {
       "id_user": selectedValue,
-      "date_record":date1,
+      "date_record":Date2,
     //"date_record": "2024-03-27",
       "sleep_quality": sleepQuality,
       // "asleep_time": "23:15",
@@ -178,11 +184,11 @@ export default function Home(props) {
       if (response.ok) {
         setSubmissionMessage('Le questionnaire a été envoyé avec succès.');
       } else {
-        setSubmissionMessage('Une erreur s\'est produite lors de l\'envoi du questionnaire');
+        setErrorMessage('Une erreur s\'est produite lors de l\'envoi du questionnaire');
       }
     } catch (error) {
       console.error('Erreur:', error);
-      setSubmissionMessage('Une erreur s\'est produite lors de l\'envoi du questionnaire');
+      setErrorMessage('Une erreur s\'est produite lors de l\'envoi du questionnaire');
     }
   };
 
@@ -206,6 +212,8 @@ export default function Home(props) {
                 </div>
               </div>
             </div>
+
+            <div className="sm:flex">
             <div className="text-sm sm:text-lg font-bold text-[#082431] pl-4">
               Utilisateur : 
             
@@ -218,6 +226,22 @@ export default function Home(props) {
                 </option>
               ))}
             </select>
+            </div>
+
+
+            <div className="text-sm sm:text-lg font-bold text-[#082431] pl-4">
+              Date : 
+            
+
+              <input className="bg-white rounded-lg m-4 w-auto shadow-xl border-2 border-gray-400 text-sm sm:text-lg"
+        type="date"
+        id="date"
+        name="date"
+        value={Date2}
+        onChange={(e) => setDate2(e.target.value)}
+      />
+            </div>
+
             </div>
 
 

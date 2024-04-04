@@ -11,6 +11,7 @@ import SideBar from '../components/SideBar'
 import { Component } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { data } from 'autoprefixer'
 
 export default function Home(props) {
   let baseUrl = "s";
@@ -24,15 +25,27 @@ export default function Home(props) {
 
   const [users, setUsers] = useState([]);
   const [selectedValue, setSelectedValue] = useState(0);
+  const [Date2, setDate2] = useState('');
   const [selectedOptionSleepQuality, setSelectedOptionSleepQuality] = useState(0);
+  const [selectedOptionTrainLastDay, setSelectedOptionTrainLastDay] = useState(0);
+  const [selectedOptionTrainPerf, setSelectedOptionTrainPerf] = useState(0);
+  const [selectedOptionPhysCond, setSelectedOptionPhysCond] = useState(0);
+  const [selectedOptionStress, setSelectedOptionStress] = useState(0);
+  const [selectedOptionMuscleSore, setSelectedOptionMuscleSore] = useState(0);
+  const [selectedOptionFatigueSubj, setSelectedOptionFatigueSubj] = useState(0);
+  const [selectedOptionInjuried, setSelectedOptionInjuried] = useState(0);
+  const [selectedOptionAlcohol, setSelectedOptionAlcohol] = useState(0);
+  const [selectedOptionMenstruation, setSelectedOptionMenstruation] = useState(0);
+  const [selectedOptionTravel, setSelectedOptionTravel] = useState(0);
+  const [selectedOptionSickness, setSelectedOptionSickness] = useState(0);
+
   const [selectedWeight, setSelectedWeight] = useState('');
   const [selectedAsleepTime, setSelectedAsleepTime] = useState('');
   const [selectedWakeupTime, setSelectedWakeupTime] = useState('');
+
+  const [selectedUserGender, setSelectedUserGender] = useState('');
   const [submissionMessage, setSubmissionMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
-  // ... (reste du code inchangé)
-
   
   async function getUser() {
 
@@ -46,16 +59,23 @@ export default function Home(props) {
     const data = await res.json();
     console.log(data);
     setUsers(data);
+
+
   }
+
 
   const handleSelectChange = (event) => {
     const selectedOption = event.target.value;
     setSelectedValue(selectedOption);
-
-    const selectedUser = users.find(user => user.id_user === selectedOption);
+    setDate2(new Date().toISOString().split('T')[0]);
+    console.log(selectedOption);
+    const selectedUser = users.find(user => user.id_user === parseInt(selectedOption, 10));
     if (selectedUser) {
-       setSelectedUserGender(selectedUser.sex);
+      setSelectedUserGender(selectedUser.sex);
+    } else {
+      setSelectedUserGender(''); // Réinitialiser le genre si aucun utilisateur n'est trouvé
     }
+    console.log(selectedUserGender);
   };
 
   useEffect(() => {
@@ -65,7 +85,10 @@ export default function Home(props) {
 
   const isFormValid = () => {
     if (
-      !selectedOptionSleepQuality
+      !selectedOptionSleepQuality ||
+      !selectedOptionStress ||
+      !selectedOptionMuscleSore ||
+      !selectedOptionFatigueSubj
     ) {
       return false;
     }
@@ -78,7 +101,7 @@ export default function Home(props) {
     event.preventDefault();
 
     if (!isFormValid()) {
-      setErrorMessage('Veuillez remplir tous les champs.');
+      setErrorMessage('Veuillez remplir tous les champs');
       return;
     }
   
@@ -86,22 +109,32 @@ export default function Home(props) {
 
 
     
-    let date = new Date();
-    let date1 = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    // let date = new Date();
+    // let date1 = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
     const sleepQuality = parseInt(selectedOptionSleepQuality, 10);
-
+    const trainLastDay = parseInt(selectedOptionTrainLastDay, 10);
+    const trainPerf = parseInt(selectedOptionTrainPerf, 10);
+    const physCond = parseInt(selectedOptionPhysCond, 10);
+    const stress = parseInt(selectedOptionStress, 10);
+    const muscleSore = parseInt(selectedOptionMuscleSore, 10);
+    const fatigueSubj = parseInt(selectedOptionFatigueSubj, 10);
+    const injuried = parseInt(selectedOptionInjuried, 10);
+    const alcohol = parseInt(selectedOptionAlcohol, 10);
+    const menstruation = parseInt(selectedOptionMenstruation, 10);
+    const travel = parseInt(selectedOptionTravel, 10);
+    const sickness = parseInt(selectedOptionSickness, 10);
 
     const url_upload_form = 'https://myo6.duckdns.org/upload/form';
     const data_form = {
       "id_user": selectedValue,
-      "date_record":date1,
-    //"date_record": "2021-11-01",
+      "date_record":Date2,
+    //"date_record": "2024-03-27",
       "sleep_quality": sleepQuality,
       // "asleep_time": "23:15",
       // "wakeup_time": "07:35",
       "asleep_time": selectedAsleepTime,
       "wakeup_time": selectedWakeupTime,
-      "weight": selectedWeight,
+      "weight": parseFloat(selectedWeight),
       "train_lastday": trainLastDay,
       "train_perf": trainPerf,
       "phys_cond": physCond,
@@ -131,11 +164,11 @@ export default function Home(props) {
       if (response.ok) {
         setSubmissionMessage('Le questionnaire a été envoyé avec succès.');
       } else {
-        setSubmissionMessage('Une erreur s\'est produite lors de l\'envoi du questionnaire.');
+        setErrorMessage('Une erreur s\'est produite lors de l\'envoi du questionnaire');
       }
     } catch (error) {
       console.error('Erreur:', error);
-      setSubmissionMessage('Une erreur s\'est produite lors de l\'envoi du questionnaire.');
+      setErrorMessage('Une erreur s\'est produite lors de l\'envoi du questionnaire');
     }
   };
 
@@ -159,11 +192,14 @@ export default function Home(props) {
                 </div>
               </div>
             </div>
-            <div className="text-xl font-bold text-[#082431] pl-4">
+
+            <div className="sm:flex">
+            <div className="text-sm sm:text-lg font-bold text-[#082431] pl-4">
               Utilisateur : 
             
 
-            <select value={selectedValue} onChange={handleSelectChange} className="bg-white rounded-lg m-4 w-auto shadow-xl border-2 border-gray-400 text-lg">
+            <select value={selectedValue} onChange={handleSelectChange} className="bg-white rounded-lg m-4 w-auto shadow-xl border-2 border-gray-400 text-sm sm:text-lg">
+            <option value="">Sélectionner un utilisateur</option>
               {users.map(user => (
                 <option key={user.id_user} value={user.id_user}>
                   {user.firstname} {user.lastname}
@@ -173,152 +209,125 @@ export default function Home(props) {
             </div>
 
 
+            <div className="text-sm sm:text-lg font-bold text-[#082431] pl-4">
+              Date : 
+            
 
-            <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className=" bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
-
-
-      <p>Quel est votre poids aujourd&apos;hui ?</p>
-      <input
-        type="text"
-        value={selectedWeight}
-        onChange={(e) => setSelectedWeight(e.target.value)}
-        placeholder="Saisissez votre réponse"
+              <input className="bg-white rounded-lg m-4 w-auto shadow-xl border-2 border-gray-400 text-sm sm:text-lg"
+        type="date"
+        id="date"
+        name="date"
+        value={Date2}
+        onChange={(e) => setDate2(e.target.value)}
       />
-    </div>
-    </div>
+            </div>
+
+            </div>
 
 
-
-<div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className=" bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
-
-
-      <p>À quelle heure vous êtes-vous endormi(e) hier soir ?</p>
-      <input
-        type="time"
-        id="heure"
-        name="heure"
-        value={selectedAsleepTime}
-        onChange={(e) => setSelectedAsleepTime(e.target.value)}
-      />
-    </div>
-    </div>
-
-    <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className=" bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
-
-  <p>À quelle heure vous êtes-vous réveillé(e) ce matin ?</p>
-  <input
-    type="time"
-    id="heure"
-    name="heure"
-    value={selectedWakeupTime}
-    onChange={(e) => setSelectedWakeupTime(e.target.value)}
-  />
-</div>
+            <div className="pl-2 text-sm sm:text-lg">
+*Champs Obligatoires
 </div>
 
 
-{/* SLEEP QUALITY */}
-
-
-
-            <div className="w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+            <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
 
                 <form>
-                  <p>Quelle est votre qualité de sommeil ?</p>
+                  <p>Avez vous bu de l&apos;alcool hier ? </p>
+
+                  <div className="pt-3 flex justify-center items-center justify-items-center text-center">
+
                   <input
                     type="radio"
-                    id="quality1"
-                    name="sleep_quality"
+                    id="alcohol0"
+                    name="alcohol"
+                    value="0"
+                    checked={selectedOptionAlcohol === '0'}
+                    onChange={(e) => setSelectedOptionAlcohol(e.target.value)}
+                  />
+                  <label htmlFor="alcohol0">Non</label>
+
+
+                  {"  "}
+                  <input
+                    type="radio"
+                    id="alcohol1"
+                    name="alcohol"
                     value="1"
-                    checked={selectedOptionSleepQuality === '1'}
-                    onChange={(e) => setSelectedOptionSleepQuality(e.target.value)}
+                    checked={selectedOptionAlcohol === '1'}
+                    onChange={(e) => setSelectedOptionAlcohol(e.target.value)}
                   />
-                  <label htmlFor="quality1">1</label>
+                  <label htmlFor="alcohol1">Oui, 1 ou 2 verres</label>
 
 
                   {"  "}
                   <input
                     type="radio"
-                    id="quality2"
-                    name="sleep_quality"
+                    id="alcohol2"
+                    name="alcohol"
                     value="2"
-                    checked={selectedOptionSleepQuality === '2'}
-                    onChange={(e) => setSelectedOptionSleepQuality(e.target.value)}
+                    checked={selectedOptionAlcohol === '2'}
+                    onChange={(e) => setSelectedOptionAlcohol(e.target.value)}
                   />
-                  <label htmlFor="quality2">2</label>
+                  <label htmlFor="alcohol2">Oui, plus de 2 verres</label>
 
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="quality3"
-                    name="sleep_quality"
-                    value="3"
-                    checked={selectedOptionSleepQuality === '3'}
-                    onChange={(e) => setSelectedOptionSleepQuality(e.target.value)}
-                  />
-                  <label htmlFor="quality3">3</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="quality4"
-                    name="sleep_quality"
-                    value="4"
-                    checked={selectedOptionSleepQuality === '4'}
-                    onChange={(e) => setSelectedOptionSleepQuality(e.target.value)}
-                  />
-                  <label htmlFor="quality4">4</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="quality5"
-                    name="sleep_quality"
-                    value="5"
-                    checked={selectedOptionSleepQuality === '5'}
-                    onChange={(e) => setSelectedOptionSleepQuality(e.target.value)}
-                  />
-                  <label htmlFor="quality5">5</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="quality6"
-                    name="sleep_quality"
-                    value="6"
-                    checked={selectedOptionSleepQuality === '6'}
-                    onChange={(e) => setSelectedOptionSleepQuality(e.target.value)}
-                  />
-                  <label htmlFor="quality6">6</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="quality7"
-                    name="sleep_quality"
-                    value="7"
-                    checked={selectedOptionSleepQuality === '7'}
-                    onChange={(e) => setSelectedOptionSleepQuality(e.target.value)}
-                  />
-                  <label htmlFor="quality5">7</label>
-
+                  </div>
 
                 </form>
 
               </div>
             </div>
 
-            <div className="flex w-full p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+
+            {selectedUserGender === 'F' && (
+
+
+            <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+
+
+                <form>
+                  <p>Etes vous actuellement en période menstruelle ? </p>
+
+                  <div className="pt-3 flex justify-center items-center justify-items-center text-center">
+
+                  <input
+                    type="radio"
+                    id="menstruation1"
+                    name="menstruation"
+                    value="1"
+                    checked={selectedOptionMenstruation === '1'}
+                    onChange={(e) => setSelectedOptionMenstruation(e.target.value)}
+                  />
+                  <label htmlFor="menstruation1">Oui</label>
+
+
+                  {"  "}
+                  <input
+                    type="radio"
+                    id="menstruation0"
+                    name="menstruation"
+                    value="0"
+                    checked={selectedOptionMenstruation === '0'}
+                    onChange={(e) => setSelectedOptionMenstruation(e.target.value)}
+                  />
+                  <label htmlFor="menstruation0">Non</label>
+
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+)
+}
+
+{selectedUserGender === 'M' && setSelectedOptionMenstruation === '0'}          
+
+
+<div className="flex w-full p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               {errorMessage && <div className="bg-red-500 text-white rounded-lg shadow-xl border-2 border-gray-400 p-2">{errorMessage}</div>}
               {submissionMessage && <div className="bg-green-500 text-white rounded-lg shadow-xl border-2 border-gray-400 p-2">{submissionMessage}</div>}
             </div>
@@ -327,7 +336,9 @@ export default function Home(props) {
               <div className="flex bg-sky-600 text-center text-white rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
             <button onClick={handleSubmit}>Envoyer</button>
             </div>
-            </div> 
+            </div>
+
+
           </div>
         </div>
       </div>
