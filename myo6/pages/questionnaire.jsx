@@ -202,7 +202,6 @@ export default function Home(props) {
         <div className='flex h-[calc(100%-84px)] '>
           {/* <SideBar></SideBar> */}
           <div id="main_code" className="h-fit w-full bg-gray-300">
-            {/* ... (code existant pour le formulaire) */}
 
 
             <div className="w-full p-2 ">
