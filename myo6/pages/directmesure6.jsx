@@ -216,7 +216,7 @@ export default function Home(props) {
         <div className='flex h-[calc(100%-68px)] '>
           {/* <SideBar></SideBar> */}
       
-          <div id="main_code" className=" h-full  w-full bg-gray-300"> 
+          <div id="main_code" className="h-fit sm:h-full  w-full bg-gray-300"> 
       
             <div className=" w-full p-2">
               <div className="flex bg-white rounded-lg shadow-xl border-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
@@ -226,7 +226,7 @@ export default function Home(props) {
                 </div>
       
             
-                <div className=" text-lg p-4 font-bold text-[#082431]">
+                <div className="text-lg sm:text-lg p-4 font-bold text-[#082431]">
                     Vidéo n° 
                   {
                     video && video.id 
@@ -242,15 +242,15 @@ export default function Home(props) {
                 {/* <div className="w-full h-[10px] bg-transparent"></div> */}
       
                           
-                <div className="flex">
-                  <div className=" m-4  flex justify-center items-center justify-items-center w-1/3 ">
+                <div className="sm:flex">
+                  <div className=" m-4  flex justify-center items-center justify-items-center w-auto sm:w-1/3 ">
                     <div className="text-xl font-bold text-[#082431] bg-white rounded-none shadow-xl border-2 w-full  border-gray-400 flex justify-center items-center justify-items-center">
                       <video  autoPlay muted>
                         <source src="https://myo6.duckdns.org/api/video/last_video/video_traitement.mp4?t=${new Date().getTime()}" width="auto"/>
                         </video>   
                     </div>
                   </div>
-                  <div className="m-4 flex justify-center items-center justify-items-center w-1/2">
+                  <div className="m-4 flex justify-center items-center justify-items-center w-auto sm:w-1/2 h-1/2 sm:h-auto">
                     <div className="text-xl font-bold text-[#082431] bg-white rounded-lg shadow-xl border-2 w-full h-full border-gray-400 flex justify-center items-center justify-items-center">
                       {
                         chartData && options &&
@@ -266,16 +266,16 @@ export default function Home(props) {
                 <div className={showDiv ? 'fadeIn' : 'fadeOut'}>
 
 
-                  <div className="flex ">
-                    <div className="m-4  bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-5/6 ">
-                        <div className="text-2xl flex font-bold text-[#082431] justify-center items-center justify-items-center">
+                  <div className="sm:flex ">
+                    <div className="m-4  bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-auto sm:w-5/6 ">
+                        <div className="text-lg sm:text-2xl flex font-bold text-[#082431] justify-center items-center justify-items-center">
                           Résultats
                         </div>
 
-                        <div className="flex justify-center items-center justify-items-center">
+                        <div className="sm:flex justify-center items-center justify-items-center">
 
 
-                          <div className="text-lg">
+                          <div className="text-md sm:text-lg">
                           <div className="p-2 flex font-bold text-[#082431]  ">
                             Temps de réaction:
                             {'  '} 
@@ -293,7 +293,7 @@ export default function Home(props) {
                         </div>
 
 
-                        <div className="text-lg">
+                        <div className="text-md sm:text-lg">
                           <div className="p-2 flex font-bold text-[#082431]  ">
                             Vitesse de constriction moyenne: 
                             {'  '} 
@@ -310,7 +310,7 @@ export default function Home(props) {
                           </div>
                         </div>
 
-                        <div className="text-lg">
+                        <div className="text-md sm:text-lg">
                           <div className="p-2 flex font-bold text-[#082431]  ">
                             Aire de la pupille minimale:
                             {'  '} 
@@ -334,7 +334,7 @@ export default function Home(props) {
 
                       
                      
-                    <div className="mt-4 mr-4 mb-4 bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-1/6 ">
+                    <div className="mt-4 mr-4 mb-4 ml-4 sm:ml-0 bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-auto sm:w-1/6 ">
                         <div className="text-2xl flex font-bold text-[#082431] justify-center items-center justify-items-center">
                           Etat de forme
                         </div>
