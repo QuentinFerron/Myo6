@@ -27,10 +27,10 @@ export default function Home({  }) {
 
         <hr className="w-full h-[4px] bg-beige"></hr>
 
-        <div className='flex h-[calc(100%-84px)] '>
+        <div className='flex  min-h-[calc(100%-84px)] bg-gray-300 h-auto '>
           {/* <SideBar></SideBar> */}
-
-          <div id="main_code" className="flex h-fit  w-full bg-gray-300"> 
+          <div id="main_code" className="h-full  w-full ">
+            
           <div className=" w-full p-2 ">
             {/* <div className="flex bg-white rounded-lg shadow-xl border-2 mb-6 border-gray-400 p-2 justify-center items-center justify-items-center ">
                 <div className="text-xl font-bold text-[#082431]">

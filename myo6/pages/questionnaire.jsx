@@ -199,9 +199,9 @@ export default function Home(props) {
       <div className="h-screen w-screen">
         <Navbar></Navbar>
         <hr className="w-full h-[4px] bg-beige"></hr>
-        <div className='flex h-[calc(100%-84px)] '>
+        <div className='flex  min-h-[calc(100%-84px)] bg-gray-300 h-auto '>
           {/* <SideBar></SideBar> */}
-          <div id="main_code" className="h-fit w-full bg-gray-300">
+          <div id="main_code" className="h-full  w-full ">
 
 
             <div className="w-full p-2 ">

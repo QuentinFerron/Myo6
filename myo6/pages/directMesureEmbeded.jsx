@@ -51,6 +51,7 @@ export default function Home(props) {
     plugins: {
       legend: {
         position: 'top',
+        display: false
       },
       title: {
         display: true,
@@ -200,14 +201,14 @@ export default function Home(props) {
       
         <hr className="w-full h-[4px] bg-beige"></hr>
       
-        <div className='flex h-[calc(100%-10px)] '>
+        <div className='flex  min-h-[calc(100%-10px)] bg-gray-300 h-auto '>
       
       
-          <div id="main_code" className=" h-fit  w-full bg-gray-300"> 
+        <div id="main_code" className="h-full  w-full ">
       
-            <div className=" w-full  ">
+            <div className="w-full">
                
-                <div className="text-xl p-2 font-bold text-[#082431]">
+                <div className="text-md sm:text-xl p-2 font-bold text-[#082431]">
                     Vidéo n° 
                   {
                     video && video.id_video 
@@ -219,17 +220,15 @@ export default function Home(props) {
 
                 </div>
       
-      
-                <div className="w-full h-[10px] bg-transparent"></div>
-      
-                <div className="flex">
-                  <div className=" m-4  flex justify-center items-center justify-items-center w-1/3 ">
-                    <div className="text-xl font-bold text-[#082431] bg-white rounded-lg shadow-xl border-2 w-full  border-gray-400 flex justify-center items-center justify-items-center">
+            
+                <div className="sm:flex">
+                  <div className=" m-4  flex justify-center items-center justify-items-center w-auto sm:w-1/3 ">
+                    <div className="text-xl font-bold text-[#082431] bg-white shadow-xl border-2 w-full  border-gray-400 flex justify-center items-center justify-items-center">
                       <video  autoPlay muted src={'https://myo6.duckdns.org/api/video/' + video.id_video + '/video_traitement.mp4'} type="video/mp4"></video>
 
                     </div>
                   </div>
-                  <div className="m-1 flex justify-center items-center justify-items-center w-1/2">
+                  <div className="m-4 flex justify-center items-center justify-items-center w-auto sm:w-1/2 h-1/2 sm:h-auto">
                     <div className="text-xl font-bold text-[#082431] bg-white rounded-lg shadow-xl border-2 w-full h-full border-gray-400 flex justify-center items-center justify-items-center">
                       <Line data={chartData} options={options} />
                     </div>
@@ -242,38 +241,42 @@ export default function Home(props) {
                 <div className={showDiv ? 'fadeIn' : 'fadeOut'}>
 
 
-                  <div className="flex ">
-                    <div className="m-4  bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-2/3 ">
-                        <div className="text-2xl flex font-bold text-[#082431] justify-center items-center justify-items-center">
+                  <div className="sm:flex ">
+                  <div className="m-4  bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-auto sm:w-5/6 ">
+                        <div className="text-lg sm:text-2xl flex font-bold text-[#082431] justify-center items-center justify-items-center">
                           Résultats
                         </div>
-                          <div className="flex  justify-center items-center justify-items-center">
-                          <div className=" p-4 text-lg flex font-bold text-[#082431]  ">
+
+                        <div className="sm:flex justify-center items-center justify-items-center text-center sm:text-left">
+
+
+                          <div className="text-md sm:text-lg">
+                          <div className="p-2 flex font-bold text-[#082431]  ">
                             Temps de réaction:
                             {'  '} 
                             { video && video.measure_metric && video.measure_metric.reaction_time }
                             {'  '} 
                             s
                           </div>
-                          <div className=" p-4 pl-20 text-lg flex font-bold text-[#082431]  ">
+                          <div className="p-2 flex font-bold text-[#082431]  ">
+                          Temps de constriction:
+                            {'  '} 
+                            { video && video.measure_metric && video.measure_metric.time_constriction }
+                            {'  '} 
+                            s
+                          </div>
+                        </div>
+
+
+                        <div className="text-md sm:text-lg">
+                          <div className="p-2 flex font-bold text-[#082431]  ">
                             Vitesse de constriction moyenne: 
                             {'  '} 
                             { video && video.measure_metric && video.measure_metric.average_constriction_velocity_area }
                             {'  '} 
                             mm/s
                           </div>
-                        </div>
-
-
-                        <div className="flex  justify-center items-center justify-items-center">
-                          <div className=" p-4 text-lg flex font-bold text-[#082431]  ">
-                            Temps de constriction:
-                            {'  '} 
-                            { video && video.measure_metric && video.measure_metric.time_constriction }
-                            {'  '} 
-                            s
-                          </div>
-                          <div className=" p-4 pl-20 text-lg flex font-bold text-[#082431]  ">
+                          <div className="p-2 flex font-bold text-[#082431]  ">
                             Vitesse de constriction maximale: 
                             {'  '} 
                             { video && video.measure_metric && video.measure_metric.max_constriction_velocity_area }
@@ -281,17 +284,37 @@ export default function Home(props) {
                             mm/s
                           </div>
                         </div>
+
+                        <div className="text-md sm:text-lg">
+                          <div className="p-2 flex font-bold text-[#082431]  ">
+                            Aire de la pupille minimale:
+                            {'  '} 
+                            { video && video.measure_metric && video.measure_metric.min_area }
+                            
+                            {'  '} 
+                            mm²
+                          </div>
+                          <div className="p-2 flex font-bold text-[#082431]  ">
+                            Aire de la pupille maximale: 
+                            {'  '} 
+                            { video && video.measure_metric && video.measure_metric.max_area }
+                            {'  '} 
+                            mm²
+                          </div>
+                        </div>
+
+                        </div>
                       
                       </div>
 
                       
                      
-                    <div className="m-4  bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-1/4 ">
+                      <div className="mt-4 mr-4 mb-4 ml-4 sm:ml-0 bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-auto sm:w-1/6 text-center">
                         <div className="text-2xl flex font-bold text-[#082431] justify-center items-center justify-items-center">
                           Etat de forme
                         </div>
                         
-                        <div className="text-6xl p-4 flex font-bold text-[#082431] justify-center items-center justify-items-center">
+                        <div className="text-4xl p-2 flex font-bold text-[#082431] justify-center items-center justify-items-center">
                         {Math.round(4*(video && video.measure_metric && video.measure_metric.average_constriction_velocity_area)) }%
                         </div>
                       </div>

@@ -213,10 +213,8 @@ export default function Home(props) {
       
         <hr className="w-full h-[4px] bg-beige"></hr>
       
-        <div className='flex h-[calc(100%-68px)] '>
-          {/* <SideBar></SideBar> */}
-      
-          <div id="main_code" className="h-fit sm:h-full  w-full bg-gray-300"> 
+          <div className='flex  min-h-[calc(100%-68px)] bg-gray-300 h-auto '>
+          <div id="main_code" className="h-full  w-full ">
       
             <div className=" w-full p-2">
               <div className="flex bg-white rounded-lg shadow-xl border-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
@@ -226,7 +224,7 @@ export default function Home(props) {
                 </div>
       
             
-                <div className="text-lg sm:text-lg p-4 font-bold text-[#082431]">
+                <div className="text-lg p-4 font-bold text-[#082431]">
                     Vidéo n° 
                   {
                     video && video.id 
@@ -264,26 +262,26 @@ export default function Home(props) {
 
 
                 <div className={showDiv ? 'fadeIn' : 'fadeOut'}>
-
+              
 
                   <div className="sm:flex ">
-                    <div className="m-4  bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-auto sm:w-5/6 ">
+                    <div className="m-4  bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-auto sm:w-5/6">
                         <div className="text-lg sm:text-2xl flex font-bold text-[#082431] justify-center items-center justify-items-center">
                           Résultats
                         </div>
 
-                        <div className="sm:flex justify-center items-center justify-items-center">
+                        <div className="sm:flex justify-center items-center justify-items-center text-center sm:text-left">
 
 
-                          <div className="text-md sm:text-lg">
-                          <div className="p-2 flex font-bold text-[#082431]  ">
+                          <div className="text-base sm:text-lg">
+                          <div className="p-2 flex font-bold text-[#082431]">
                             Temps de réaction:
                             {'  '} 
                             { video && video.measure_metric && video.measure_metric.reaction_time }
                             {'  '} 
                             s
                           </div>
-                          <div className="p-2 flex font-bold text-[#082431]  ">
+                          <div className="p-2 flex font-bold text-[#082431]">
                           Temps de constriction:
                             {'  '} 
                             { video && video.measure_metric && video.measure_metric.time_constriction }
@@ -334,7 +332,7 @@ export default function Home(props) {
 
                       
                      
-                    <div className="mt-4 mr-4 mb-4 ml-4 sm:ml-0 bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-auto sm:w-1/6 ">
+                    <div className="mt-4 mr-4 mb-4 ml-4 sm:ml-0 bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-auto sm:w-1/6 text-center">
                         <div className="text-2xl flex font-bold text-[#082431] justify-center items-center justify-items-center">
                           Etat de forme
                         </div>

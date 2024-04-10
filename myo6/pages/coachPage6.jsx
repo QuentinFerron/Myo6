@@ -116,7 +116,7 @@ export default function Home(props) {
         <div className='flex  min-h-[calc(100%-84px)] bg-gray-300 h-auto '>
           {/* <SideBar></SideBar> */}
           <div id="main_code" className="h-full  w-full ">
-            <select value={selectedValue} onChange={handleSelectChange} className="bg-white rounded-lg m-4 w-auto shadow-xl border-2 border-gray-400 text-lg">
+            <select value={selectedValue} onChange={handleSelectChange} className="bg-white rounded-lg m-2 sm:m-4 w-auto shadow-xl border-2 border-gray-400 text-md sm:text-lg">
               {users.map(user => (
                 <option key={user.id_user} value={user.id_user}>
                   {user.firstname} {user.lastname}
@@ -125,7 +125,7 @@ export default function Home(props) {
             </select>
 
             {videos.length > 0 && (
-            <select value={selectedValueMeasure} onChange={handleSelectChangeMeasure} className="bg-white rounded-lg m-4 w-auto shadow-xl border-2 border-gray-400 text-lg">
+            <select value={selectedValueMeasure} onChange={handleSelectChangeMeasure} className="bg-white rounded-lg m-2 sm:m-4 w-auto shadow-xl border-2 border-gray-400 text-md sm:text-lg">
 
               {videos.map(video => (
                 <option key={video.id_video} value={video.id_video}>
@@ -160,7 +160,7 @@ export default function Home(props) {
               <div className="flex ">
                 <div className="bg-white rounded-lg w-1/4 h-1/2 m-1 shadow-xl border-2 border-gray-400">
                   <div className="justify-center items-center justify-items-center h-full text-center">
-                    <div className="text-2xl font-bold text-[#082431] flex justify-center items-center h-full">
+                    <div className="text-lg sm:text-2xl font-bold text-[#082431] flex justify-center items-center h-full">
                       <div className="flex flex-col justify-center items-center">
                       Athlète :
                         <div className="text-sm font-bold text-[#082431]">
@@ -180,7 +180,7 @@ export default function Home(props) {
 
                 <div className="bg-white rounded-lg w-1/4 h-1/2 m-1 shadow-xl border-2 border-gray-400">
                   <div className="justify-center items-center justify-items-center h-full text-center">
-                    <div className="text-2xl font-bold text-[#082431] flex justify-center items-center h-full">
+                    <div className="text-lg sm:text-2xl font-bold text-[#082431] flex justify-center items-center h-full">
                       <div className="flex flex-col justify-center items-center">
                       Age : 
                         <div className="text-sm font-bold text-[#082431]">
@@ -196,7 +196,7 @@ export default function Home(props) {
 
                 <div className="bg-white rounded-lg w-1/4 h-1/2 m-1 shadow-xl border-2 border-gray-400">
                   <div className="justify-center items-center justify-items-center h-full text-center">
-                    <div className="text-2xl font-bold text-[#082431] flex justify-center items-center h-full">
+                    <div className="text-lg sm:text-2xl font-bold text-[#082431] flex justify-center items-center h-full">
                       <div className="flex flex-col justify-center items-center">
                       Poids:
                         <div className="text-sm font-bold text-[#082431]">
@@ -212,7 +212,7 @@ export default function Home(props) {
 
                 <div className="bg-white rounded-lg w-1/4 h-1/2 m-1 shadow-xl border-2 border-gray-400">
                   <div className="justify-center items-center justify-items-center h-full text-center">
-                    <div className="text-2xl font-bold text-[#082431] flex justify-center items-center h-full">
+                    <div className="text-lg sm:text-2xl font-bold text-[#082431] flex justify-center items-center h-full">
                       <div className="flex flex-col justify-center items-center">
                       Etat de forme:
                         <div className="text-sm font-bold text-[#082431]">
@@ -232,16 +232,16 @@ export default function Home(props) {
                 
                 </div>
 
-              <div className="flex ">
+              <div className="sm:flex ">
 
-                   <div className="flex h-96  w-1/2 mt-3 m-1 bg-white rounded-lg justify-center items-center justify-items-center shadow-xl border-2 border-gray-400">
+                   <div className="flex h-48 sm:h-96  sm:w-1/2 mt-3 m-1 bg-white rounded-lg justify-center items-center justify-items-center shadow-xl border-2 border-gray-400">
                {/* <iframe src={"http://localhost:3000/testGraph5"} width="90%" height="100%" frameBorder="0" allowFullScreen></iframe> */}
                <iframe src={baseUrl + 'testGraph6?id_user='+ selectedValue } width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
 
                </div>
 
 
-               <div className="flex h-96  w-1/2 mt-3 m-1 bg-white rounded-lg justify-center items-center justify-items-center shadow-xl border-2 border-gray-400">
+               <div className="flex h-48 sm:h-96  sm:w-1/2 mt-3 m-1 bg-white rounded-lg justify-center items-center justify-items-center shadow-xl border-2 border-gray-400">
                {/* <iframe src={"http://localhost:3000/testGraph5"} width="90%" height="100%" frameBorder="0" allowFullScreen></iframe> */}
                <iframe src={baseUrl + 'graphHooper?id_user='+ selectedValue } width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
 
@@ -254,7 +254,7 @@ export default function Home(props) {
                </div>
 
 
-               <div className="flex h-96 w-1/2 mt-3 m-1 bg-white rounded-lg justify-center items-center justify-items-center shadow-xl border-2 border-gray-400">
+               <div className="flex h-48 sm:h-96 sm:w-1/2 mt-3 m-1 bg-white rounded-lg justify-center items-center justify-items-center shadow-xl border-2 border-gray-400">
                <iframe src={baseUrl + 'UserWeb'} width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
                </div>
 

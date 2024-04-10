@@ -104,9 +104,9 @@ export default function Home({  }) {
       <div className="h-screen w-screen">
         <Navbar></Navbar>
         <hr className="w-full h-[4px] bg-beige"></hr>
-        <div className='flex h-auto min-h-[calc(100%-84px)]'>
+        <div className='flex  min-h-[calc(100%-68px)] bg-gray-300 h-auto '>
           {/* <SideBar></SideBar> */}
-          <div id="main_code" className=" h-fit w-full bg-gray-300">
+          <div id="main_code" className="h-full  w-full ">
             <div className="w-full p-2 ">
               <div className="flex bg-white rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-fit">
                 <div className="text-xl font-bold text-[#082431]">

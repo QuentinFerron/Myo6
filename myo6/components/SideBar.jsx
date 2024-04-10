@@ -32,7 +32,7 @@ export default function SideBar({setISideBarOpen}) {
                 <div className="justify-center items-center justify-items-center  text-white text-[12px]">
                     
                     <Link className="shadow-md hover:shadow-xl  transition ease-in-out  duration-500  rounded bg-bleuclair py-2 px-4 my-3 w-full flex justify-start items-center justify-items-start "
-                    href="choixuser3">
+                    href="choixuser">
                         <div className="">
                             <img src="/assets/icons/documentation.svg" alt="Choix utilisateur" className="w-4 h-4 mr-1" />
                         </div>

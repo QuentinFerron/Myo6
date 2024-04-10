@@ -27,10 +27,9 @@ export default function Home({  }) {
 
         <hr className="w-full h-[4px] bg-beige"></hr>
 
-        <div className='flex h-[calc(100%-84px)] '>
+        <div className='flex  min-h-[calc(100%-68px)] bg-gray-300 h-auto '>
           {/* <SideBar></SideBar> */}
-
-          <div id="main_code" className="flex h-full  w-full bg-gray-300"> 
+          <div id="main_code" className="h-full  w-full ">
           <div className=" w-full p-2 ">
 
             </div>
