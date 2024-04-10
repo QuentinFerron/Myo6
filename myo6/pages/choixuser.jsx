@@ -123,8 +123,9 @@ export default function Home(props) {
             }}
           >
             <img
-              src={`/user-photos/${user.id_user}.jpg`}
-              alt={`${user.firstname} ${user.lastname}`}
+              // src={`/user-photos/${user.id_user}.jpg`}
+              // alt={`${user.firstname} ${user.lastname}`}
+              src={"/assets/icons/user.svg"}
               className="w-24 h-24 rounded-full mb-2"
             />
             <h3 className="text-lg font-semibold">
