@@ -83,7 +83,7 @@ export default function Home(props) {
               </div>
             </div>
 
-
+            <h2 style={{ fontSize: '24px', marginLeft: '20px' }}>Mon équipe</h2>
             <div className="flex justify-end mb-4 mr-4">
         <button
           className="bg-bleugris text-white font-bold py-2 px-4 rounded"
@@ -161,7 +161,7 @@ export default function Home(props) {
  */}
 
 
-            <h2 style={{ fontSize: '24px', marginBottom: '20px', marginLeft: '20px' }}>Mon équipe</h2>
+            <h2 style={{ fontSize: '24px', marginBottom: '50px', marginLeft: '20px' }}>:</h2>
             <table style={{ width: '99%', borderCollapse: 'collapse', margin: '20px   10px', fontSize: '0.9em', minWidth: '400px', boxShadow: '0   0   20px rgba(0,   0,   0,   0.15)' }}>
               <thead style={{ backgroundColor: '#009879', color: 'white' }}>
                 <tr>
