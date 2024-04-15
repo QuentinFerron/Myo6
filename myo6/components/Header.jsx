@@ -13,7 +13,7 @@ export default function Header() {
 
             <link rel="icon" href="/assets/images/logo.png" />
             <link rel="apple-touch-icon" href="/assets/images/logo.png"></link>
-            <link rel="shortcut icon" sizes="512x512" href="/assets/images/logo.png"></link>
+            <link rel="shortcut icon" href="/assets/images/logo.png"></link>
 
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
