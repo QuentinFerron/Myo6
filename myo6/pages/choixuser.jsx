@@ -161,7 +161,7 @@ export default function Home(props) {
  */}
 
 
-            <h2 style={{ fontSize: '24px', marginBottom: '50px', marginLeft: '20px' }}>:</h2>
+            <h2 style={{ fontSize: '24px', marginBottom: '50px', marginLeft: '20px' }}></h2>
             <table style={{ width: '99%', borderCollapse: 'collapse', margin: '20px   10px', fontSize: '0.9em', minWidth: '400px', boxShadow: '0   0   20px rgba(0,   0,   0,   0.15)' }}>
               <thead style={{ backgroundColor: '#009879', color: 'white' }}>
                 <tr>

@@ -96,6 +96,7 @@ export default function Home(props) {
       setSelectedUserGender(''); // Réinitialiser le genre si aucun utilisateur n'est trouvé
     }
     console.log(selectedUserGender);
+    clearMessages();
   };
 
   useEffect(() => {
@@ -116,9 +117,24 @@ export default function Home(props) {
   };
 
 
+  const handleDateChange = (e) => {
+    setDate2(e.target.value);
+    clearMessages();
+  };
+
+
+  const clearMessages = () => {
+    setSubmissionMessage('');
+    setErrorMessage('');
+  };
+
+
+
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    clearMessages();
 
     if (!isFormValid()) {
       setErrorMessage('Veuillez remplir tous les champs');
@@ -237,7 +253,7 @@ export default function Home(props) {
         id="date"
         name="date"
         value={Date2}
-        onChange={(e) => setDate2(e.target.value)}
+        onChange={handleDateChange}
       />
             </div>
 
