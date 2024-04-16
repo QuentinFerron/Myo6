@@ -4,6 +4,7 @@ import SideBar from '../components/SideBar'
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Line as LineJS } from 'chart.js/auto'
+import ReactPlayer from 'react-player';
 //import styles from '@/styles/Home.module.css'
 
 export default function Home(props) {
@@ -225,6 +226,7 @@ export default function Home(props) {
                   <div className=" m-4  flex justify-center items-center justify-items-center w-auto sm:w-1/3 ">
                     <div className="text-xl font-bold text-[#082431] bg-white shadow-xl border-2 w-full  border-gray-400 flex justify-center items-center justify-items-center">
                     <video autoPlay playsinline muted src={'https://myo6.duckdns.org/api/video/' + video.id_video + '/video_traitement.mp4'} type="video/mp4"></video>
+                    {/* <ReactPlayer url={'https://myo6.duckdns.org/api/video/' + video.id_video + '/video_traitement.mp4'} playing muted controls/> */}
 
                     </div>
                   </div>
