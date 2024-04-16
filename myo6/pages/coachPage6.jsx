@@ -52,7 +52,7 @@ export default function Home(props) {
         if(video.length > 0){
           console.log("video", video);
           setVideo(video);
-          setSelectedValueMeasure(video[0].id_video);
+          setSelectedValueMeasure(video[video.length - 1].id_video);
           setIsVideo(true);
           // setIsDataLoaded(true); QUENTIN////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         }
@@ -127,10 +127,9 @@ export default function Home(props) {
             {videos.length > 0 && (
             <select value={selectedValueMeasure} onChange={handleSelectChangeMeasure} className="bg-white rounded-lg m-2 sm:m-4 w-auto shadow-xl border-2 border-gray-400 text-md sm:text-lg">
 
-              {videos.map(video => (
+              {videos.sort((a, b) => new Date(b.date_record) - new Date(a.date_record)).map(video => (
                 <option key={video.id_video} value={video.id_video}>
                   {video.date_record.slice(4, -7)}
-                  {/* {video.id_video} */}
                 </option>
               ))}
             </select>
