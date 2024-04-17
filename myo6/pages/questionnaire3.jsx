@@ -26,15 +26,15 @@ export default function Home(props) {
   const [users, setUsers] = useState([]);
   const [selectedValue, setSelectedValue] = useState(0);
   const [Date2, setDate2] = useState('');
-  const [selectedOptionSleepQuality, setSelectedOptionSleepQuality] = useState(0);
-  const [selectedOptionTrainLastDay, setSelectedOptionTrainLastDay] = useState(0);
+  const [selectedOptionSleepQuality, setSelectedOptionSleepQuality] = useState(-1);
+  const [selectedOptionTrainLastDay, setSelectedOptionTrainLastDay] = useState(-1);
   const [selectedOptionTrainPerf, setSelectedOptionTrainPerf] = useState(0);
   const [selectedOptionPhysCond, setSelectedOptionPhysCond] = useState(0);
   const [selectedOptionStress, setSelectedOptionStress] = useState(0);
   const [selectedOptionMuscleSore, setSelectedOptionMuscleSore] = useState(0);
   const [selectedOptionFatigueSubj, setSelectedOptionFatigueSubj] = useState(0);
   const [selectedOptionInjuried, setSelectedOptionInjuried] = useState(0);
-  const [selectedOptionAlcohol, setSelectedOptionAlcohol] = useState([]);
+  const [selectedOptionAlcohol, setSelectedOptionAlcohol] = useState(0);
   const [selectedOptionMenstruation, setSelectedOptionMenstruation] = useState(0);
   const [selectedOptionTravel, setSelectedOptionTravel] = useState(0);
   const [selectedOptionSickness, setSelectedOptionSickness] = useState(0);
@@ -46,6 +46,9 @@ export default function Home(props) {
   const [selectedUserGender, setSelectedUserGender] = useState('');
   const [submissionMessage, setSubmissionMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+
+  
   
   async function getUser() {
 
@@ -85,26 +88,14 @@ export default function Home(props) {
 
   const isFormValid = () => {
     if (
-      !selectedOptionSleepQuality ||
-      !selectedOptionStress ||
-      !selectedOptionMuscleSore ||
-      !selectedOptionFatigueSubj
+      selectedOptionSleepQuality === -1 ||
+      selectedOptionStress === -1 ||
+      selectedOptionMuscleSore === -1 ||
+      selectedOptionFatigueSubj === -1
     ) {
       return false;
     }
     return true;
-  };
-
-
-  const handleCheckboxChange = (event, value) => {
-    const isChecked = event.target.checked;
-    setSelectedOptionAlcohol((prevState) => {
-      if (isChecked) {
-        return [...prevState, value];
-      } else {
-        return prevState.filter((v) => v !== value);
-      }
-    });
   };
 
 
@@ -249,43 +240,55 @@ export default function Home(props) {
                   <p>Avez vous bu de l&apos;alcool hier ? </p>
 
                   <div className="pt-3 flex justify-center items-center justify-items-center text-center">
-                    <div>
-                      <input
-                        type="checkbox"
-                        id="alcohol0"
-                        name="alcohol"
-                        value="0"
-                        checked={selectedOptionAlcohol.includes('0')}
-                        onChange={(e) => handleCheckboxChange(e, '0')}
-                      />
-                      <label htmlFor="alcohol0">Non</label>
-                    </div>
 
-                    <div>
-                      <input
-                        type="checkbox"
-                        id="alcohol1"
-                        name="alcohol"
-                        value="1"
-                        checked={selectedOptionAlcohol.includes('1')}
-                        onChange={(e) => handleCheckboxChange(e, '1')}
-                      />
-                      <label htmlFor="alcohol1">Oui, 1 ou 2 verres</label>
-                    </div>
+                    <input
+                      type="radio"
+                      id="optionName-1"
+                      name="optionName"
+                      value="-1"
+                      checked={selectedOptionAlcohol === '-1'}
+                      onChange={(e) => setSelectedOptionAlcohol(e.target.value)}
+                    />
+                    <label htmlFor="optionName-1">Réinitialiser</label>
 
-                    <div>
-                      <input
-                        type="checkbox"
-                        id="alcohol2"
-                        name="alcohol"
-                        value="2"
-                        checked={selectedOptionAlcohol.includes('2')}
-                        onChange={(e) => handleCheckboxChange(e, '2')}
-                      />
-                      <label htmlFor="alcohol2">Oui, plus de 2 verres</label>
-                    </div>
+                  <input
+                    type="radio"
+                    id="alcohol0"
+                    name="alcohol"
+                    value="0"
+                    checked={selectedOptionAlcohol === '0'}
+                    onChange={(e) => setSelectedOptionAlcohol(e.target.value)}
+                  />
+                  <label htmlFor="alcohol0">Non</label>
+
+
+                  {"  "}
+                  <input
+                    type="radio"
+                    id="alcohol1"
+                    name="alcohol"
+                    value="1"
+                    checked={selectedOptionAlcohol === '1'}
+                    onChange={(e) => setSelectedOptionAlcohol(e.target.value)}
+                  />
+                  <label htmlFor="alcohol1">Oui, 1 ou 2 verres</label>
+
+
+                  {"  "}
+                  <input
+                    type="radio"
+                    id="alcohol2"
+                    name="alcohol"
+                    value="2"
+                    checked={selectedOptionAlcohol === '2'}
+                    onChange={(e) => setSelectedOptionAlcohol(e.target.value)}
+                  />
+                  <label htmlFor="alcohol2">Oui, plus de 2 verres</label>
+
                   </div>
+
                 </form>
+
               </div>
             </div>
 
