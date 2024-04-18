@@ -122,7 +122,7 @@ export default function Home(props) {
 
             <div className="flex w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
               <div className="flex bg-sky-600 text-center text-white rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
-            <button onClick={handleSubmit}>Démarrer l'association</button>
+            <button onClick={handleSubmit}>Démarrer l&apos;association</button>
             </div>
             </div>
           </div>
