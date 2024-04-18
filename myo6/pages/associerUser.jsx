@@ -16,30 +16,65 @@ export default function Home(props) {
     console.log(baseUrl);
   }
 
-  const [users, setUsers] = useState([]);
-  const [selectedValue, setSelectedValue] = useState(0);
-  const [isBilanSelected, setIsBilanSelected] = useState(true);
+  const [userId, setUserId] = useState([]);
+  const [serialNumber, setSerialNumber] = useState('');
+  const [submissionMessage, setSubmissionMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-//récupérer les utilisateurs
-  async function getUser() {
-    const res = await fetch(baseUrl + 'api/getAllUser', {});
-    //const res = await fetch('http://localhost:3000/api/getUsers_Test', {});
 
-    const data = await res.json();
-    setUsers(data);
+
+  const isFormValid = () => {
+    if (
+      !serialNumber
+    ) {
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!isFormValid()) {
+      setErrorMessage('Veuillez remplir tous les champs');
+      return;
+    }
+  
+    setErrorMessage('');
+
+    const url_upload_form = 'https://myo6.duckdns.org/api/associate';
+    const data_form = {
+      'id_user' : userId,
+      'serial_number' : serialNumber
+    };
+    console.log(data_form);
+
+    try {
+      const response = await fetch(url_upload_form, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data_form),
+      });
+
+      if (response.ok) {
+        setSubmissionMessage('L\'association peut commencer sur le Myo6');
+      } else {
+        setErrorMessage('Une erreur s\'est produite verifier le numero de série du Myo6');
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+      setErrorMessage('Une erreur s\'est produite verifier le numero de série du Myo6');
+    }
   }
+
   
   //initialisation des données de la page
   useEffect(() => {
     if (window.location.href.split("=")[1] == undefined) {
-      // redirect to /index
-      //window.location.href = '/'
-      // alert("Ceci est une alerte !");
     } else {
-      setCurrentUserid(window.location.href.split("=")[1])
-      setSelectedValue(window.location.href.split("=")[1]);
-      getVideo(window.location.href.split("=")[1]);
-      getUser();
+      setUserId(window.location.href.split("=")[1])
     }
   }, []);
 
@@ -49,66 +84,51 @@ export default function Home(props) {
       <div className="h-screen w-screen">
         <Navbar></Navbar>
         <hr className="w-full h-[4px] bg-beige"></hr>
-      {
+      
         <div className='flex  min-h-[calc(100%-84px)] bg-gray-300 h-auto '>
           {/* <SideBar></SideBar> */}
           <div id="main_code" className="h-full  w-full ">
-            
-            <div className="w-full flex h-10 bg-red-300">
 
-              <button className="w-1/2 bg-gray-500 hover:bg-gray-400 h-full flex justify-center items-center justify-items-center text-white transition duration-500 ease-in-out"
-                onClick={() => setIsBilanSelected(true)}>
-                  Associer un Myo6
-              </button>
 
-              <div className="w-1 bg-black h-full">
-
+          <div className="w-full p-2 ">
+              <div className="flex bg-white rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-fit">
+                <div className="text-xl font-bold text-[#082431]">
+                  Associer votre empriente
+                </div>
               </div>
-
-              <button className="w-1/2 bg-gray-500 hover:bg-gray-400 h-full flex justify-center items-center justify-items-center text-white transition duration-500 ease-in-out"
-                onClick={() => setIsBilanSelected(false)}>
-                  Associer une empreinte
-              </button>
-
             </div>
 
-            {
-              isBilanSelected ? 
-              <div className='p-2'>
-              <div className="flex ">
-                <div className="bg-white rounded-lg w-1/4 h-1/2 m-1 shadow-xl border-2 border-gray-400">
-                  <div className="justify-center items-center justify-items-center h-full text-center">
-                    <div className="text-lg sm:text-2xl font-bold text-[#082431] flex justify-center items-center h-full">
-                      <div className="flex flex-col justify-center items-center">
-                      :
-                        <div className="text-sm font-bold text-[#082431]">
-                          
-                          {users.find(user => user.id_user == selectedValue) && users.find(user => user.id_user == selectedValue).firstname} 
-                          {" "}
-                          {users.find(user => user.id_user == selectedValue) && users.find(user => user.id_user == selectedValue).lastname}   
-                          {" "}                 
-                          
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                </div>
-                </div>
+            <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+              <div className=" bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
 
-              :
-              (
-              <div className='h-screen'>
-              <iframe src={"associerMyo6"} width="100%" height="100%" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
-              </div>
-              )            
 
-            }
-            
+      <p> Saisissez le numéro de série du Myo6 : </p>
+  
+      <input
+        type="text"
+        value={serialNumber}
+        onChange={(e) => setSerialNumber(e.target.value)}
+        placeholder="Saisissez le numéro"
+        style={{ width: '190px' }}
+      />
+    </div>
+    </div>
+
+    <div className="flex w-full p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+              {errorMessage && <div className="bg-red-500 text-white rounded-lg shadow-xl border-2 border-gray-400 p-2">{errorMessage}</div>}
+              {submissionMessage && <div className="bg-green-500 text-white rounded-lg shadow-xl border-2 border-gray-400 p-2">{submissionMessage}</div>}
+            </div>
+
+
+            <div className="flex w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+              <div className="flex bg-sky-600 text-center text-white rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+            <button onClick={handleSubmit}>Démarrer l'association</button>
+            </div>
+            </div>
           </div>
         </div>
        
-      }
+      
           
       </div>
     </>

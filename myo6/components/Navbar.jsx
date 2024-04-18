@@ -45,11 +45,11 @@ export default function Navbar() {
 
                     <Link href="/About" className="text-white text-sm sm:text-xl pr-2 sm:pr-5">A propos</Link>
 
-                    <button className="h-full">
+                    <Link href="/Login" className="h-full">
 
-                        <img src="/assets/icons/user.svg" alt="Logo" className="h-2/3 rounded-md mr-1 sm:mr-5" />
+                        <img src="/assets/icons/user.svg" alt="Logo" className="h-full rounded-md mr-1 sm:mr-5" />
 
-                    </button>
+                    </Link>
                     
                     
 
