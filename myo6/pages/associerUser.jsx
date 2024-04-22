@@ -25,7 +25,8 @@ export default function Home(props) {
 
   const isFormValid = () => {
     if (
-      !serialNumber
+      !serialNumber ||
+      !userId
     ) {
       return false;
     }
