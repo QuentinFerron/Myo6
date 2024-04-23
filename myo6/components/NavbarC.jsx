@@ -3,7 +3,6 @@ import Head from "next/head";
 import SideBar from "./SideBar";
 import Image from "next/image";
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect } from 'react'
 import { useState } from 'react'
 
