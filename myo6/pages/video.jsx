@@ -194,7 +194,7 @@ function VideoRecorder() {
         mediaRecorder.stop();
       }, 10000); // Enregistrement de 10 secondes
     } catch (error) {
-      console.error('Erreur lors de laccès à la caméra :', error);
+      console.error("Erreur lors de laccès à la caméra :", error);
     }
   };
 
@@ -212,7 +212,7 @@ function VideoRecorder() {
       const data = await response.json();
       console.log('Réponse de lAPI :', data);
     } catch (error) {
-      console.error('Erreur lors de lenvoi de la vidéo :', error);
+      console.error("Erreur lors de l'envoi de la vidéo :", error);
     }
   };
   
@@ -220,12 +220,12 @@ function VideoRecorder() {
   return (
     <div>
       <button onClick={startRecording} disabled={recording}>
-        {recording ? 'Enregistrement en cours...' : 'Démarrer lenregistrement'}
+        {recording ? "Enregistrement en cours..." : "Démarrer l'enregistrement"}
       </button>
       {videoBlob && (
         <div>
           <video src={URL.createObjectURL(videoBlob)} controls />
-          <button onClick={sendVideoToAPI}>Envoyer la vidéo à l'API</button>
+          <button onClick={sendVideoToAPI}>Envoyer la vidéo à l&apos;API</button>
         </div>
       )}
     </div>
