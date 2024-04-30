@@ -86,11 +86,11 @@ export default function Home({  }) {
       if (response.ok) {
         setSubmissionMessage('Utilisateur créé avec succès');
       } else {
-        setSubmissionMessage('Une erreur s\'est produite lors de la création de l\'utilisateur');
+        setErrorMessage('Une erreur s\'est produite lors de la création de l\'utilisateur');
       }
     } catch (error) {
       console.error('Erreur:', error);
-      setSubmissionMessage('Une erreur s\'est produite lors de la création de l\'utilisateur');
+      setErrorMessage('Une erreur s\'est produite lors de la création de l\'utilisateur');
     }
   };
 
