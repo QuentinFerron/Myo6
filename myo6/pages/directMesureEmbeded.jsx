@@ -30,6 +30,10 @@ export default function Home(props) {
   const [area, setArea] = useState([]);
   const [showDiv, setShowDiv] = useState(false);
 
+  const [position, setPosition] = useState('None');
+  const [exercice, setExercice] = useState('None');
+  const [submissionMessage, setSubmissionMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
 
 
@@ -76,6 +80,47 @@ export default function Home(props) {
       duration:  0, // Durée de l'animation pour chaque point
     },
   };
+
+
+
+
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    setErrorMessage('');
+
+    const url_upload_form = `https://myo6.duckdns.org/api/${videoid}/add_tag`;
+    const data_form = {
+      'position' : position,
+      'exercice' : exercice
+    };
+    console.log(data_form);
+
+    try {
+      const response = await fetch(url_upload_form, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data_form),
+      });
+
+      if (response.ok) {
+        setSubmissionMessage('Tags envoyés');
+      } else {
+        setErrorMessage('Une erreur s\'est produite');
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+      setErrorMessage('Une erreur s\'est produite');
+    }
+  };
+
+
+
+
+
 
 
   useEffect(() => {
@@ -222,7 +267,7 @@ export default function Home(props) {
                 </div>
       
             
-                <div className="sm:flex">
+                <div className="flex">
                   <div className=" m-4  flex justify-center items-center justify-items-center w-auto sm:w-1/3 ">
                     <div className="text-xl font-bold text-[#082431] bg-white shadow-xl border-2 w-full  border-gray-400 flex justify-center items-center justify-items-center">
                     <video autoPlay playsinline muted src={'https://myo6.duckdns.org/api/video/' + video.id_video + '/video_traitement.mp4'} type="video/mp4"></video>
@@ -235,7 +280,85 @@ export default function Home(props) {
                       <Line data={chartData} options={options} />
                     </div>
                   </div>
+
+
+
+
+                  <div className="sm:flex ">
+                  <div className="m-4  bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-auto sm:w-5/6 ">
+                        <div className="text-lg sm:text-2xl flex font-bold text-[#082431] justify-center items-center justify-items-center">
+                          Tags
+                        </div>
+
+                        <div className="sm:flex justify-center items-center justify-items-center text-center sm:text-left">
+
+
+                          <div className="text-md sm:text-lg">
+                          <div className="p-2 flex font-bold text-[#082431]  ">
+
+                          
+                    <div className="w-auto p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+                      <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+                      <p> Position: </p>
+                        <select
+                          id="position"
+                          value={position}
+                          onChange={(e) => setPosition(e.target.value)}
+                        >
+                          <option value="None">Indeterminée</option>
+                          <option value="Lying">Couché</option>
+                          <option value="Sitting">Assis</option>
+                          <option value="Standing">Debout</option>
+                        </select>
+                  </div>
+                  </div>
+                          </div>
+
+
+
+                          <div className="p-2 flex font-bold text-[#082431]  ">
+
+                          
+                  <div className="w-auto p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+                      <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+                      <p> Exercice: </p>
+                        <select
+                          id="exercice"
+                          value={exercice}
+                          onChange={(e) => setExercice(e.target.value)}
+                        >
+                          <option value="None">Indeterminé</option>
+                          <option value="Rest">Repos</option>
+                          <option value="Activity">Activité</option>
+                        </select>
+                  </div>
+                  </div>
+
+
+                  
+
+
+                          </div>
+                          <div className="flex w-full p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+                    {errorMessage && <div className="bg-red-500 text-white rounded-lg shadow-xl border-2 border-gray-400 p-2">{errorMessage}</div>}
+                    {submissionMessage && <div className="bg-green-500 text-white rounded-lg shadow-xl border-2 border-gray-400 p-2">{submissionMessage}</div>}
+                  </div>
+
+                  <div className="flex w-auto p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+                  <div className="flex bg-sky-600 text-center text-white rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+                    <button onClick={handleSubmit}>Envoyer les Tags</button>
+                  </div>
+                  </div>
+                        </div>
+
+                       </div>
+                      
+                      </div>
+                      </div>
+
+
                 </div>
+
 
 
 
