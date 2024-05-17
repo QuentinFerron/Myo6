@@ -89,6 +89,7 @@ export default function Home(props) {
     event.preventDefault();
 
     setErrorMessage('');
+    setSubmissionMessage('');
 
     const url_upload_form = `https://myo6.duckdns.org/api/${videoid}/add_tag`;
     const data_form = {
@@ -267,10 +268,11 @@ export default function Home(props) {
                 </div>
       
             
-                <div className="flex">
+                          
+                <div className="sm:flex">
                   <div className=" m-4  flex justify-center items-center justify-items-center w-auto sm:w-1/3 ">
-                    <div className="text-xl font-bold text-[#082431] bg-white shadow-xl border-2 w-full  border-gray-400 flex justify-center items-center justify-items-center">
-                    <video autoPlay playsinline muted src={'https://myo6.duckdns.org/api/video/' + video.id_video + '/video_traitement.mp4'} type="video/mp4"></video>
+                    <div className="text-xl font-bold text-[#082431] bg-white rounded-none shadow-xl border-2 w-full  border-gray-400 flex justify-center items-center justify-items-center">
+                    <video autoPlay playsInline muted src={'https://myo6.duckdns.org/api/video/' + video.id_video + '/video_traitement.mp4'} type="video/mp4"></video>
                     {/* <ReactPlayer url={'https://myo6.duckdns.org/api/video/' + video.id_video + '/video_traitement.mp4'} playing muted controls/> */}
 
                     </div>
@@ -283,9 +285,7 @@ export default function Home(props) {
 
 
 
-
-                  <div className="sm:flex ">
-                  <div className="m-4  bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-auto sm:w-5/6 ">
+                  <div className="m-4  bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-auto">
                         <div className="text-lg sm:text-2xl flex font-bold text-[#082431] justify-center items-center justify-items-center">
                           Tags
                         </div>
@@ -354,7 +354,11 @@ export default function Home(props) {
                        </div>
                       
                       </div>
-                      </div>
+
+
+
+
+                
 
 
                 </div>

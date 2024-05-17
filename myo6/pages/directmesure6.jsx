@@ -227,7 +227,7 @@ export default function Home(props) {
                 <div className="text-lg p-4 font-bold text-[#082431]">
                     Vidéo n° 
                   {
-                    video && video.id 
+                    video && video.id_video 
                   }
                   {' le '}
                   {
