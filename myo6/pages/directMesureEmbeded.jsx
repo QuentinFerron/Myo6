@@ -187,6 +187,8 @@ export default function Home(props) {
       MyDate = MyDate.toString().replace(" Dec ", "/12/");
       setDate(MyDate);
 
+      setPosition(data.video_data.position);
+      setExercice(data.video_data.exercice);
 
     }
 
@@ -300,11 +302,7 @@ export default function Home(props) {
                     <div className="w-auto p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
                       <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
                       <p> Position: </p>
-                        <select
-                          id="position"
-                          value={position}
-                          onChange={(e) => setPosition(e.target.value)}
-                        >
+                        <select id="position" value={position} onChange={(e) => setPosition(e.target.value)} >
                           <option value="None">Indeterminée</option>
                           <option value="Lying">Couché</option>
                           <option value="Sitting">Assis</option>
@@ -322,14 +320,12 @@ export default function Home(props) {
                   <div className="w-auto p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
                       <div className="flex bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
                       <p> Exercice: </p>
-                        <select
-                          id="exercice"
-                          value={exercice}
-                          onChange={(e) => setExercice(e.target.value)}
-                        >
+                        <select id="exercice" value={exercice} onChange={(e) => setExercice(e.target.value)}>
                           <option value="None">Indeterminé</option>
                           <option value="Rest">Repos</option>
                           <option value="Activity">Activité</option>
+                          <option value="Pre">Avant</option>
+                          <option value="Post">Après</option>
                         </select>
                   </div>
                   </div>
