@@ -16,6 +16,7 @@ export default function VideoUpload() {
 
   const [submissionMessage, setSubmissionMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [confirmationMessage, setConfirmationMessage] = useState('');
 
     let date = new Date();
     let datevideo = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear() + '_' + date.getHours() + 'h' + date.getMinutes() + 'min' + date.getSeconds() + 'sec';
@@ -39,12 +40,15 @@ export default function VideoUpload() {
         method: 'POST',
         body: formData,
       })
+      setConfirmationMessage('Envoi de la vidéo en cours...')
       setErrorMessage('')
       setSubmissionMessage('')
       if (response.ok) {
         console.log('Vidéo envoyée avec succès')
+        setConfirmationMessage('')
         setSubmissionMessage('Vidéo envoyée avec succès');
       } else {
+        setConfirmationMessage('')
         setErrorMessage('Erreur lors de l\'envoi de la vidéo')
         console.error('Erreur lors de l\'envoi de la vidéo')
       }
@@ -106,6 +110,8 @@ export default function VideoUpload() {
                   <div className="flex w-full p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
                     {errorMessage && <div className="bg-red-500 text-white rounded-lg shadow-xl border-2 border-gray-400 p-2">{errorMessage}</div>}
                     {submissionMessage && <div className="bg-green-500 text-white rounded-lg shadow-xl border-2 border-gray-400 p-2">{submissionMessage}</div>}
+                    {confirmationMessage && <div className="bg-green-500 text-white rounded-lg shadow-xl border-2 border-gray-400 p-2">{confirmationMessage}</div>}
+
                   </div>
 
                   <div className="flex w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
