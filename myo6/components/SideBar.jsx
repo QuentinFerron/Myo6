@@ -81,7 +81,7 @@ export default function SideBar({setISideBarOpen}) {
                         <div className="">
                             <img src="/assets/icons/documentation.svg" alt="Questionnaire" className="w-4 h-4 mr-1" />
                         </div>
-                        Associer son empriente
+                        Associer son empreinte
                     </Link>              
                 </div>
 

@@ -94,7 +94,7 @@ export default function Home(props) {
           <div className="w-full p-2 ">
               <div className="flex bg-white rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-fit">
                 <div className="text-xl font-bold text-[#082431]">
-                  Associer votre empriente
+                  Associer votre empreinte
                 </div>
               </div>
             </div>
