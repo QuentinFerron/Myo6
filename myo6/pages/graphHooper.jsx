@@ -133,7 +133,7 @@ const options = {
 
  const chartData = {
     // labels: labels,
-    labels: data.map((item) => new Date(item.date_record).toLocaleDateString()), // Format dates for labels
+    labels: data.map((item) => new Date(item.Date).toLocaleDateString()), // Format dates for labels
     datasets: [
       {
         label: 'Hooper',
@@ -143,14 +143,14 @@ const options = {
         backgroundColor: 'rgb(75, 192, 192)',
         borderColor: 'rgba(75, 192, 192, 0.8)',
       },
-      {
-        label: 'Score',
-        // data: atlData,
-        data: data.map(item => item.score),
-        fill: false,
-        backgroundColor: 'rgb(0, 192, 0)',
-        borderColor: 'rgba(75, 192, 0, 0.8)',
-      },
+      // {
+      //   label: 'Score',
+      //   // data: atlData,
+      //   data: data.map(item => item.score),
+      //   fill: false,
+      //   backgroundColor: 'rgb(0, 192, 0)',
+      //   borderColor: 'rgba(75, 192, 0, 0.8)',
+      // },
         // {
         //   label: '',
         //   // data: atlData,
