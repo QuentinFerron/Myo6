@@ -87,9 +87,19 @@ const options = {
     },
   },
   plugins: {
+    title: {
+      display: true,
+      text: 'Bilan hebdomadaire',
+      font: {
+        size: 20,
+      },
+    },
     legend: {
       labels: {
         filter: (item, data) => !labelsToHide.includes(item.text),
+        font: {
+          size: 12, // Ajoutez cette ligne pour définir la taille de la police des légendes
+        },
       },
     },
   },
@@ -114,7 +124,7 @@ const ComboChart = () => {
   }, []);
 
   return (
-    <div style={{ width: '55%', height: '55%' }}>
+    <div style={{ width: '100%', height: '100%' }}>
       <Bar data={data} options={options} ref={chartRef} />
     </div>
   );

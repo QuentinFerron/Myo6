@@ -39,6 +39,10 @@ body {
   transition: opacity 1s ease-in-out;
 }
 
+.chart-container {
+  background-color: black;
+}
+
 /* #main_code {
   height: 100%;
   width: 100%;

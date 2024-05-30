@@ -9,6 +9,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  BackgroundColorPlugin,
 } from 'chart.js';
 
 ChartJS.register(
@@ -99,7 +100,11 @@ const options = {
 
  const chartData = {
     // labels: labels,
-    labels: data.map((item) => new Date(item.Date).toLocaleDateString()), // Format dates for labels
+    // labels: data.map((item) => new Date(item.Date).toLocaleDateString()), // Format dates for labels
+    labels: data.map(item => {
+      const date = new Date(item.Date);
+      return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear().toString().slice(-2)}`;
+    }),
     datasets: [
       {
         label: 'Hooper',
@@ -109,16 +114,19 @@ const options = {
         backgroundColor: 'rgb(75, 192, 192)',
         borderColor: 'rgba(75, 192, 192, 0.8)',
         spanGaps: true,
+        tension: 0.3,
+        pointRadius: 1.5,
       },
     ],
  };
 
  return (
   <>
+    {/* <div className="chart-container"> */}
     <div>
-      <Line data={chartData} options={options}/>
+      <Line data={chartData} options={options} />
     </div>
-    </>
+  </>
  )
 }
 export async function getServerSideProps() {

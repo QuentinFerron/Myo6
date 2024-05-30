@@ -80,40 +80,6 @@ const options = {
         grid: {
           drawOnChartArea: true, // only want the grid lines for one axis to show up
         },
-      
-    // y: {
-      // ticks: {
-      //   beginAtZero: true,
-      //   callback: function(value, index, values) {
-      //     return (index === 2) ? "0" : null;
-      //   }
-      // },
-    //   grid: {
-    //     color: 'blue',
-    //   },
-    //   title: {
-    //     display: true,
-    //     text: 'Load',
-    //   },
-    // },
-    // y2: {
-    //        ticks: {
-    //      beginAtZero: true,
-    //      callback: function(value, index, values) {
-    //        return (index === 2) ? "0" : null;
-    //      }
-    //    },
-      // max: 100,
-      // min: 0,
-      // ticks: {
-      //   display: false,
-      //   stepSize: 1,
-      // },
-      // grid: {
-      //   drawTicks: false,
-      //   drawBorder: false,
-      //   color: 'rgba(255, 0, 255, 1)'
-      // }
     },
   },
 };
@@ -127,10 +93,6 @@ const options = {
       .then(data => setData(data));
  }, []);
 
-
-// Préparation des données pour le graphique
-//  const labels = data.map(item => item.Date);
-//  const atlData = data.map(item => item.ATL);
 
  const chartData = {
     // labels: labels,
@@ -170,15 +132,6 @@ const options = {
         tension: 0.3,
         pointRadius: 1.5,
       },
-        // {
-        //   label: '',
-        //   // data: atlData,
-        //   data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        //   fill: true,
-        //   backgroundColor: 'rgb(1, 1, 1, 0)',
-          
-        //   borderColor: 'rgba(0, 0, 0, 1)',
-        // },
     ],
  };
 

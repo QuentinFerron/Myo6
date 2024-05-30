@@ -109,7 +109,7 @@ export default function Home(props) {
         <Navbar></Navbar>
         <hr className="w-full h-[4px] bg-beige"></hr>
       {
-        // !isDataLoaded ? QUENTIN
+        // !isDataLoaded ?
         // null
         // :
 
@@ -233,43 +233,32 @@ export default function Home(props) {
 
               <div className="sm:flex ">
 
-                   <div className="flex h-48 sm:h-96  sm:w-1/2 mt-3 m-1 bg-white rounded-lg justify-center items-center justify-items-center shadow-xl border-2 border-gray-400">
-               {/* <iframe src={"http://localhost:3000/testGraph5"} width="90%" height="100%" frameBorder="0" allowFullScreen></iframe> */}
-               <iframe src={baseUrl + 'testGraph6?id_user='+ selectedValue } width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
-
-               </div>
+              <div className="w-full sm:w-1/2 mt-3 m-1 bg-white rounded-lg flex justify-center items-center shadow-xl border-2 border-gray-400" style={{ aspectRatio: '16/8', maxHeight: '80vh' }}>
+                <iframe src={baseUrl + 'testGraph6?id_user=' + selectedValue} className="w-full h-full" frameBorder="0" allowFullScreen></iframe>
+              </div>
 
 
-               <div className="flex h-48 sm:h-96  sm:w-1/2 mt-3 m-1 bg-white rounded-lg justify-center items-center justify-items-center shadow-xl border-2 border-gray-400">
-               {/* <iframe src={"http://localhost:3000/testGraph5"} width="90%" height="100%" frameBorder="0" allowFullScreen></iframe> */}
+              <div className="w-full sm:w-1/2 mt-3 m-1 bg-white rounded-lg flex justify-center items-center shadow-xl border-2 border-gray-400" style={{ aspectRatio: '16/8', maxHeight: '80vh' }}>
                <iframe src={baseUrl + 'graphHooper?id_user='+ selectedValue } width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
 
                </div>
 
-               {/* <div className="flex h-96 w-1/2 mt-3 m-1 bg-white rounded-lg justify-center items-center justify-items-center shadow-xl border-2 border-gray-400">
-               <iframe src={"http://localhost:3000/UserWeb"} width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
-               </div> */}
 
                </div>
 
+               <div className="sm:flex ">
 
-               <div className="flex h-48 sm:h-96 sm:w-1/2 mt-3 m-1 bg-white rounded-lg justify-center items-center justify-items-center shadow-xl border-2 border-gray-400">
+
+               <div className="w-full sm:w-1/4 mt-3 m-1 bg-white rounded-lg flex justify-center items-center shadow-xl border-2 border-gray-400" style={{ aspectRatio: '16/9', maxHeight: '80vh' }}>
                <iframe src={baseUrl + 'UserWeb'} width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
                </div>
 
 
-               {/* <div className="flex h-96  w-1/2 mt-3 m-1 bg-white rounded-lg justify-center items-center justify-items-center shadow-xl border-2 border-gray-400">
-               <iframe src={"http://localhost:3000/graphHooper?id_user="+ selectedValue } width="80%" height="100%" frameBorder="0" allowFullScreen></iframe>
-               </div> */}
-               {/* <div className="flex">
-
-                   <div className="flex h-96 w-1/2 mt-6 m-4 bg-white rounded-lg justify-center items-center justify-items-center shadow-xl border-2 border-gray-400">
-                   <iframe src={"http://localhost:3000/testGraph6?id_user="+ selectedValue } width="100%" height="100%" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
+               <div className="w-full sm:w-1/2 mt-3 m-1 bg-white rounded-lg flex justify-center items-center shadow-xl border-2 border-gray-400" style={{ aspectRatio: '16/9', maxHeight: '80vh' }}>
+               <iframe src={baseUrl + 'testGraph8?id_user='+ selectedValue } style={{ width: '100%', height: '100%', objectFit: 'contain' }} frameBorder="0" allowFullScreen></iframe>
                </div>
 
-               
-
-               </div> */}
+               </div>
                 </div>
 
 
@@ -286,13 +275,6 @@ export default function Home(props) {
                 Pas de vidéo pour cet utilisateur
                 </div>
               )
-              
-
-              
-
-
-              
-          
             }
             
           
