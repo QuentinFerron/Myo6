@@ -1,150 +1,190 @@
 import React, { useState, useEffect } from 'react';
-import { Line } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
-export default function Home(props) {
-
-  let baseUrl = "s";
-  if (props.DEBUG_MODE === 'true') {
-    baseUrl = "http://localhost:3000/";
-    console.log("DEBUG_MODE");
-  } else {
-    baseUrl = "https://myo6.vercel.app/";
-    console.log(baseUrl);
-  }
+const ComboChart = () => {
+  const [chartData, setChartData] = useState(null);
+  const [selectedOption, setSelectedOption] = useState('min_area');
+  const [idUser, setIdUser] = useState(null);
 
 
-const options = {
-  responsive: true,
-  plugins: {
-    title: {
-      display: true,
-      text: 'Training Load',
-      font: {
-        size: 20,
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (window.location.href.split("=")[1] == undefined) {
+
+        } else {
+          setIdUser(window.location.href.split("=")[1]);
+        }
+        const response = await fetch(`https://myo6.duckdns.org/api/${idUser}/${selectedOption}/weekly_plot`);
+        const data = await response.json();
+
+        const dates = new Set();
+        for (const section of Object.values(data)) {
+          for (const item of section) {
+            dates.add(new Date(item.Date).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' }));
+          }
+        }
+        // const labels = Array.from(dates).sort();
+        const labels = Array.from(dates);
+
+
+        const datasets = [
+          {
+            type: 'line',
+            label: 'Moyenne glissante 7 jours Matin-Assis',
+            data: data.sitting_morning.map((item) => item.rolling_mean_7),
+            borderColor: 'rgba(255, 0, 0, 1)',
+            backgroundColor: 'rgba(255, 0, 0, 1)',
+            spanGaps: true,
+            tension: 0.3,
+            pointRadius: 2,
+            fill: false,
+          },
+          {
+            type: 'line',
+            label: 'Moyenne glissante 7 jours Matin-Debout',
+            data: data.standing_morning.map((item) => item.rolling_mean_7),
+            borderColor: 'rgba(132, 0, 255, 1)',
+            backgroundColor: 'rgba(132, 0, 255, 1)',
+            spanGaps: true,
+            tension: 0.3,
+            pointRadius: 2,
+            fill: false,
+          },
+          {
+            type: 'line',
+            label: 'Baseline 30 jours Matin-Assis',
+            data: data.sitting_morning.map((item) => item.rolling_mean_30),
+            borderColor: 'rgba(255, 153, 153, 0)',
+            backgroundColor: 'rgba(255, 153, 153, 0.5)',
+            showLine: false,
+            pointStyle: false,
+            spanGaps: true,
+            fill: false,
+          },
+          {
+            type: 'line',
+            legendDisplay: false,
+            data: data.sitting_morning.map((item) => item.lower_bound),
+            borderColor: 'rgba(255, 153, 153, 0)',
+            backgroundColor: 'rgba(255, 153, 153, 0.5)',
+            borderWidth: 0.1,
+            showLine: false,
+            pointStyle: false,
+            spanGaps: true,
+            fill: +1,
+          },
+          {
+            type: 'line',
+            label: 'Baseline 30 jours Matin-Debout',
+            data: data.standing_morning.map((item) => item.rolling_mean_30),
+            borderColor: 'rgba(255, 153, 255, 0)',
+            backgroundColor: 'rgba(255, 153, 255, 0.3)',
+            showLine: false,
+            pointStyle: false,
+            spanGaps: true,
+            fill: false,
+          },
+          {
+            type: 'line',
+            data: data.standing_morning.map((item) => item.lower_bound),
+            borderColor: 'rgba(255, 153, 255, 0)',
+            backgroundColor: 'rgba(255, 153, 255, 0.3)',
+            borderWidth: 0.1,
+            showLine: false,
+            pointStyle: false,
+            spanGaps: true,
+            fill: +1,
+          },
+          {
+            type: 'bar',
+            label: 'Matin-Assis',
+            data: data.sitting_morning.map((item) => item[selectedOption]),
+            backgroundColor: 'rgba(0, 162, 235, 0.8)',
+            borderColor: 'rgba(0, 162, 235, 1)',
+            borderWidth: 1,
+          },
+          {
+            type: 'bar',
+            label: 'Matin-Debout',
+            data: data.standing_morning.map((item) => item[selectedOption]),
+            backgroundColor: 'rgba(54, 255, 235, 0.8)',
+            borderColor: 'rgba(54, 255, 235, 1)',
+            borderWidth: 1,
+          },
+          {
+            type: 'bar',
+            label: 'Soir-Assis',
+            data: data.sitting_evening.map((item) => item[selectedOption] || 0),
+            backgroundColor: 'rgba(54, 162, 0, 0.8)',
+            borderColor: 'rgba(54, 162, 0, 1)',
+            borderWidth: 1,
+          },
+          {
+            type: 'bar',
+            label: 'Soir-Debout',
+            data: data.standing_evening.map((item) => item[selectedOption] || 0),
+            backgroundColor: 'rgba(50, 255, 50, 0.8)',
+            borderColor: 'rgba(50, 255, 50, 1)',
+            borderWidth: 1,
+          },
+        ];
+
+        setChartData({
+          labels,
+          datasets,
+        });
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données :', error);
+      }
+    };
+
+    fetchData();
+  }, [selectedOption, idUser]);
+
+  const labelsToHide = [,];
+  const options = {
+    scales: {
+      x: {
+        type: 'category',
       },
     },
-    legend: {
-      position: 'top',
-    },
-  },
-  scales: {
-
-    x: {
-      
+    plugins: {
       title: {
         display: true,
-        // text: 'Date',
-      },
-    },
-    
-      y: {
-        type: 'linear',
-        display: true,
-        position: 'left',
-
-      },
-      y1: {
-        ticks: {
-             beginAtZero: true,
-             callback: function(value, index, values) {
-               return (index === 2) ? "" : null;
-             },
-            },
-        type: 'linear',
-        display: true,
-        position: 'right',
-        
-
-
-        // grid line settings
-        grid: {
-          drawOnChartArea: true, // only want the grid lines for one axis to show up
+        text: 'Bilan hebdomadaire',
+        font: {
+          size: 20,
         },
+      },
+      legend: {
+        labels: {
+          filter: (item, data) => !labelsToHide.includes(item.text),
+          font: {
+            size: 12,
+          },
+        },
+      },
     },
-  },
+  };
+
+  return (
+    <div style={{ width: '100%', height: '100%' }}>
+       <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
+          <option value="min_area">Aire minimale</option>
+          <option value="max_area">Aire maximale</option>
+          <option value="difference_area">Différence d&apos;aire</option>
+          <option value="reaction_time">Temps de réaction</option>
+          <option value="time_constriction">Temps de constriction</option>
+          <option value="average_half_recovery_velocity">Vitesse moyenne de demi-récupération</option>
+          <option value="average_constriction_velocity_area">Vitesse moyenne de constriction</option>
+          <option value="max_constriction_velocity_area">Vitesse maximale de constriction</option>
+        </select>
+      {chartData && <Bar data={chartData} options={options} />}
+    </div>
+  );
 };
 
-
- const [data, setData] = useState([]);
-
- useEffect(() => {
-    fetch(baseUrl + 'api/getSpecificUserLoad?id_user=' + window.location.href.split("=")[1])
-      .then(response => response.json())
-      .then(data => setData(data));
- }, []);
-
-
- const chartData = {
-    // labels: labels,
-    // labels: data.map((item) => new Date(item.Date).toLocaleDateString()), // Format dates for labels
-    labels: data.map(item => {
-      const date = new Date(item.Date);
-      return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear().toString().slice(-2)}`;
-    }),
-    datasets: [
-      {
-        label: 'ATL',
-        // data: atlData,
-        data: data.map(item => item.ATL),
-        fill: false,
-        backgroundColor: 'rgb(75, 192, 192)',
-        borderColor: 'rgba(75, 192, 192, 0.8)',
-        tension: 0.3,
-        pointRadius: 1.5,
-      },
-      {
-        label: 'CTL',
-        // data: atlData,
-        data: data.map(item => item.CTL),
-        fill: false,
-        backgroundColor: 'rgb(0, 192, 0)',
-        borderColor: 'rgba(75, 192, 0, 0.8)',
-        tension: 0.3,
-        pointRadius: 1.5,
-      },
-      {
-        label: 'TSB',
-        // data: atlData,
-        data: data.map(item => item.TSB),
-        fill: false,
-        backgroundColor: 'rgb(0, 0, 192)',
-        borderColor: 'rgba(0, 0, 192, 0.8)',
-        tension: 0.3,
-        pointRadius: 1.5,
-      },
-    ],
- };
-
- return (
-    <div>
-      <Line data={chartData} options={options}/>
-    </div>
- );
-}
-export async function getServerSideProps() {
-  // fetch env.local variables named DEBUG_MODE
-console.log(process.env.DEBUG_MODE);
-  return {
-    props: { DEBUG_MODE: process.env.DEBUG_MODE },
-  };
-}
+export default ComboChart;
