@@ -184,7 +184,7 @@ const ComboChart = () => {
       <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
         <option value="min_area">Aire minimale</option>
         <option value="max_area">Aire maximale</option>
-        <option value="difference_area">Différence d'aire</option>
+        <option value="difference_area">Différence d&apos;aire</option>
         <option value="reaction_time">Temps de réaction</option>
         <option value="time_constriction">Temps de constriction</option>
         <option value="average_half_recovery_velocity">Vitesse moyenne de demi-récupération</option>
