@@ -5,22 +5,30 @@ Chart.register(...registerables);
 
 const ComboChart = () => {
   const [chartData, setChartData] = useState(null);
+  const [selectedOption, setSelectedOption] = useState('min_area');
+  const [idUser, setIdUser] = useState(null);
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://myo6.duckdns.org/api/10/min_area/weekly_plot');
+        if (window.location.href.split("=")[1] == undefined) {
+
+        } else {
+          setIdUser(window.location.href.split("=")[1]);
+        }
+        const response = await fetch(`https://myo6.duckdns.org/api/${idUser}/${selectedOption}/weekly_plot`);
         const data = await response.json();
 
-        const labels = [
-          '23/05',
-          '24/05',
-          '25/05',
-          '26/05',
-          '27/05',
-          '28/05',
-          '29/05',
-        ];
+        const dates = new Set();
+        for (const section of Object.values(data)) {
+          for (const item of section) {
+            dates.add(new Date(item.Date).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' }));
+          }
+        }
+        // const labels = Array.from(dates).sort();
+        const labels = Array.from(dates);
+
 
         const datasets = [
           {
@@ -34,8 +42,8 @@ const ComboChart = () => {
           {
             type: 'line',
             data: data.sitting_morning.map((item) => item.rolling_mean_30),
-            borderColor: 'rgba(255, 99, 0, 1)',
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 0, 0, 1)',
+            backgroundColor: 'rgba(255, 0, 132, 0.2)',
             showLine: false,
             pointStyle: false,
             fill: false,
@@ -53,6 +61,26 @@ const ComboChart = () => {
           },
           {
             type: 'line',
+            data: data.standing_morning.map((item) => item.rolling_mean_30),
+            borderColor: 'rgba(255, 0, 0, 1)',
+            backgroundColor: 'rgba(255, 0, 0, 0.2)',
+            showLine: false,
+            pointStyle: false,
+            fill: false,
+          },
+          {
+            type: 'line',
+            legendDisplay: false,
+            data: data.standing_morning.map((item) => item.lower_bound),
+            borderColor: 'rgba(255, 99, 0, 0.1)',
+            backgroundColor: 'rgba(255, 99, 0, 0.5)',
+            borderWidth: 0.1,
+            showLine: false,
+            pointStyle: false,
+            fill: +1,
+          },
+          {
+            type: 'line',
             label: 'Moyenne glissante 7 jours Matin-Debout',
             data: data.standing_morning.map((item) => item.rolling_mean_7),
             borderColor: 'rgba(255, 99, 132, 1)',
@@ -62,7 +90,7 @@ const ComboChart = () => {
           {
             type: 'bar',
             label: 'Matin-Assis',
-            data: data.sitting_morning.map((item) => item.min_area),
+            data: data.sitting_morning.map((item) => item[selectedOption]),
             backgroundColor: 'rgba(0, 162, 235, 0.8)',
             borderColor: 'rgba(0, 162, 235, 1)',
             borderWidth: 1,
@@ -70,7 +98,7 @@ const ComboChart = () => {
           {
             type: 'bar',
             label: 'Matin-Debout',
-            data: data.standing_morning.map((item) => item.min_area),
+            data: data.standing_morning.map((item) => item[selectedOption]),
             backgroundColor: 'rgba(54, 255, 235, 0.8)',
             borderColor: 'rgba(54, 255, 235, 1)',
             borderWidth: 1,
@@ -78,7 +106,7 @@ const ComboChart = () => {
           {
             type: 'bar',
             label: 'Soir-Assis',
-            data: data.sitting_evening.map((item) => item.min_area || 0),
+            data: data.sitting_evening.map((item) => item[selectedOption] || 0),
             backgroundColor: 'rgba(54, 162, 0, 0.8)',
             borderColor: 'rgba(54, 162, 0, 1)',
             borderWidth: 1,
@@ -86,7 +114,7 @@ const ComboChart = () => {
           {
             type: 'bar',
             label: 'Soir-Debout',
-            data: data.standing_evening.map((item) => item.min_area || 0),
+            data: data.standing_evening.map((item) => item[selectedOption] || 0),
             backgroundColor: 'rgba(255, 162, 235, 0.8)',
             borderColor: 'rgba(255, 162, 235, 1)',
             borderWidth: 1,
@@ -103,7 +131,7 @@ const ComboChart = () => {
     };
 
     fetchData();
-  }, []);
+  }, [selectedOption, idUser]);
 
   const labelsToHide = [];
   const options = {
@@ -133,6 +161,16 @@ const ComboChart = () => {
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
+       <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
+          <option value="min_area">Aire minimale</option>
+          <option value="max_area">Aire maximale</option>
+          <option value="difference_area">Différence d'aire</option>
+          <option value="reaction_time">Temps de réaction</option>
+          <option value="time_constriction">Temps de constriction</option>
+          <option value="average_half_recovery_velocity">Vitesse moyenne de demi-récupération</option>
+          <option value="average_constriction_velocity_area">Vitesse moyenne de constriction</option>
+          <option value="max_constriction_velocity_area">Vitesse maximale de constriction</option>
+        </select>
       {chartData && <Bar data={chartData} options={options} />}
     </div>
   );

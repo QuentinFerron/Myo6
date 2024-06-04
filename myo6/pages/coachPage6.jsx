@@ -255,7 +255,7 @@ export default function Home(props) {
 
 
                <div className="w-full sm:w-1/2 mt-3 m-1 bg-white rounded-lg flex justify-center items-center shadow-xl border-2 border-gray-400" style={{ aspectRatio: '16/9', maxHeight: '80vh' }}>
-               <iframe src={baseUrl + 'testGraph8?id_user='+ selectedValue } style={{ width: '100%', height: '100%', objectFit: 'contain' }} frameBorder="0" allowFullScreen></iframe>
+               <iframe src={baseUrl + 'graphWeeklyMinArea?id_user='+ selectedValue } style={{ width: '100%', height: '100%', objectFit: 'contain' }} frameBorder="0" allowFullScreen></iframe>
                </div>
 
                </div>
