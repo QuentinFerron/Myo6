@@ -114,7 +114,7 @@ const options = {
         backgroundColor: 'rgb(75, 192, 192)',
         borderColor: 'rgba(75, 192, 192, 0.8)',
         spanGaps: true,
-        tension: 0.3,
+        tension: 0.2,
         pointRadius: 1.5,
       },
     ],

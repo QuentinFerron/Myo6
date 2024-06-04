@@ -7,7 +7,7 @@ const ComboChart = () => {
   const [chartData, setChartData] = useState(null);
   const [selectedOption, setSelectedOption] = useState('min_area');
   const [idUser, setIdUser] = useState(null);
-  const [error, setError] = useState(null); // Nouvelle variable d'état pour gérer les erreurs
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,73 +38,100 @@ const ComboChart = () => {
 
 
         const datasets = [
-          {
-            type: 'line',
-            label: 'Moyenne glissante 7 jours Matin-Assis',
-            data: data.sitting_morning.map((item) => item.rolling_mean_7),
-            borderColor: 'rgba(255, 0, 0, 1)',
-            backgroundColor: 'rgba(255, 0, 0, 1)',
-            spanGaps: true,
-            tension: 0.3,
-            pointRadius: 2,
-            fill: false,
-          },
-          {
-            type: 'line',
-            label: 'Moyenne glissante 7 jours Matin-Debout',
-            data: data.standing_morning.map((item) => item.rolling_mean_7),
-            borderColor: 'rgba(132, 0, 255, 1)',
-            backgroundColor: 'rgba(132, 0, 255, 1)',
-            spanGaps: true,
-            tension: 0.3,
-            pointRadius: 2,
-            fill: false,
-          },
-          {
-            type: 'line',
-            label: 'Baseline 30 jours Matin-Assis',
-            data: data.sitting_morning.map((item) => item.rolling_mean_30),
-            borderColor: 'rgba(255, 153, 153, 0)',
-            backgroundColor: 'rgba(255, 153, 153, 0.5)',
-            showLine: false,
-            pointStyle: false,
-            spanGaps: true,
-            fill: false,
-          },
-          {
-            type: 'line',
-            legendDisplay: false,
-            data: data.sitting_morning.map((item) => item.lower_bound),
-            borderColor: 'rgba(255, 153, 153, 0)',
-            backgroundColor: 'rgba(255, 153, 153, 0.5)',
-            borderWidth: 0.1,
-            showLine: false,
-            pointStyle: false,
-            spanGaps: true,
-            fill: +1,
-          },
-          {
-            type: 'line',
-            label: 'Baseline 30 jours Matin-Debout',
-            data: data.standing_morning.map((item) => item.rolling_mean_30),
-            borderColor: 'rgba(255, 153, 255, 0)',
-            backgroundColor: 'rgba(255, 153, 255, 0.3)',
-            showLine: false,
-            pointStyle: false,
-            spanGaps: true,
-            fill: false,
-          },
-          {
-            type: 'line',
-            data: data.standing_morning.map((item) => item.lower_bound),
-            borderColor: 'rgba(255, 153, 255, 0)',
-            backgroundColor: 'rgba(255, 153, 255, 0.3)',
-            borderWidth: 0.1,
-            showLine: false,
-            pointStyle: false,
-            spanGaps: true,
-            fill: +1,
-          },
+////////////////////////////////////////////////Courbes////////////////////////////////////////
+           {
+             type: 'line',
+             label: 'Moyenne glissante 7 jours Matin-Assis',
+             data: data.sitting_morning.map((item) => item.rolling_mean_7),
+             borderColor: 'rgba(255, 0, 0, 1)',
+             backgroundColor: 'rgba(255, 0, 0, 1)',
+             spanGaps: true,
+             tension: 0.3,
+             pointRadius: 2,
+             fill: false,
+           },
+           {
+             type: 'line',
+             label: 'Moyenne glissante 7 jours Matin-Debout',
+             data: data.standing_morning.map((item) => item.rolling_mean_7),
+             borderColor: 'rgba(132, 0, 255, 1)',
+             backgroundColor: 'rgba(132, 0, 255, 1)',
+             spanGaps: true,
+             tension: 0.3,
+             pointRadius: 2,
+             fill: false,
+           },
+///////////////////////////////////////Courbes 30 jours////////////////////////////////////////
+            {
+              type: 'line',
+              data: data.sitting_morning.map((item) => item.lower_bound),
+              borderColor: 'rgba(255, 128, 0, 0.2)',
+              backgroundColor: 'rgba(255, 128, 0, 0.2)',
+              spanGaps: true,
+              tension: 0.3,
+              pointRadius: 0,
+              showLine: false,
+              fill: false,
+            },
+            {
+              type: 'line',
+              data: data.sitting_morning.map((item) => item.upper_bound),
+              borderColor: 'rgba(255, 128, 0, 0.2)',
+              backgroundColor: 'rgba(255, 128, 0, 0.2)',
+              spanGaps: true,
+              tension: 0.3,
+              pointRadius: 0,
+              showLine: false,
+              fill: +2,
+            },
+            {
+              type: 'line',
+              label: 'Baseline 30 jours Matin-Assis',
+              data: data.sitting_morning.map((item) => item.rolling_mean_30),
+              borderColor: 'rgba(255, 128, 0, 0.2)',
+              backgroundColor: 'rgba(255, 128, 0, 0.2)',
+              spanGaps: true,
+              tension: 0.3,
+              pointRadius: 0,
+              showLine: false,
+              fill: false,
+            },
+///////////////////////////////////////////////////////////////////////////////////////////////////
+            {
+              type: 'line',
+              data: data.standing_morning.map((item) => item.lower_bound),
+              borderColor: 'rgba(255, 0, 127, 0.2)',
+              backgroundColor: 'rgba(255, 0, 127, 0.2)',
+              spanGaps: true,
+              tension: 0.3,
+              pointRadius: 0,
+              showLine: false,
+              fill: false,
+            },
+            {
+              type: 'line',
+              data: data.standing_morning.map((item) => item.upper_bound),
+              borderColor: 'rgba(255, 0, 127, 0.2)',
+              backgroundColor: 'rgba(255, 0, 127, 0.2)',
+              spanGaps: true,
+              tension: 0.3,
+              pointRadius: 0,
+              showLine: false,
+              fill: +5,
+            },
+            {
+              type: 'line',
+              label: 'Baseline 30 jours Matin-Debout',
+              data: data.standing_morning.map((item) => item.rolling_mean_30),
+              borderColor: 'rgba(255, 0, 127, 0.2)',
+              backgroundColor: 'rgba(255, 0, 127, 0.2)',
+              spanGaps: true,
+              tension: 0.3,
+              pointRadius: 0,
+              showLine: false,
+              fill: false,
+            },
+///////////////////////////////////////Histogramme////////////////////////////////////////
           {
             type: 'bar',
             label: 'Matin-Assis',
@@ -181,6 +208,7 @@ const ComboChart = () => {
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
+      <div className="p-1">
       <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
         <option value="min_area">Aire minimale</option>
         <option value="max_area">Aire maximale</option>
@@ -191,6 +219,7 @@ const ComboChart = () => {
         <option value="average_constriction_velocity_area">Vitesse moyenne de constriction</option>
         <option value="max_constriction_velocity_area">Vitesse maximale de constriction</option>
       </select>
+      </div>
       {error ? (
         <p>{error}</p> // Afficher le message d'erreur si une erreur est présente
       ) : chartData ? (
