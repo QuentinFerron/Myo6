@@ -7,17 +7,24 @@ const ComboChart = () => {
   const [chartData, setChartData] = useState(null);
   const [selectedOption, setSelectedOption] = useState('min_area');
   const [idUser, setIdUser] = useState(null);
-
+  const [error, setError] = useState(null); // Nouvelle variable d'état pour gérer les erreurs
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (window.location.href.split("=")[1] == undefined) {
-
-        } else {
-          setIdUser(window.location.href.split("=")[1]);
+        if (window.location.href.split("=")[1] === undefined) {
+          setError('Aucun utilisateur spécifié'); // Aucun utilisateur spécifié
+          return;
         }
+        setIdUser(window.location.href.split("=")[1]);
+
         const response = await fetch(`https://myo6.duckdns.org/api/${idUser}/${selectedOption}/weekly_plot`);
+
+        if (!response.ok) {
+          setError('Pas de données'); // Lien invalide
+          return;
+        }
+
         const data = await response.json();
 
         const dates = new Set();
@@ -136,7 +143,9 @@ const ComboChart = () => {
           labels,
           datasets,
         });
+        setError(null); // Réinitialiser l'erreur si les données ont été récupérées avec succès
       } catch (error) {
+        setError('Erreur lors de la récupération des données'); // Erreur lors de la récupération des données
         console.error('Erreur lors de la récupération des données :', error);
       }
     };
@@ -172,17 +181,23 @@ const ComboChart = () => {
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
-       <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
-          <option value="min_area">Aire minimale</option>
-          <option value="max_area">Aire maximale</option>
-          <option value="difference_area">Différence d&apos;aire</option>
-          <option value="reaction_time">Temps de réaction</option>
-          <option value="time_constriction">Temps de constriction</option>
-          <option value="average_half_recovery_velocity">Vitesse moyenne de demi-récupération</option>
-          <option value="average_constriction_velocity_area">Vitesse moyenne de constriction</option>
-          <option value="max_constriction_velocity_area">Vitesse maximale de constriction</option>
-        </select>
-      {chartData && <Bar data={chartData} options={options} />}
+      <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
+        <option value="min_area">Aire minimale</option>
+        <option value="max_area">Aire maximale</option>
+        <option value="difference_area">Différence d'aire</option>
+        <option value="reaction_time">Temps de réaction</option>
+        <option value="time_constriction">Temps de constriction</option>
+        <option value="average_half_recovery_velocity">Vitesse moyenne de demi-récupération</option>
+        <option value="average_constriction_velocity_area">Vitesse moyenne de constriction</option>
+        <option value="max_constriction_velocity_area">Vitesse maximale de constriction</option>
+      </select>
+      {error ? (
+        <p>{error}</p> // Afficher le message d'erreur si une erreur est présente
+      ) : chartData ? (
+        <Bar data={chartData} options={options} />
+      ) : (
+        <p>Chargement des données...</p> // Afficher un message de chargement si les données ne sont pas encore disponibles
+      )}
     </div>
   );
 };
