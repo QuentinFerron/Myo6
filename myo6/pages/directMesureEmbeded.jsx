@@ -397,14 +397,14 @@ export default function Home(props) {
                           <div className="p-2 flex font-bold text-[#082431]  ">
                             Vitesse de constriction moyenne: 
                             {'  '} 
-                            { video && video.measure_metric && video.measure_metric.average_constriction_velocity_area }
+                            { video && video.measure_metric && video.measure_metric.average_constriction_velocity }
                             {'  '} 
                             mm/s
                           </div>
                           <div className="p-2 flex font-bold text-[#082431]  ">
                             Vitesse de constriction maximale: 
                             {'  '} 
-                            { video && video.measure_metric && video.measure_metric.max_constriction_velocity_area }
+                            { video && video.measure_metric && video.measure_metric.max_constriction_velocity }
                             {'  '} 
                             mm/s
                           </div>
@@ -422,7 +422,7 @@ export default function Home(props) {
                           <div className="p-2 flex font-bold text-[#082431]  ">
                             Aire de la pupille maximale: 
                             {'  '} 
-                            { video && video.measure_metric && video.measure_metric.max_area }
+                            { video && video.measure_metric && video.measure_metric.max_area_dilation }
                             {'  '} 
                             mm²
                           </div>
@@ -440,7 +440,7 @@ export default function Home(props) {
                         </div>
                         
                         <div className="text-4xl p-2 flex font-bold text-[#082431] justify-center items-center justify-items-center">
-                        {Math.round(4*(video && video.measure_metric && video.measure_metric.average_constriction_velocity_area)) }%
+                        {Math.round(4*(video && video.measure_metric && video.measure_metric.average_constriction_velocity)) }%
                         </div>
                       </div>
                       </div>
