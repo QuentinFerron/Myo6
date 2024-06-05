@@ -210,14 +210,19 @@ const ComboChart = () => {
     <div style={{ width: '100%', height: '100%' }}>
       <div className="p-1">
       <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
+        <option value="baseline">Référence</option>
         <option value="min_area">Aire minimale</option>
-        <option value="max_area">Aire maximale</option>
-        <option value="difference_area">Différence d&apos;aire</option>
+        <option value="max_area_dilation">Aire maximale</option>
+        <option value="amplitude">Différence d&apos;aire</option>
         <option value="reaction_time">Temps de réaction</option>
         <option value="time_constriction">Temps de constriction</option>
-        <option value="average_half_recovery_velocity">Vitesse moyenne de demi-récupération</option>
-        <option value="average_constriction_velocity_area">Vitesse moyenne de constriction</option>
-        <option value="max_constriction_velocity_area">Vitesse maximale de constriction</option>
+        <option value="time_plateau">Durée du plateau</option>
+        <option value="time_75">Vitesse moyenne de récupération au 3/4</option>
+        <option value="average_constriction_velocity">Vitesse moyenne de constriction</option>
+        <option value="average_dilation_velocity">Vitesse moyenne de dilatation</option>
+        <option value="average_dilation_velocity_75">Vitesse moyenne de dilatation aux 3/4</option>
+        <option value="max_constriction_velocity">Vitesse maximale de constriction</option>
+        <option value="max_dilation_velocity">Vitesse maximale de dilatation</option>
       </select>
       </div>
       {error ? (
