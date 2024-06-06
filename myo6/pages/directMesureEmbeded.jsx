@@ -49,6 +49,7 @@ export default function Home(props) {
     ],
   });
 
+  const verticalLineValues = [1, 15, 20];
 
   // Options de configuration du graphique
   const options = {
@@ -61,6 +62,16 @@ export default function Home(props) {
       title: {
         display: true,
         text: 'Aire de la pupille',
+      },
+      annotation: {
+        annotations: verticalLineValues.map(value => ({
+          type: 'line',
+          mode: 'vertical',
+          scaleID: 'x',
+          value: value,
+          borderColor: 'red',
+          borderWidth: 2,
+        })),
       },
     },
     scales: {
