@@ -41,7 +41,7 @@ const ComboChart = () => {
 ////////////////////////////////////////////////Courbes////////////////////////////////////////
            {
              type: 'line',
-             label: 'Moyenne glissante 7 jours Matin-Assis',
+             label: 'Moyenne glissante 7 jours Assis',
              data: data.sitting_morning.map((item) => item.rolling_mean_7),
              borderColor: 'rgba(255, 0, 0, 1)',
              backgroundColor: 'rgba(255, 0, 0, 1)',
@@ -52,7 +52,7 @@ const ComboChart = () => {
            },
            {
              type: 'line',
-             label: 'Moyenne glissante 7 jours Matin-Debout',
+             label: 'Moyenne glissante 7 jours Debout',
              data: data.standing_morning.map((item) => item.rolling_mean_7),
              borderColor: 'rgba(132, 0, 255, 1)',
              backgroundColor: 'rgba(132, 0, 255, 1)',
@@ -86,7 +86,7 @@ const ComboChart = () => {
             },
             {
               type: 'line',
-              label: 'Baseline 30 jours Matin-Assis',
+              label: 'Baseline 30 jours Assis',
               data: data.sitting_morning.map((item) => item.rolling_mean_30),
               borderColor: 'rgba(255, 128, 0, 0.2)',
               backgroundColor: 'rgba(255, 128, 0, 0.2)',
@@ -121,7 +121,7 @@ const ComboChart = () => {
             },
             {
               type: 'line',
-              label: 'Baseline 30 jours Matin-Debout',
+              label: 'Baseline 30 jours Debout',
               data: data.standing_morning.map((item) => item.rolling_mean_30),
               borderColor: 'rgba(255, 0, 127, 0.2)',
               backgroundColor: 'rgba(255, 0, 127, 0.2)',
@@ -134,7 +134,7 @@ const ComboChart = () => {
 ///////////////////////////////////////Histogramme////////////////////////////////////////
           {
             type: 'bar',
-            label: 'Matin-Assis',
+            label: 'Assis',
             data: data.sitting_morning.map((item) => item[selectedOption]),
             backgroundColor: 'rgba(0, 162, 235, 0.8)',
             borderColor: 'rgba(0, 162, 235, 1)',
@@ -142,28 +142,28 @@ const ComboChart = () => {
           },
           {
             type: 'bar',
-            label: 'Matin-Debout',
+            label: 'Debout',
             data: data.standing_morning.map((item) => item[selectedOption]),
             backgroundColor: 'rgba(54, 255, 235, 0.8)',
             borderColor: 'rgba(54, 255, 235, 1)',
             borderWidth: 1,
           },
-          {
-            type: 'bar',
-            label: 'Soir-Assis',
-            data: data.sitting_evening.map((item) => item[selectedOption] || 0),
-            backgroundColor: 'rgba(54, 162, 0, 0.8)',
-            borderColor: 'rgba(54, 162, 0, 1)',
-            borderWidth: 1,
-          },
-          {
-            type: 'bar',
-            label: 'Soir-Debout',
-            data: data.standing_evening.map((item) => item[selectedOption] || 0),
-            backgroundColor: 'rgba(50, 255, 50, 0.8)',
-            borderColor: 'rgba(50, 255, 50, 1)',
-            borderWidth: 1,
-          },
+          // {
+          //   type: 'bar',
+          //   label: 'Soir-Assis',
+          //   data: data.sitting_evening.map((item) => item[selectedOption] || 0),
+          //   backgroundColor: 'rgba(54, 162, 0, 0.8)',
+          //   borderColor: 'rgba(54, 162, 0, 1)',
+          //   borderWidth: 1,
+          // },
+          // {
+          //   type: 'bar',
+          //   label: 'Soir-Debout',
+          //   data: data.standing_evening.map((item) => item[selectedOption] || 0),
+          //   backgroundColor: 'rgba(50, 255, 50, 0.8)',
+          //   borderColor: 'rgba(50, 255, 50, 1)',
+          //   borderWidth: 1,
+          // },
         ];
 
         setChartData({
