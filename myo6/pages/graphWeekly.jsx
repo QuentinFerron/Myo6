@@ -5,7 +5,7 @@ Chart.register(...registerables);
 
 const ComboChart = () => {
   const [chartData, setChartData] = useState(null);
-  const [selectedOption, setSelectedOption] = useState('min_area');
+  const [selectedOption, setSelectedOption] = useState('baseline');
   const [idUser, setIdUser] = useState(null);
   const [error, setError] = useState(null);
 
@@ -148,22 +148,6 @@ const ComboChart = () => {
             borderColor: 'rgba(54, 255, 235, 1)',
             borderWidth: 1,
           },
-          // {
-          //   type: 'bar',
-          //   label: 'Soir-Assis',
-          //   data: data.sitting_evening.map((item) => item[selectedOption] || 0),
-          //   backgroundColor: 'rgba(54, 162, 0, 0.8)',
-          //   borderColor: 'rgba(54, 162, 0, 1)',
-          //   borderWidth: 1,
-          // },
-          // {
-          //   type: 'bar',
-          //   label: 'Soir-Debout',
-          //   data: data.standing_evening.map((item) => item[selectedOption] || 0),
-          //   backgroundColor: 'rgba(50, 255, 50, 0.8)',
-          //   borderColor: 'rgba(50, 255, 50, 1)',
-          //   borderWidth: 1,
-          // },
         ];
 
         setChartData({
@@ -182,6 +166,7 @@ const ComboChart = () => {
 
   const labelsToHide = [,];
   const options = {
+    responsive: true,
     scales: {
       x: {
         type: 'category',
@@ -217,7 +202,7 @@ const ComboChart = () => {
         <option value="reaction_time">Temps de réaction</option>
         <option value="time_constriction">Temps de constriction</option>
         <option value="time_plateau">Durée du plateau</option>
-        <option value="time_75">Vitesse moyenne de récupération au 3/4</option>
+        <option value="time_75">Temps de récupération au 3/4</option>
         <option value="average_constriction_velocity">Vitesse moyenne de constriction</option>
         <option value="average_dilation_velocity">Vitesse moyenne de dilatation</option>
         <option value="average_dilation_velocity_75">Vitesse moyenne de dilatation aux 3/4</option>

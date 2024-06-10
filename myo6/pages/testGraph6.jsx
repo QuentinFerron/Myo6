@@ -33,8 +33,10 @@ export default function Home(props) {
   }
 
 
-const options = {
+const [options, setOptions] = useState({
+
   responsive: true,
+  aspectRatio: 2,
   plugins: {
     title: {
       display: true,
@@ -116,7 +118,24 @@ const options = {
       // }
     },
   },
-};
+
+});
+
+
+useEffect(() => {
+  if (typeof window !== 'undefined') {
+    const handleResize = () => {
+      setOptions((prevOptions) => ({
+        ...prevOptions,
+        aspectRatio: window.innerWidth < 768 ? 1.25 : 2,
+      }));
+    };
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Appeler la fonction une fois pour définir l'aspect ratio initial
+
+    return () => window.removeEventListener('resize', handleResize);
+  }
+}, []);
 
 
  const [data, setData] = useState([]);
@@ -184,7 +203,9 @@ const options = {
 
  return (
     <div>
-      <Line data={chartData} options={options}/>
+      <div className="chart-container">
+        <Line data={chartData} options={options} />
+      </div>
     </div>
  );
 }
