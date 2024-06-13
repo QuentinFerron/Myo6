@@ -300,7 +300,8 @@ export default function Home(props) {
 
                   <div className="m-4  bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-auto">
                         <div className="text-lg sm:text-2xl flex font-bold text-[#082431] justify-center items-center justify-items-center">
-                          Tags
+                          Tags 
+                          {video && video.measure_metric}
                         </div>
 
                         <div className="sm:flex justify-center items-center justify-items-center text-center sm:text-left">
