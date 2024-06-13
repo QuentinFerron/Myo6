@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import annotationPlugin from 'chartjs-plugin-annotation';
 
 ChartJS.register(
   CategoryScale,
@@ -18,11 +19,11 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  annotationPlugin
 );
 
 export default function Home(props) {
-
   let baseUrl = "s";
   if (props.DEBUG_MODE === 'true') {
     baseUrl = "http://localhost:3000/";
@@ -32,26 +33,19 @@ export default function Home(props) {
     console.log(baseUrl);
   }
 
+  const [data, setData] = useState([]);
 
- const [data, setData] = useState([]);
-
- useEffect(() => {
+  useEffect(() => {
     fetch(baseUrl + 'api/getSpecificUserLoadTest')
       .then(response => response.json())
       .then(data => setData(data));
- }, []);
+  }, []);
 
-// Préparation des données pour le graphique
-//  const labels = data.map(item => item.Date);
-//  const atlData = data.map(item => item.ATL);
-
- const chartData = {
-    // labels: labels,
-    labels: data.map((item) => new Date(item.Date).toLocaleDateString()), // Format dates for labels
+  const chartData = {
+    labels: data.map((item) => new Date(item.Date).toLocaleDateString()),
     datasets: [
       {
         label: 'ATL',
-        // data: atlData,
         data: data.map(item => item.ATL),
         fill: false,
         backgroundColor: 'rgb(75, 192, 192)',
@@ -59,7 +53,6 @@ export default function Home(props) {
       },
       {
         label: 'CTL',
-        // data: atlData,
         data: data.map(item => item.CTL),
         fill: false,
         backgroundColor: 'rgb(0, 192, 0)',
@@ -67,37 +60,53 @@ export default function Home(props) {
       },
       {
         label: 'TSB',
-        // data: atlData,
         data: data.map(item => item.TSB),
         fill: false,
         backgroundColor: 'rgb(0, 0, 192)',
         borderColor: 'rgba(0, 0, 192, 0.8)',
       },
     ],
- };
+  };
 
- return (
-    <div>
-      <Line data={chartData} options={{
-          plugins: {
-            title: {
-              display: true,
-              text: 'Training Load',
-              font: {
-                size: 20,
-              },
+  const options = {
+    plugins: {
+      title: {
+        display: true,
+        text: 'Training Load',
+        font: {
+          size: 20,
+        },
+      },
+      annotation: {
+        annotations: [
+          {
+            type: 'line',
+            mode: 'vertical',
+            scaleID: 'x',
+            value: "11/02/2024",
+            borderColor: 'red',
+            borderWidth: 2,
+            label: {
+              enabled: true,
+              content: 'Date importante',
+              position: 'start',
             },
           },
-        }}/>
+        ],
+      },
+    },
+  };
+
+  return (
+    <div>
+      <Line data={chartData} options={options} />
     </div>
- );
+  );
 }
+
 export async function getServerSideProps() {
-  // fetch env.local variables named DEBUG_MODE
-console.log(process.env.DEBUG_MODE);
+  console.log(process.env.DEBUG_MODE);
   return {
     props: { DEBUG_MODE: process.env.DEBUG_MODE },
   };
 }
-
-

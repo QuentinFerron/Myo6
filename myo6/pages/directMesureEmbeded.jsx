@@ -6,6 +6,29 @@ import { Line } from 'react-chartjs-2';
 import { Line as LineJS } from 'chart.js/auto'
 import ReactPlayer from 'react-player';
 //import styles from '@/styles/Home.module.css'
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import annotationPlugin from 'chartjs-plugin-annotation';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  annotationPlugin
+);
+
 
 export default function Home(props) {
 
@@ -35,6 +58,10 @@ export default function Home(props) {
   const [submissionMessage, setSubmissionMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const [plateau_end, setPlateau_end] = useState(0);
+  const [plateau_start, setPlateau_start] = useState(0);
+  const [start_constriction, setStart_constriction] = useState(0);
+  const verticalLineValues = [plateau_end, plateau_start, start_constriction];
 
 
   const [chartData, setChartData] = useState({
@@ -49,7 +76,7 @@ export default function Home(props) {
     ],
   });
 
-  const verticalLineValues = [1, 15, 20];
+
 
   // Options de configuration du graphique
   const options = {
@@ -64,12 +91,13 @@ export default function Home(props) {
         text: 'Aire de la pupille',
       },
       annotation: {
-        annotations: verticalLineValues.map(value => ({
+        annotations: verticalLineValues.map(value, index  => ({
           type: 'line',
           mode: 'vertical',
           scaleID: 'x',
           value: value,
-          borderColor: 'red',
+          // borderColor: 'red', 
+          borderColor: index === 0 ? 'red' : index === 1 ? 'blue' : 'green',
           borderWidth: 2,
         })),
       },
@@ -201,12 +229,16 @@ export default function Home(props) {
       setPosition(data.video_data.position);
       setExercice(data.video_data.exercice);
 
+      setPlateau_end(data.video_data.pupil_track.plateau_end);
+      setPlateau_start(data.video_data.pupil_track.plateau_start);
+      setStart_constriction(data.video_data.pupil_track.start_constriction);  
+
     }
 
     
 
     getMyVideos();
-  }, [ videoid ]);
+  }, [plateau_end, plateau_start, start_constriction, videoid ]);
 
 
 
@@ -301,7 +333,6 @@ export default function Home(props) {
                   <div className="m-4  bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-auto">
                         <div className="text-lg sm:text-2xl flex font-bold text-[#082431] justify-center items-center justify-items-center">
                           Tags 
-                          {video && video.measure_metric}
                         </div>
 
                         <div className="sm:flex justify-center items-center justify-items-center text-center sm:text-left">

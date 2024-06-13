@@ -4,6 +4,29 @@ import SideBar from '../components/SideBar'
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Line as LineJS } from 'chart.js/auto'
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import annotationPlugin from 'chartjs-plugin-annotation';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  annotationPlugin
+);
+
 //import styles from '@/styles/Home.module.css'
 
 export default function Home(props) {
@@ -25,6 +48,9 @@ export default function Home(props) {
   const [date , setDate] = useState("")
   const [area, setArea] = useState([]);
   const [showDiv, setShowDiv] = useState(false);
+  const [plateau_end, setPlateau_end] = useState(0);
+  const [plateau_start, setPlateau_start] = useState(0);
+  const [start_constriction, setStart_constriction] = useState(0);
   
   const [chartData, setChartData] = useState({
     labels: [],
@@ -56,6 +82,23 @@ export default function Home(props) {
       title: {
         display: true,
         text: 'Aire de la pupille',
+      }, 
+      annotation: {
+        annotations: [
+          {
+            type: 'line',
+            mode: 'vertical',
+            scaleID: 'x',
+            value: plateau_start,
+            borderColor: 'red',
+            borderWidth: 2,
+            label: {
+              enabled: true,
+              content: 'Date importante',
+              position: 'start',
+            },
+          },
+        ],
       },
     },
     scales: {
@@ -106,29 +149,61 @@ export default function Home(props) {
       var trimmedString = jsonString.slice(0, -1);
       var area = trimmedString.split(",");
 
-      var miny = 0
-      var maxy = 0  
 
-      for (var i =   0; i < area.length; i++) {
-        area[i] = parseFloat(area[i]);
-        if (area[i] < miny) {
-          miny = area[i];
-        }
-        if (area[i] > maxy) {
-          maxy = area[i];
-        }
-      }
+      setPlateau_end(data.video.pupil_track.plateau_end);
+      setPlateau_start(data.video.pupil_track.plateau_start);
+      setStart_constriction(data.video.pupil_track.start_constriction);  
 
-      
 
-      options.scales.y.min = miny -   5;
-      options.scales.y.max = maxy +   5;
-
-      
-
-      setOptions(options);
-
-      
+      setOptions({
+        ...options,
+        plugins: {
+          ...options.plugins,
+          annotation: {
+            annotations: [
+              {
+                type: 'line',
+                mode: 'vertical',
+                scaleID: 'x',
+                value: plateau_start,
+                borderColor: 'red',
+                borderWidth: 2,
+                label: {
+                  enabled: true,
+                  content: 'Plateau start',
+                  position: 'start',
+                },
+              },
+              {
+                type: 'line',
+                mode: 'vertical',
+                scaleID: 'x',
+                value: plateau_end,
+                borderColor: 'green',
+                borderWidth: 2,
+                label: {
+                  enabled: true,
+                  content: 'Plateau end',
+                  position: 'start',
+                },
+              },
+              {
+                type: 'line',
+                mode: 'vertical',
+                scaleID: 'x',
+                value: start_constriction,
+                borderColor: 'blue',
+                borderWidth: 2,
+                label: {
+                  enabled: true,
+                  content: 'Start constriction',
+                  position: 'start',
+                },
+              },
+            ],
+          },
+        },
+      });
       
 
 
@@ -156,7 +231,7 @@ export default function Home(props) {
     
 
     getMyVideos();
-  }, []);
+  }, [plateau_end, plateau_start, start_constriction]);
 
   useEffect(() => {
     if (area.length >   0) {
