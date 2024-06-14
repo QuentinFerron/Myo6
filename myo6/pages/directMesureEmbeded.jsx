@@ -96,7 +96,6 @@ export default function Home(props) {
           mode: 'vertical',
           scaleID: 'x',
           value: value,
-          // borderColor: 'red', 
           borderColor: index === 0 ? 'green' : index === 1 ? 'red' : 'blue',
           borderWidth: 2,
         })),
