@@ -91,13 +91,13 @@ export default function Home(props) {
         text: 'Aire de la pupille',
       },
       annotation: {
-        annotations: verticalLineValues.map(value, index  => ({
+        annotations: verticalLineValues.map(value  => ({
           type: 'line',
           mode: 'vertical',
           scaleID: 'x',
           value: value,
-          // borderColor: 'red', 
-          borderColor: index === 0 ? 'red' : index === 1 ? 'blue' : 'green',
+          borderColor: 'red', 
+          // borderColor: index === 0 ? 'red' : index === 1 ? 'blue' : 'green',
           borderWidth: 2,
         })),
       },
