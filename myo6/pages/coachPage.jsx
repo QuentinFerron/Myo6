@@ -125,16 +125,6 @@ export default function Home(props) {
               ))}
             </select>
 
-            {videos.length > 0 && (
-            <select value={selectedValueMeasure} onChange={handleSelectChangeMeasure} className="bg-white rounded-lg m-2 sm:m-4 w-auto shadow-xl border-2 border-gray-400 text-md sm:text-lg">
-
-              {videos.sort((a, b) => new Date(b.date_record) - new Date(a.date_record)).map(video => (
-                <option key={video.id_video} value={video.id_video}>
-                  {video.date_record.slice(4, -7)}
-                </option>
-              ))}
-            </select>
-            )}
 
           <div className="w-full flex h-10 bg-red-300">
             <button className="w-1/3 bg-gray-500 hover:bg-gray-400 h-full flex justify-center items-center justify-items-center text-white transition duration-500 ease-in-out"
@@ -277,7 +267,7 @@ export default function Home(props) {
               isVideo ? 
               (
               <div className='h-screen'>
-              <iframe src={baseUrl+ "MesureEmbeded?user_id="+ selectedValueMeasure } width="100%" height="100%" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
+              <iframe src={baseUrl+ "MesureEmbeded?user_id="+ selectedValue } width="100%" height="100%" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
               </div>
               ) : (
               <div className="flex w-full mt-3 m-1 justify-center items-center justify-items-center">

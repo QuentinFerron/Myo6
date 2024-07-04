@@ -184,7 +184,7 @@ export default function Home(props) {
   useEffect(() => {
     if (window.location.href.split("=")[1] !== undefined) {
       const idUser = window.location.href.split("=")[1];
-      if (userIdFromUrl) {
+      if (idUser) {
         setUserId(idUser);
         getVideo(idUser);
       }
@@ -196,7 +196,7 @@ export default function Home(props) {
 
     async function getMyVideos() {
       console.log(videoid);
-      const res = await fetch(baseUrl + 'api/getSpecificVideo?id_video=' + window.location.href.split("=")[1], {
+      const res = await fetch(baseUrl + 'api/getSpecificVideo?id_video=' + videoid, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -244,19 +244,10 @@ export default function Home(props) {
     
 
     getMyVideos();
-  }, [plateau_end, plateau_start, start_constriction, videoid ]);
+  }, [plateau_end, plateau_start, start_constriction, videoid, selectedValueMeasure]);
 
 
 
-  useEffect(() => {
-    // Simule la récupération de l'ID de la vidéo à partir de l'URL
-    const videoId = new URLSearchParams(window.location.search).get('id_video');
-    if (videoId) {
-      // Construit l'URL de la vidéo en fonction de l'ID
-      const videoUrl = `http://141.145.200.146:5000/api/video/${videoId}/video_traitement.mp4`;
-      setVideoUrl(videoUrl);
-    }
- }, []);
 
   useEffect(() => {
     if (area.length >   0) {
@@ -291,13 +282,18 @@ export default function Home(props) {
 
   async function getVideo(userId) {
     try {
-      const url = baseUrl + 'api/getAllUserVideo?id_user=' + userId;
+      const url = baseUrl + 'api/getAllUserVideoList?id_user=' + userId;
       const response = await fetch(url);
       if (response.ok) {
-        const video = await response.json();
-        if(video.length > 0) {
-          setVideos(video);
-          setSelectedValueMeasure(video[video.length - 1].id_video);
+        const data = await response.json();
+        if(data.user_id_video_list.length > 0) {
+          const videoList = data.user_date_record_list.map((date, index) => ({
+            id_video: data.user_id_video_list[index],
+            date_record: date
+          }));
+          setVideos(videoList);
+          setSelectedValueMeasure(videoList[videoList.length - 1].id_video);
+          setVideoId(videoList[videoList.length - 1].id_video);  
         }
       }
     } catch (error) {
@@ -327,11 +323,11 @@ export default function Home(props) {
               <select value={selectedValueMeasure} onChange={handleSelectChangeMeasure} className="bg-white rounded-lg m-2 sm:m-4 w-auto shadow-xl border-2 border-gray-400 text-md sm:text-lg">
                 {videos.sort((a, b) => new Date(b.date_record) - new Date(a.date_record)).map(video => (
                   <option key={video.id_video} value={video.id_video}>
-                    {video.date_record.slice(4, -7)}
+                    {new Date(video.date_record).toLocaleString()}
                   </option>
                 ))}
               </select>
-)}
+            )}
                
                 <div className="text-md sm:text-xl p-2 font-bold text-[#082431]">
                   

@@ -119,7 +119,7 @@ export default function Home(props) {
             key={user.id_user}
             className="bg-white rounded-lg shadow-md m-2 p-4 flex flex-col items-center cursor-pointer"
             onClick={() => {
-              window.location.href = `/coachPage6?id_user=${user.id_user}`;
+              window.location.href = `/coachPage?id_user=${user.id_user}`;
             }}
           >
             <img

@@ -19,17 +19,17 @@ export default function Home(props) {
   const [showNewActivityForm, setShowNewActivityForm] = useState(false);
   const sports = ['Run', 'Bike', 'Swim', 'VirtualRide', 'Strength'];
 
-  const [selectedType, setSelectedType] = useState('');
-  const [selectedStartDate, setSelectedStartDate] = useState('');
-  const [selectedDistance, setSelectedDistance] = useState('');
-  const [selectedElapsedTime, setSelectedElapsedTime] = useState('');
-  const [selectedAverageSpeed, setSelectedAverageSpeed] = useState('');
-  const [selectedAverageHeartrate, setSelectedAverageHeartrate] = useState('');
-  const [selectedMaxHeartrate, setSelectedMaxHeartrate] = useState('');
-  const [selectedTotalElevationGain, setSelectedTotalElevationGain] = useState('');
-  const [selectedAverageWatts, setSelectedAverageWatts] = useState('');
-  const [selectedMaxWatts, setSelectedMaxWatts] = useState('');
-  const [selectedAverageCadence, setSelectedAverageCadence] = useState('');
+  const [selectedType, setSelectedType] = useState(null);
+  const [selectedStartDate, setSelectedStartDate] = useState(null);
+  const [selectedDistance, setSelectedDistance] = useState(null);
+  const [selectedElapsedTime, setSelectedElapsedTime] = useState(null);
+  const [selectedAverageSpeed, setSelectedAverageSpeed] = useState(null);
+  const [selectedAverageHeartrate, setSelectedAverageHeartrate] = useState(null);
+  const [selectedMaxHeartrate, setSelectedMaxHeartrate] = useState(null);
+  const [selectedTotalElevationGain, setSelectedTotalElevationGain] = useState(null);
+  const [selectedAverageWatts, setSelectedAverageWatts] = useState(null);
+  const [selectedMaxWatts, setSelectedMaxWatts] = useState(null);
+  const [selectedAverageCadence, setSelectedAverageCadence] = useState(null);
   const [selectedRpe, setSelectedRpe] = useState(0);
 
   const [submissionMessage, setSubmissionMessage] = useState('');
@@ -48,6 +48,7 @@ export default function Home(props) {
 
   async function getActivities() {
     if (userId) {
+      try {
       const res = await fetch(`https://myo6.duckdns.org/api/${userId}/get_list_activity`, {
         method: 'GET',
         headers: {
@@ -77,6 +78,12 @@ export default function Home(props) {
       };
       
       setActivities(formattedData);
+      setSelectedActivity(''); // Réinitialiser l'activité sélectionnée
+      setActivityDetails(null); // Réinitialiser les détails de l'activité
+    } catch (error) {
+      console.error('Erreur lors de la récupération des activités:', error);
+      setErrorMessage("Une erreur s'est produite lors de la récupération des activités");
+    }
     }
   }
 
@@ -106,7 +113,7 @@ export default function Home(props) {
         setSelectedType(value);
         break;
       case 'start_date':
-        setSelectedStartDate(value);
+        setSelectedStartDate(value ? `${value}:00` : '');
         break;
       case 'distance':
         setSelectedDistance(value);
@@ -148,22 +155,31 @@ export default function Home(props) {
 
     setErrorMessage('');
 
-    const url_upload_activity = `https://myo6.duckdns.org/api/upload/activity`;
-    const data_activity = {
-      "user_id": userId,
-      "type": selectedType,
-      "start_date": selectedStartDate,
-      "distance": parseFloat(selectedDistance),
-      "elapsed_time": selectedElapsedTime,
-      "average_speed": parseFloat(selectedAverageSpeed),
-      "average_heartrate": parseFloat(selectedAverageHeartrate),
-      "max_heartrate": parseInt(selectedMaxHeartrate, 10),
-      "total_elevation_gain": parseFloat(selectedTotalElevationGain),
-      "average_watts": parseFloat(selectedAverageWatts),
-      "max_watts": parseInt(selectedMaxWatts, 10),
-      "average_cadence": parseFloat(selectedAverageCadence),
-      "rpe": selectedRpe
+    const convertValue = (value, converter) => {
+      if (value === '' || value === undefined) return null;
+      const result = converter(value);
+      return isNaN(result) ? null : result;
     };
+
+    const formattedDate = selectedStartDate.replace('T', ' ');
+
+    const url_upload_activity = `https://myo6.duckdns.org/upload/activity`;
+    const data_activity = {
+      "id_user": userId,
+      "type": selectedType,
+      "start_date": formattedDate,
+      "distance": convertValue(selectedDistance, parseFloat),
+      "elapsed_time": selectedElapsedTime,
+      "average_speed": convertValue(selectedAverageSpeed, parseFloat),
+      "average_heartrate": convertValue(selectedAverageHeartrate, parseFloat),
+      "max_heartrate": convertValue(selectedMaxHeartrate, parseInt),
+      "total_elevation_gain": convertValue(selectedTotalElevationGain, parseFloat),
+      "average_watts": convertValue(selectedAverageWatts, parseFloat),
+      "max_watts": convertValue(selectedMaxWatts, parseInt),
+      "average_cadence": convertValue(selectedAverageCadence, parseFloat),
+      "rpe": selectedRpe === 0 ? null : selectedRpe
+    };
+    console.log('data_activity:', data_activity);
 
     try {
       const response = await fetch(url_upload_activity, {
@@ -176,21 +192,26 @@ export default function Home(props) {
 
       if (response.ok) {
         setSubmissionMessage("L'activité a été enregistrée avec succès.");
-        setShowNewActivityForm(false);
+        //setShowNewActivityForm(false);
         // Réinitialiser tous les champs
-        setSelectedType('');
-        setSelectedStartDate('');
-        setSelectedDistance('');
-        setSelectedElapsedTime('');
-        setSelectedAverageSpeed('');
-        setSelectedAverageHeartrate('');
-        setSelectedMaxHeartrate('');
-        setSelectedTotalElevationGain('');
-        setSelectedAverageWatts('');
-        setSelectedMaxWatts('');
-        setSelectedAverageCadence('');
+        setSelectedType(null);
+        setSelectedStartDate(null);
+        setSelectedDistance(null);
+        setSelectedElapsedTime(null);
+        setSelectedAverageSpeed(null);
+        setSelectedAverageHeartrate(null);
+        setSelectedMaxHeartrate(null);
+        setSelectedTotalElevationGain(null);
+        setSelectedAverageWatts(null);
+        setSelectedMaxWatts(null);
+        setSelectedAverageCadence(null);
         setSelectedRpe(0);
-        getActivities();
+        setSelectedActivity('');
+        setActivityDetails(null);
+        await getActivities();
+        setTimeout(() => {
+          setSubmissionMessage('');
+        }, 3000);
       } else {
         setErrorMessage("Une erreur s'est produite lors de l'enregistrement de l'activité");
       }
@@ -249,16 +270,35 @@ export default function Home(props) {
                           </select>
                         </div>
                         <div className="mb-2">
-                          <label className="font-bold">Date : <span className="text-red-500">*</span></label>
-                          <input type="date" name="start_date" value={selectedStartDate} onChange={handleNewActivityChange} className="border rounded px-2" required />
-                        </div>
+                            <label className="font-bold">Date et heure : <span className="text-red-500">*</span></label>
+                            <input 
+                              type="datetime-local" 
+                              name="start_date" 
+                              value={selectedStartDate} 
+                              onChange={handleNewActivityChange} 
+                              className="border rounded px-2" 
+                              required 
+                            />
+                          </div>
                         <div className="mb-2">
                           <label className="font-bold">Distance : <span className="text-red-500">*</span></label>
                           <input type="text" name="distance" value={selectedDistance} onChange={handleNewActivityChange} className="border rounded w-20 px-2" required /> m
                         </div>
-                        <div className="mb-2">
+                        {/* <div className="mb-2">
                           <label className="font-bold">Durée : <span className="text-red-500">*</span></label>
                           <input type="time" name="elapsed_time" value={selectedElapsedTime} onChange={handleNewActivityChange} className="border rounded px-2" /> 
+                        </div> */}
+                        <div className="mb-2">
+                          <label className="font-bold">Durée : <span className="text-red-500">*</span></label>
+                          <input 
+                            type="time" 
+                            name="elapsed_time" 
+                            value={selectedElapsedTime} 
+                            onChange={handleNewActivityChange} 
+                            step="1"
+                            className="border rounded px-2" 
+                            required 
+                          />
                         </div>
                         <div className="mb-2">
                           <label className="font-bold">Vitesse moyenne : </label>
@@ -331,7 +371,8 @@ export default function Home(props) {
                         Ajouter l'activité
                         </button>
                       </form>
-                    ) : activityDetails && (
+                    ) : selectedActivity ? (
+                    activityDetails && (
                       <div className="m-2 text-left">
                         <p><span className="font-bold">Type :</span> {activityDetails.type}</p>
                         <p><span className="font-bold">Date de début :</span> {activityDetails.start_date}</p>
@@ -345,6 +386,9 @@ export default function Home(props) {
                         {activityDetails.max_watts && <p><span className="font-bold">Puissance maximale :</span> {activityDetails.max_watts} W</p>}
                         {activityDetails.average_cadence && <p><span className="font-bold">Cadence moyenne :</span> {activityDetails.average_cadence.toFixed(1)} rpm</p>}
                       </div>
+                    )
+                   ) : (
+                      <p>Sélectionnez une activité pour voir les détails ou ajoutez-en une nouvelle.</p>
                     )}
                   </div>
                 </div>
