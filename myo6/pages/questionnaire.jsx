@@ -37,10 +37,17 @@ export default function Home(props) {
   const [selectedOptionMenstruation, setSelectedOptionMenstruation] = useState(0);
   const [selectedOptionTravel, setSelectedOptionTravel] = useState(0);
   const [selectedOptionSickness, setSelectedOptionSickness] = useState(0);
+  const [rmssd, setRmssd] = useState('');
+  const [lnrmssd, setLnrmssd] = useState('');
+  const [lf, setLf] = useState('');
+  const [hf, setHf] = useState('');
+  const [fcr, setFcr] = useState('');
+  const [recoveryState, setRecoveryState] = useState(50);
 
   const [selectedWeight, setSelectedWeight] = useState('');
   const [selectedAsleepTime, setSelectedAsleepTime] = useState('');
   const [selectedWakeupTime, setSelectedWakeupTime] = useState('');
+  const [selectedSleepDuration, setSelectedSleepDuration] = useState('');
 
   const [selectedUserGender, setSelectedUserGender] = useState('');
   const [submissionMessage, setSubmissionMessage] = useState('');
@@ -61,6 +68,16 @@ export default function Home(props) {
     setSelectedOptionMenstruation(null);
     setSelectedOptionTravel(null);
     setSelectedOptionSickness(null);
+    setRmssd(null);
+    setLnrmssd(null);
+    setLf(null);
+    setHf(null);
+    setFcr(null);
+    setRecoveryState(50);
+    setSelectedWeight('');
+    setSelectedAsleepTime('');
+    setSelectedWakeupTime('');
+    setSelectedSleepDuration('');
     setDate2(new Date().toISOString().split('T')[0])
   }
 
@@ -108,8 +125,7 @@ export default function Home(props) {
     if (
       !selectedOptionSleepQuality ||
       !selectedOptionStress ||
-      !selectedOptionMuscleSore ||
-      !selectedOptionFatigueSubj
+      !recoveryState
     ) {
       return false;
     }
@@ -159,6 +175,8 @@ export default function Home(props) {
     const menstruation = parseInt(selectedOptionMenstruation, 10);
     const travel = parseInt(selectedOptionTravel, 10);
     const sickness = parseInt(selectedOptionSickness, 10);
+    const weight = parseFloat(selectedWeight);
+    const sleeptime = parseInt(selectedSleepDuration, 10);
 
     const url_upload_form = 'https://myo6.duckdns.org/upload/form';
     const data_form = {
@@ -170,7 +188,14 @@ export default function Home(props) {
       // "wakeup_time": "07:35",
       "asleep_time": selectedAsleepTime,
       "wakeup_time": selectedWakeupTime,
-      "weight": parseFloat(selectedWeight),
+      "sleep_time": sleeptime,
+      "weight": weight,
+      "rmssd": parseFloat(rmssd),
+      "lnrmssd": parseFloat(lnrmssd),
+      "lf": parseFloat(lf),
+      "hf": parseFloat(hf),
+      "hr_rest": parseInt(fcr, 10),
+      "prs_100": parseInt(recoveryState, 10),
       "train_lastday": trainLastDay,
       "train_perf": trainPerf,
       "phys_cond": physCond,
@@ -311,6 +336,20 @@ export default function Home(props) {
 </div>
 </div>
 
+<div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+<div className=" bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+    <p>Temps de sommeil (en heures) :</p>
+      <input
+        type="time"
+        id="sleepDuration"
+        name="sleepDuration"
+        value={selectedSleepDuration}
+        onChange={(e) => setSelectedSleepDuration(e.target.value)}
+        className="bg-white rounded-lg m-2 w-30 text-sm sm:text-lg"
+      />
+    </div>
+  </div>
+
 
 
 
@@ -429,281 +468,113 @@ export default function Home(props) {
 
 
 
+<div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto">
+  <div className="flex flex-col bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+    <p>Fréquence et variabilité cardiaque</p>
+    
+    <div className="pt-3 flex flex-wrap justify-between">
+      <div className="w-1/5 px-2">
+        <label htmlFor="rmssd" className="block text-base">RMSSD</label>
+        <input
+          type="number"
+          id="rmssd"
+          value={rmssd}
+          onChange={(e) => setRmssd(e.target.value)}
+          step="0.01"
+          className="mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center"
+        />
+      </div>
+      
+      <div className="w-1/5 px-2">
+        <label htmlFor="lnrmssd" className="block text-base">LnRMSSD</label>
+        <input
+          type="number"
+          id="lnrmssd"
+          value={lnrmssd}
+          onChange={(e) => setLnrmssd(e.target.value)}
+          step="0.01"
+          className="mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center"
+        />
+      </div>
+      
+      <div className="w-1/5 px-2">
+        <label htmlFor="lf" className="block text-base">LF</label>
+        <input
+          type="number"
+          id="lf"
+          value={lf}
+          onChange={(e) => setLf(e.target.value)}
+          step="0.01"
+          className="mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center"
+        />
+      </div>
+      
+      <div className="w-1/5 px-2">
+        <label htmlFor="hf" className="block text-base">HF</label>
+        <input
+          type="number"
+          id="hf"
+          value={hf}
+          onChange={(e) => setHf(e.target.value)}
+          step="0.01"
+          className="mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center"
+        />
+      </div>
+
+      <div className="w-1/5 px-2">
+        <label htmlFor="fcr" className="block text-base">FC Repos</label>
+        <input
+          type="number"
+          id="fcr"
+          value={fcr}
+          onChange={(e) => setFcr(e.target.value)}
+          className="mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center"
+        />
+      </div>
+    </div>
+  </div>
+</div>
 
 
-{/* TRAINING LAST DAY */}
-
-
-
-
-            <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
-
-
-                <form>
-                  <p>Comment était votre journée d&apos;entrainement d&apos;hier ?</p>
-
-                  <div className="pt-3 flex justify-center items-center justify-items-center text-center">
-                  <div className="pr-3 text-xs sm:text-lg">
-                    Repos
-                    </div>
-
-                  <input
-                    type="radio"
-                    id="trainld1"
-                    name="train_lastday"
-                    value="1"
-                    checked={selectedOptionTrainLastDay === '1'}
-                    onChange={(e) => setSelectedOptionTrainLastDay(e.target.value)}
-                  />
-                  <label htmlFor="trainld1">1</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="trainld2"
-                    name="train_lastday"
-                    value="2"
-                    checked={selectedOptionTrainLastDay === '2'}
-                    onChange={(e) => setSelectedOptionTrainLastDay(e.target.value)}
-                  />
-                  <label htmlFor="trainld2">2</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="trainld3"
-                    name="train_lastday"
-                    value="3"
-                    checked={selectedOptionTrainLastDay === '3'}
-                    onChange={(e) => setSelectedOptionTrainLastDay(e.target.value)}
-                  />
-                  <label htmlFor="trainld3">3</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="trainld4"
-                    name="train_lastday"
-                    value="4"
-                    checked={selectedOptionTrainLastDay === '4'}
-                    onChange={(e) => setSelectedOptionTrainLastDay(e.target.value)}
-                  />
-                  <label htmlFor="trainld4">4</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="trainld5"
-                    name="train_lastday"
-                    value="5"
-                    checked={selectedOptionTrainLastDay === '5'}
-                    onChange={(e) => setSelectedOptionTrainLastDay(e.target.value)}
-                  />
-                  <label htmlFor="trainld5">5</label>
-
-                  <div className="pl-3 text-xs sm:text-lg">
-                    Intensive
-                    </div>
-                  </div>
-
-
-                </form>
-
-              </div>
+<div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto">
+  <div className="flex flex-col bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-4">
+    <p>État de récupération*</p>
+    
+    <div className="pt-3 flex flex-col items-center">
+    <div className="relative w-full">
+        <input
+          type="range"
+          min="0"
+          max="100"
+          value={recoveryState}
+          onChange={(e) => setRecoveryState(e.target.value)}
+          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+        />
+        <div className="flex justify-between w-full px-1">
+          {[0, 20, 40, 60, 80, 100].map((value) => (
+            <div key={value} className="flex flex-col items-center">
+              <div className="h-3 w-0.5 bg-gray-300"></div>
+              <span className="text-xs text-gray-500 mt-1">{value}</span>
             </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex justify-between w-full mt-4">
+        <span className="text-sm">Pas récupéré<br />Très fatigué</span>
+        <span className="text-sm">Peu récupéré<br />Fatigué</span>
+        <span className="text-sm">Moyennement<br />récupéré</span>
+        <span className="text-sm">Récupération<br />normale</span>
+        <span className="text-sm">Bonne récupération<br />Energique</span>
+        <span className="text-sm">Excellente récupération<br />Très énergique</span>
+      </div>
+      <div className="mt-2 text-center">
+        <span className="text-lg font-medium">Valeur: {recoveryState}</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-
-
-
-{/* TRAINING PERFORMANCE */}
-
-
-
-            <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
-
-
-                <form>
-                  <p>Quel était votre performance à l&apos;entrainement hier par rapport à celle attendue/prévue ? </p>
-
-                  <div className="pt-3 flex justify-center items-center justify-items-center text-center">
-                  <div className="pr-3 text-xs sm:text-lg">
-                    Pire
-                    </div>
-
-                  <input
-                    type="radio"
-                    id="perf1"
-                    name="train_perf"
-                    value="1"
-                    checked={selectedOptionTrainPerf === '1'}
-                    onChange={(e) => setSelectedOptionTrainPerf(e.target.value)}
-                  />
-                  <label htmlFor="perf1">1</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="perf2"
-                    name="train_perf"
-                    value="2"
-                    checked={selectedOptionTrainPerf === '2'}
-                    onChange={(e) => setSelectedOptionTrainPerf(e.target.value)}
-                  />
-                  <label htmlFor="perf2">2</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="perf3"
-                    name="train_perf"
-                    value="3"
-                    checked={selectedOptionTrainPerf === '3'}
-                    onChange={(e) => setSelectedOptionTrainPerf(e.target.value)}
-                  />
-                  <label htmlFor="perf3">3</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="perf4"
-                    name="train_perf"
-                    value="4"
-                    checked={selectedOptionTrainPerf === '4'}
-                    onChange={(e) => setSelectedOptionTrainPerf(e.target.value)}
-                  />
-                  <label htmlFor="perf4">4</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="perf5"
-                    name="train_perf"
-                    value="5"
-                    checked={selectedOptionTrainPerf === '5'}
-                    onChange={(e) => setSelectedOptionTrainPerf(e.target.value)}
-                  />
-                  <label htmlFor="perf5">5</label>
-
-                  <div className="pl-3 text-xs sm:text-lg">
-                    Meilleur
-                    </div>
-                  </div>
-
-
-                </form>
-
-              </div>
-            </div>
-
-
-
-            
-
-
-
-{/* PHYSICAL CONDITION */}
-
-
-
-
-
-            <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
-
-
-                <form>
-                  <p>Comment est votre condition physique en ce moment ? </p>
-
-                  <div className="pt-3 flex justify-center items-center justify-items-center text-center ">
-                  <div className="pr-3 text-xs sm:text-lg">
-                    Très mauvaise
-                    </div>
-                    
-
-                  <input
-                    type="radio"
-                    id="physicalc1"
-                    name="phys_cond"
-                    value="1"
-                    checked={selectedOptionPhysCond === '1'}
-                    onChange={(e) => setSelectedOptionPhysCond(e.target.value)}
-                  />
-                  <label htmlFor="physicalc1">1</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="physicalc2"
-                    name="phys_cond"
-                    value="2"
-                    checked={selectedOptionPhysCond === '2'}
-                    onChange={(e) => setSelectedOptionPhysCond(e.target.value)}
-                  />
-                  <label htmlFor="physicalc2">2</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="physicalc3"
-                    name="phys_cond"
-                    value="3"
-                    checked={selectedOptionPhysCond === '3'}
-                    onChange={(e) => setSelectedOptionPhysCond(e.target.value)}
-                  />
-                  <label htmlFor="physicalc3">3</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="physicalc4"
-                    name="phys_cond"
-                    value="4"
-                    checked={selectedOptionPhysCond === '4'}
-                    onChange={(e) => setSelectedOptionPhysCond(e.target.value)}
-                  />
-                  <label htmlFor="physicalc4">4</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="physicalc5"
-                    name="phys_cond"
-                    value="5"
-                    checked={selectedOptionPhysCond === '5'}
-                    onChange={(e) => setSelectedOptionPhysCond(e.target.value)}
-                  />
-                  <label htmlFor="physicalc5">5</label>
-
-                  <div className="pl-3 text-xs sm:text-lg">
-                    Très bonne
-                    </div>
-                  </div>
-
-
-                </form>
-
-              </div>
-            </div>
-
-
-
-
-            
 
 {/* STRESS LEVEL */}
 
@@ -939,129 +810,6 @@ export default function Home(props) {
             </div>
 
 
-
-
-
-
-{/* SUBJECTIVE FATIGUE */}
-
-
-
-
-
-
-
-            <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
-              <div className="flex bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2 border-gray-400 p-2 justify-center items-center justify-items-center h-full">
-
-
-                <form>
-                  <p>Quel est votre niveau de fatigue ressenti ?* </p>
-
-                  <div className="pt-3 flex justify-center items-center justify-items-center text-center pl-8">
-                  <div className="pr-3 text-xs sm:text-lg">
-                    Aucune
-                    </div>
-
-                  <input
-                    type="radio"
-                    id="fatigue1"
-                    name="fatigue_subj"
-                    value="1"
-                    checked={selectedOptionFatigueSubj === '1'}
-                    onChange={(e) => setSelectedOptionFatigueSubj(e.target.value)}
-                  />
-                  <label htmlFor="fatigue1">1</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="fatigue2"
-                    name="fatigue_subj"
-                    value="2"
-                    checked={selectedOptionFatigueSubj === '2'}
-                    onChange={(e) => setSelectedOptionFatigueSubj(e.target.value)}
-                  />
-                  <label htmlFor="fatigue2">2</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="fatigue3"
-                    name="fatigue_subj"
-                    value="3"
-                    checked={selectedOptionFatigueSubj === '3'}
-                    onChange={(e) => setSelectedOptionFatigueSubj(e.target.value)}
-                  />
-                  <label htmlFor="fatigue3">3</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="fatigue4"
-                    name="fatigue_subj"
-                    value="4"
-                    checked={selectedOptionFatigueSubj === '4'}
-                    onChange={(e) => setSelectedOptionFatigueSubj(e.target.value)}
-                  />
-                  <label htmlFor="fatigue4">4</label>
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="fatigue5"
-                    name="fatigue_subj"
-                    value="5"
-                    checked={selectedOptionFatigueSubj === '5'}
-                    onChange={(e) => setSelectedOptionFatigueSubj(e.target.value)}
-                  />
-                  <label htmlFor="fatigue5">5</label>
-
-
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="fatigue6"
-                    name="fatigue_subj"
-                    value="6"
-                    checked={selectedOptionFatigueSubj === '6'}
-                    onChange={(e) => setSelectedOptionFatigueSubj(e.target.value)}
-                  />
-                  <label htmlFor="fatigue6">6</label>
-
-
-
-                  {"  "}
-                  <input
-                    type="radio"
-                    id="fatigue7"
-                    name="fatigue_subj"
-                    value="7"
-                    checked={selectedOptionFatigueSubj === '7'}
-                    onChange={(e) => setSelectedOptionFatigueSubj(e.target.value)}
-                  />
-                  <label htmlFor="fatigue7">7</label>
-
-                  <div className="pl-3 text-xs sm:text-lg">
-                    Extrêmement importante
-                    </div>
-                  </div>
-
-                </form>
-
-              </div>
-            </div>
-
-
-
-
-            
 
 {/* INJURIED */}
 
