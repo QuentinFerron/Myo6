@@ -260,7 +260,7 @@ export default function Home(props) {
               :
               newTabSelected ?
               <div className='h-screen'>
-              <iframe src={baseUrl+ "Activity?user_id="+ selectedValue } width="100%" height="100%" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
+              <iframe src={baseUrl+ "Activity2?user_id="+ selectedValue } width="100%" height="100%" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
               </div>
 
               :

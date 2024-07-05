@@ -17,6 +17,7 @@ export default function Home(props) {
   const [selectedActivity, setSelectedActivity] = useState('');
   const [activityDetails, setActivityDetails] = useState(null);
   const [showNewActivityForm, setShowNewActivityForm] = useState(false);
+  const [sortedActivities, setSortedActivities] = useState([]);
   const sports = ['Run', 'Bike', 'Swim', 'VirtualRide', 'Strength'];
 
   const [selectedType, setSelectedType] = useState(null);
@@ -34,6 +35,22 @@ export default function Home(props) {
 
   const [submissionMessage, setSubmissionMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    if (activities.date) {
+      const activitiesArray = activities.date.map((date, index) => ({
+        date: date,
+        type: activities.type_list[index],
+        id: activities.id_activity_list[index]
+      }));
+
+      const sorted = activitiesArray.sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+      });
+
+      setSortedActivities(sorted);
+    }
+  }, [activities]);
 
   useEffect(() => {
     if (window.location.href.split("=")[1] !== undefined) {
@@ -231,18 +248,18 @@ export default function Home(props) {
             <div className="w-full">   
               <div className='flex'>
                 <div className="sm:flex justify-center items-center justify-items-center text-center sm:text-left">
-                  <select 
-                    value={selectedActivity} 
-                    onChange={handleActivityChange}
-                    className="bg-white rounded-lg m-2 sm:m-4 w-auto shadow-xl border-2 border-gray-400 text-md sm:text-lg"
-                  >
-                    <option value="">Sélectionnez une activité</option>
-                    {activities.date && activities.date.map((date, index) => (
-                      <option key={index} value={index}>
-                        {date} - {activities.type_list[index]}
-                      </option>
-                    ))}
-                  </select>
+                <select 
+                  value={selectedActivity} 
+                  onChange={handleActivityChange}
+                  className="bg-white rounded-lg m-2 sm:m-4 w-auto shadow-xl border-2 border-gray-400 text-md sm:text-lg"
+                >
+                  <option value="">Sélectionnez une activité</option>
+                  {sortedActivities.map((activity, index) => (
+                    <option key={index} value={index}>
+                      {activity.date} - {activity.type}
+                    </option>
+                  ))}
+                </select>
                   <button 
                     onClick={() => setShowNewActivityForm(!showNewActivityForm)}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -371,23 +388,23 @@ export default function Home(props) {
                         Ajouter l&apos;activité
                         </button>
                       </form>
-                    ) : selectedActivity ? (
-                    activityDetails && (
-                      <div className="m-2 text-left">
-                        <p><span className="font-bold">Type :</span> {activityDetails.type}</p>
-                        <p><span className="font-bold">Date de début :</span> {activityDetails.start_date}</p>
-                        <p><span className="font-bold">Distance :</span> {activityDetails.distance.toFixed(2)} m</p>
-                        <p><span className="font-bold">Durée :</span> {(activityDetails.elapsed_time / 60).toFixed(2)} minutes</p>
-                        <p><span className="font-bold">Vitesse moyenne :</span> {activityDetails.average_speed.toFixed(2)} m/s</p>
-                        <p><span className="font-bold">Fréquence cardiaque moyenne :</span> {activityDetails.average_heartrate.toFixed(1)} bpm</p>
-                        <p><span className="font-bold">Fréquence cardiaque maximale :</span> {activityDetails.max_heartrate} bpm</p>
-                        <p><span className="font-bold">Dénivelé positif :</span> {activityDetails.total_elevation_gain} m</p>
-                        {activityDetails.average_watts && <p><span className="font-bold">Puissance moyenne :</span> {activityDetails.average_watts.toFixed(1)} W</p>}
-                        {activityDetails.max_watts && <p><span className="font-bold">Puissance maximale :</span> {activityDetails.max_watts} W</p>}
-                        {activityDetails.average_cadence && <p><span className="font-bold">Cadence moyenne :</span> {activityDetails.average_cadence.toFixed(1)} rpm</p>}
-                      </div>
-                    )
-                   ) : (
+                    ) :selectedActivity ? (
+                      activityDetails && (
+                        <div className="m-2 text-left">
+                          <p><span className="font-bold">Type :</span> {activityDetails.type || 'N/A'}</p>
+                          <p><span className="font-bold">Date de début :</span> {activityDetails.start_date || 'N/A'}</p>
+                          <p><span className="font-bold">Distance :</span> {activityDetails.distance != null ? `${activityDetails.distance.toFixed(2)} m` : 'N/A'}</p>
+                          <p><span className="font-bold">Durée :</span> {activityDetails.elapsed_time != null ? `${(activityDetails.elapsed_time / 60).toFixed(2)} minutes` : 'N/A'}</p>
+                          <p><span className="font-bold">Vitesse moyenne :</span> {activityDetails.average_speed != null ? `${activityDetails.average_speed.toFixed(2)} m/s` : 'N/A'}</p>
+                          <p><span className="font-bold">Fréquence cardiaque moyenne :</span> {activityDetails.average_heartrate != null ? `${activityDetails.average_heartrate.toFixed(1)} bpm` : 'N/A'}</p>
+                          <p><span className="font-bold">Fréquence cardiaque maximale :</span> {activityDetails.max_heartrate != null ? `${activityDetails.max_heartrate} bpm` : 'N/A'}</p>
+                          <p><span className="font-bold">Dénivelé positif :</span> {activityDetails.total_elevation_gain != null ? `${activityDetails.total_elevation_gain} m` : 'N/A'}</p>
+                          {activityDetails.average_watts != null && <p><span className="font-bold">Puissance moyenne :</span> {activityDetails.average_watts.toFixed(1)} W</p>}
+                          {activityDetails.max_watts != null && <p><span className="font-bold">Puissance maximale :</span> {activityDetails.max_watts} W</p>}
+                          {activityDetails.average_cadence != null && <p><span className="font-bold">Cadence moyenne :</span> {activityDetails.average_cadence.toFixed(1)} rpm</p>}
+                        </div>
+                      )
+                    ) : (
                       <p>Sélectionnez une activité pour voir les détails ou ajoutez-en une nouvelle.</p>
                     )}
                   </div>

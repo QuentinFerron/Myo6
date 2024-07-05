@@ -541,7 +541,7 @@ export default function Home(props) {
     <p>État de récupération*</p>
     
     <div className="pt-3 flex flex-col items-center">
-    <div className="relative w-full">
+      <div className="relative w-full">
         <input
           type="range"
           min="0"
@@ -550,7 +550,7 @@ export default function Home(props) {
           onChange={(e) => setRecoveryState(e.target.value)}
           className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
         />
-        <div className="flex justify-between w-full px-1">
+        <div className="flex justify-between w-full px-1 mt-1">
           {[0, 20, 40, 60, 80, 100].map((value) => (
             <div key={value} className="flex flex-col items-center">
               <div className="h-3 w-0.5 bg-gray-300"></div>
@@ -559,13 +559,13 @@ export default function Home(props) {
           ))}
         </div>
       </div>
-      <div className="flex justify-between w-full mt-4">
-        <span className="text-sm">Pas récupéré<br />Très fatigué</span>
-        <span className="text-sm">Peu récupéré<br />Fatigué</span>
-        <span className="text-sm">Moyennement<br />récupéré</span>
-        <span className="text-sm">Récupération<br />normale</span>
-        <span className="text-sm">Bonne récupération<br />Energique</span>
-        <span className="text-sm">Excellente récupération<br />Très énergique</span>
+      <div className="grid grid-cols-6 gap-2 w-full mt-4 text-xs">
+        <div className="text-center">Pas récupéré<br />Très fatigué</div>
+        <div className="text-center">Peu récupéré<br />Fatigué</div>
+        <div className="text-center">Moyennement<br />récupéré</div>
+        <div className="text-center">Récupération<br />normale</div>
+        <div className="text-center">Bonne récupération<br />Energique</div>
+        <div className="text-center">Excellente récupération<br />Très énergique</div>
       </div>
       <div className="mt-2 text-center">
         <span className="text-lg font-medium">Valeur: {recoveryState}</span>
@@ -573,7 +573,6 @@ export default function Home(props) {
     </div>
   </div>
 </div>
-
 
 
 {/* STRESS LEVEL */}
