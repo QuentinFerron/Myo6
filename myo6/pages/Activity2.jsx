@@ -368,7 +368,7 @@ export default function Home(props) {
                           {submissionMessage && <div className="bg-green-500 text-white rounded-lg shadow-xl border-2 border-gray-400 p-2">{submissionMessage}</div>}
                         </div>
                         <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
-                        Ajouter l'activité
+                        Ajouter l&apos;activité
                         </button>
                       </form>
                     ) : selectedActivity ? (

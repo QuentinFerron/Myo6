@@ -258,7 +258,7 @@ export default function Home(props) {
                           </div>
                         </div>
                         <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
-                          Ajouter l'activité
+                          Ajouter l&apos;activité
                         </button>
                       </form>
                     ) : activityDetails && (
