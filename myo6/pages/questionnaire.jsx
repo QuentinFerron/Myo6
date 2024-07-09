@@ -37,10 +37,14 @@ export default function Home(props) {
   const [selectedOptionMenstruation, setSelectedOptionMenstruation] = useState(0);
   const [selectedOptionTravel, setSelectedOptionTravel] = useState(0);
   const [selectedOptionSickness, setSelectedOptionSickness] = useState(0);
-  const [rmssd, setRmssd] = useState('');
-  const [lnrmssd, setLnrmssd] = useState('');
-  const [lf, setLf] = useState('');
-  const [hf, setHf] = useState('');
+  const [rmssdLying, setRmssdLying] = useState('');
+  const [lnrmssdLying, setLnrmssdLying] = useState('');
+  const [lfLying, setLfLying] = useState('');
+  const [hfLying, setHfLying] = useState('');
+  const [rmssdStanding, setRmssdStanding] = useState('');
+  const [lnrmssdStanding, setLnrmssdStanding] = useState('');
+  const [lfStanding, setLfStanding] = useState('');
+  const [hfStanding, setHfStanding] = useState('');
   const [fcr, setFcr] = useState('');
   const [recoveryState, setRecoveryState] = useState(50);
 
@@ -63,15 +67,19 @@ export default function Home(props) {
     setSelectedOptionStress(null);
     setSelectedOptionMuscleSore(null);
     setSelectedOptionFatigueSubj(null);
-    setSelectedOptionInjuried(null);
-    setSelectedOptionAlcohol(null);
+    setSelectedOptionInjuried('0');
+    setSelectedOptionAlcohol('0');
     setSelectedOptionMenstruation(null);
-    setSelectedOptionTravel(null);
-    setSelectedOptionSickness(null);
-    setRmssd(null);
-    setLnrmssd(null);
-    setLf(null);
-    setHf(null);
+    setSelectedOptionTravel('0');
+    setSelectedOptionSickness('0');
+    setRmssdLying(null);
+    setLnrmssdLying(null);
+    setLfLying(null);
+    setHfLying(null);
+    setRmssdStanding(null);
+    setLnrmssdStanding(null);
+    setLfStanding(null);
+    setHfStanding(null);
     setFcr(null);
     setRecoveryState(50);
     setSelectedWeight('');
@@ -190,10 +198,14 @@ export default function Home(props) {
       "wakeup_time": selectedWakeupTime,
       "sleep_time": sleeptime,
       "weight": weight,
-      "rmssd": parseFloat(rmssd),
-      "lnrmssd": parseFloat(lnrmssd),
-      "lf": parseFloat(lf),
-      "hf": parseFloat(hf),
+      "rmssd_lying ": parseFloat(rmssdl),
+      "lnrmssd_lying ": parseFloat(lnrmssdl),
+      "lf_lying ": parseFloat(lfl),
+      "hf_lying ": parseFloat(hfl),
+      "rmssd_standing": parseFloat(rmssds),
+      "lnrmssd_standing": parseFloat(lnrmssds),
+      "lf_standing": parseFloat(lfs),
+      "hf_standing": parseFloat(hfs),
       "hr_rest": parseInt(fcr, 10),
       "prs_100": parseInt(recoveryState, 10),
       "train_lastday": trainLastDay,
@@ -470,52 +482,52 @@ export default function Home(props) {
 
 <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto">
   <div className="flex flex-col bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
-    <p>Fréquence et variabilité cardiaque</p>
+    <p>Fréquence et variabilité cardiaque allongé</p>
     
     <div className="pt-3 flex flex-wrap justify-between">
       <div className="w-1/5 px-2">
-        <label htmlFor="rmssd" className="block text-base">RMSSD</label>
+        <label htmlFor="rmssdl" className="block text-base">RMSSD</label>
         <input
           type="number"
-          id="rmssd"
-          value={rmssd}
-          onChange={(e) => setRmssd(e.target.value)}
+          id="rmssdl"
+          value={rmssdLying}
+          onChange={(e) => setRmssdLying(e.target.value)}
           step="0.01"
           className="mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center"
         />
       </div>
       
       <div className="w-1/5 px-2">
-        <label htmlFor="lnrmssd" className="block text-base">LnRMSSD</label>
+        <label htmlFor="lnrmssdl" className="block text-base">LnRMSSD</label>
         <input
           type="number"
-          id="lnrmssd"
-          value={lnrmssd}
-          onChange={(e) => setLnrmssd(e.target.value)}
+          id="lnrmssdl"
+          value={lnrmssdLying}
+          onChange={(e) => setLnrmssdLying(e.target.value)}
           step="0.01"
           className="mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center"
         />
       </div>
       
       <div className="w-1/5 px-2">
-        <label htmlFor="lf" className="block text-base">LF</label>
+        <label htmlFor="lfl" className="block text-base">LF</label>
         <input
           type="number"
-          id="lf"
-          value={lf}
-          onChange={(e) => setLf(e.target.value)}
+          id="lfl"
+          value={lfLying}
+          onChange={(e) => setLfLying(e.target.value)}
           step="0.01"
           className="mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center"
         />
       </div>
       
       <div className="w-1/5 px-2">
-        <label htmlFor="hf" className="block text-base">HF</label>
+        <label htmlFor="hfl" className="block text-base">HF</label>
         <input
           type="number"
-          id="hf"
-          value={hf}
-          onChange={(e) => setHf(e.target.value)}
+          id="hfl"
+          value={hfLying}
+          onChange={(e) => setHfLying(e.target.value)}
           step="0.01"
           className="mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center"
         />
@@ -534,6 +546,66 @@ export default function Home(props) {
     </div>
   </div>
 </div>
+
+
+
+<div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto">
+  <div className="flex flex-col bg-white text-sm sm:text-lg text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+    <p>Fréquence et variabilité cardiaque debout</p>
+    
+    <div className="pt-3 flex flex-wrap justify-between">
+      <div className="w-1/5 px-2">
+        <label htmlFor="rmssds" className="block text-base">RMSSD</label>
+        <input
+          type="number"
+          id="rmssds"
+          value={rmssdStanding}
+          onChange={(e) => setRmssdStanding(e.target.value)}
+          step="0.01"
+          className="mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center"
+        />
+      </div>
+      
+      <div className="w-1/5 px-2">
+        <label htmlFor="lnrmssds" className="block text-base">LnRMSSD</label>
+        <input
+          type="number"
+          id="lnrmssds"
+          value={lnrmssdStanding}
+          onChange={(e) => setLnrmssdStanding(e.target.value)}
+          step="0.01"
+          className="mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center"
+        />
+      </div>
+      
+      <div className="w-1/5 px-2">
+        <label htmlFor="lfs" className="block text-base">LF</label>
+        <input
+          type="number"
+          id="lfs"
+          value={lfStanding}
+          onChange={(e) => setLfStanding(e.target.value)}
+          step="0.01"
+          className="mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center"
+        />
+      </div>
+      
+      <div className="w-1/5 px-2">
+        <label htmlFor="hfs" className="block text-base">HF</label>
+        <input
+          type="number"
+          id="hfs"
+          value={hfStanding}
+          onChange={(e) => setHfStanding(e.target.value)}
+          step="0.01"
+          className="mt-1 block w-full rounded-md border-2 border-gray-400 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-center"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 
 <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto">

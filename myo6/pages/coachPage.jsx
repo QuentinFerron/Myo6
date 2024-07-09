@@ -36,69 +36,22 @@ export default function Home(props) {
     const data = await res.json();
     setUsers(data);
   }
-//récupérer les vidéos de l'utilisateur
-  async function getVideo(userId) {
-    //  const baUrl = "http://141.145.200.146:5000/api/";
 
-    try {
-      const url = baseUrl + 'api/getAllUserVideo?id_user=' + userId;
-
-      const response = await fetch(url);
-      if (!response.ok) {
-
-        throw new Error('Erreur lors de la récupération des données.');
-      }else{
-        const video = await response.json();
-        console.log("video", video);
-        if(video.length > 0){
-          console.log("video", video);
-          setVideo(video);
-          setSelectedValueMeasure(video[video.length - 1].id_video);
-          setIsVideo(true);
-          // setIsDataLoaded(true); QUENTIN////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        }
-        else{
-          setIsVideo(false);
-        }
-        // setVideo(video);
-        // setSelectedValueMeasure(video[0].id_video);
-        // setIsDataLoaded(true); QUENTIN
-
-      }
-     
-    } catch (error) {
-      // setIsDataLoaded(false); QUENTIN
-      console.error('Erreur:', error);
-    }
-  }
-//remplir la seconde liste déroulante quand on sélectionne un utilisateur
   const handleSelectChange = (event) => {
     const selectedOption = event.target.value;
     setSelectedValue(selectedOption);
     setVideo([]);
-    getVideo(selectedOption);
+    // getVideo(selectedOption);
   };
-
-  const handleSelectChangeMeasure = (event) => {
-    const selectedOption = event.target.value;
-    console.log(selectedOption);
-    setSelectedValueMeasure(selectedOption);
-  };
-
-  
 
   //initialisation des données de la page
   useEffect(() => {
     if (window.location.href.split("=")[1] == undefined) {
-      // redirect to /index
-      //window.location.href = '/'
-      // alert("Ceci est une alerte !");
     } else {
       setCurrentUserid(window.location.href.split("=")[1])
       setSelectedValue(window.location.href.split("=")[1]);
       setSelectedValueMeasure(0);
       setVideo([]);
-      getVideo(window.location.href.split("=")[1]);
       getUser();
     }
   }, []);
@@ -110,9 +63,6 @@ export default function Home(props) {
         <Navbar></Navbar>
         <hr className="w-full h-[4px] bg-beige"></hr>
       {
-        // !isDataLoaded ?
-        // null
-        // :
 
         <div className='flex  min-h-[calc(100%-84px)] bg-gray-300 h-auto '>
           {/* <SideBar></SideBar> */}
@@ -218,10 +168,6 @@ export default function Home(props) {
                     </div>
                   </div>
                 </div>
-
-
-             
-
                 
                 </div>
 
@@ -237,11 +183,9 @@ export default function Home(props) {
 
                </div>
 
-
                </div>
 
                <div className="sm:flex ">
-
 
                <div className="w-full sm:w-1/3 mt-3 m-1 bg-white rounded-lg flex justify-center items-center shadow-xl border-2 border-gray-400  aspect-ratio-16/9 sm:aspect-ratio-16/10 max-h-80vh sm:max-h-full">
                <iframe src={baseUrl + 'graphWeeklyRadar?id_user='+ selectedValue } width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
@@ -254,8 +198,6 @@ export default function Home(props) {
 
                </div>
                 </div>
-
-
 
               :
               newTabSelected ?
@@ -276,13 +218,10 @@ export default function Home(props) {
               )
             }
             
-          
           </div>
         </div>
        
-      }
-        
-          
+      }    
       </div>
     </>
   )

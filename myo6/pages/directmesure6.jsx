@@ -264,20 +264,6 @@ export default function Home(props) {
 
 
 
-
-  function renderElement(score) {
-    if (score < -1.5) {
-       return <div className='text-[#ff0000]'>Mauvais</div>;
-    }if (score < 0 && score > -1.5) {
-      return <div className='text-[#ffa600]'>Moyen</div>;
-    }if (score > 0 && score < 1.5) {
-    return <div className='text-[#1eb0ff]'>Bon</div>;
-    } else {
-       return <div className='text-[#09ff00]'>Très Bon</div>;
-    }
-   }
-
-
   return (
     <>  
       <Header></Header>
@@ -403,34 +389,6 @@ export default function Home(props) {
 
                         </div>
                       
-                      </div>
-
-                      
-                     
-                    <div className="mt-4 mr-4 mb-4 ml-4 sm:ml-0 bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-auto sm:w-1/6 text-center">
-                        <div className="text-2xl flex font-bold text-[#082431] justify-center items-center justify-items-center">
-                          Etat de forme
-                        </div>
-                        
-                        <div className="text-4xl p-2 flex font-bold text-[#082431] justify-center items-center justify-items-center">
-                          {/* {(video && video.measure_metric && video.measure_metric.score).toFixed(2)} 
-                          {(video && video.measure_metric && video.measure_metric.score)}
-                          {Math.round((video && video.measure_metric && video.measure_metric.average_constriction_velocity_area)*((video && video.measure_metric && video.measure_metric.max_area) - (video && video.measure_metric && video.measure_metric.min_area))*(1/(video && video.measure_metric && video.measure_metric.average_constriction_velocity_area))*(video && video.measure_metric && video.measure_metric.max_area)) }
-                          <br></br>
-                          {Math.round((video && video.measure_metric && video.measure_metric.average_constriction_velocity_area))}  
-                          <br></br>
-                          {((video && video.measure_metric && video.measure_metric.max_area) - (video && video.measure_metric && video.measure_metric.min_area))}  
-                          <br></br>
-                          {Math.round(1/(video && video.measure_metric && video.measure_metric.reaction_time))} 
-                          <br></br>
-                          {((video && video.measure_metric && video.measure_metric.max_area))}    
-                          <br></br>
-                          {(((video && video.measure_metric && video.measure_metric.max_area) - (video && video.measure_metric && video.measure_metric.min_area))/(video && video.measure_metric && video.measure_metric.max_area)).toFixed(2)}%  
-                          {(((video && video.measure_metric && video.measure_metric.max_area) - (video && video.measure_metric && video.measure_metric.max_area) + (video && video.measure_metric && video.measure_metric.score))).toFixed(2)}
-                          <br></br> */}
-                          {renderElement(video && video.measure_metric && video.measure_metric.score)}                
-                        </div>
-                        
                       </div>
                       
                       </div>

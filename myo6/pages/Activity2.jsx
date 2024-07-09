@@ -36,6 +36,8 @@ export default function Home(props) {
   const [submissionMessage, setSubmissionMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const [selectedActivityRpe, setSelectedActivityRpe] = useState(0);
+
   useEffect(() => {
     if (activities.date) {
       const activitiesArray = activities.date.map((date, index) => ({
@@ -107,6 +109,7 @@ export default function Home(props) {
   const handleActivityChange = async (event) => {
     const index = event.target.value;
     setSelectedActivity(index);
+    setSelectedActivityRpe(0);
     
     if (index !== "") {
       const activityId = activities.id_activity_list[index];
@@ -162,8 +165,42 @@ export default function Home(props) {
     }
   };
 
+  const handleRpeSubmit = async () => {
+    if (!selectedActivity || selectedActivityRpe === 0) return;
+    setErrorMessage('');
+    setSubmissionMessage('');
+    
+    const activityId = activities.id_activity_list[selectedActivity];
+    const url = `https://myo6.duckdns.org/api/${activityId}/add_rpe`;
+    console.log(activityId, selectedActivityRpe);
+
+  
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ rpe: selectedActivityRpe }),
+      });
+  
+      if (response.ok) {
+        setSubmissionMessage("RPE ajouté avec succès.");
+        // Vous pouvez choisir de rafraîchir les détails de l'activité ici si nécessaire
+      } else {
+        setErrorMessage("Erreur lors de l'ajout du RPE.");
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+      setErrorMessage("Une erreur s'est produite lors de l'envoi du RPE");
+    }
+  };
+
   const handleSubmitNewActivity = async (e) => {
     e.preventDefault();
+
+    setErrorMessage('');
+    setSubmissionMessage('');
     
     if (!selectedType || !selectedStartDate || !selectedElapsedTime) {
       setErrorMessage('Veuillez remplir tous les champs obligatoires');
@@ -173,7 +210,7 @@ export default function Home(props) {
     setErrorMessage('');
 
     const convertValue = (value, converter) => {
-      if (value === '' || value === undefined) return null;
+      if (value === '' || value === undefined || value === null) return null;
       const result = converter(value);
       return isNaN(result) ? null : result;
     };
@@ -315,12 +352,8 @@ export default function Home(props) {
 
                         <div className="mb-2">
                           <label className="font-bold">Distance :</label>
-                          <input type="text" name="distance" value={selectedDistance} onChange={handleNewActivityChange} className="border rounded w-20 px-2" required /> m
+                          <input type="text" name="distance" value={selectedDistance} onChange={handleNewActivityChange} className="border rounded w-20 px-2" /> m
                         </div>
-                        {/* <div className="mb-2">
-                          <label className="font-bold">Durée : <span className="text-red-500">*</span></label>
-                          <input type="time" name="elapsed_time" value={selectedElapsedTime} onChange={handleNewActivityChange} className="border rounded px-2" /> 
-                        </div> */}
 
 
                         <div className="mb-2">
@@ -408,7 +441,52 @@ export default function Home(props) {
                           {activityDetails.average_watts != null && <p><span className="font-bold">Puissance moyenne :</span> {activityDetails.average_watts.toFixed(1)} W</p>}
                           {activityDetails.max_watts != null && <p><span className="font-bold">Puissance maximale :</span> {activityDetails.max_watts} W</p>}
                           {activityDetails.average_cadence != null && <p><span className="font-bold">Cadence moyenne :</span> {activityDetails.average_cadence.toFixed(1)} rpm</p>}
+
+                          <div className="mt-4">
+                          <p className="font-bold mb-2">Ajouter/Modifier RPE</p>
+                          <div className="pt-3 flex flex-col items-center">
+                            <div className="relative w-full">
+                              <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                value={selectedActivityRpe}
+                                onChange={(e) => setSelectedActivityRpe(e.target.value)}
+                                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                              />
+                              <div className="flex justify-between w-full px-1">
+                                {[0, 20, 40, 60, 80, 100].map((value) => (
+                                  <div key={value} className="flex flex-col items-center">
+                                    <div className="h-3 w-0.5 bg-gray-300"></div>
+                                    <span className="text-xs text-gray-500 mt-1">{value}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                            <div className="flex justify-between w-full mt-4 text-sm">
+                              <span>Repos</span>
+                              <span>Très facile</span>
+                              <span>Facile</span>
+                              <span>Modéré</span>
+                              <span>Difficile</span>
+                              <span>Maximal</span>
+                            </div>
+                            <div className="mt-2 text-center">
+                              <span className="text-lg font-medium">Valeur: {selectedActivityRpe}</span>
+                            </div>
+                          </div>
+                          <div className="flex w-full p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+                          {errorMessage && <div className="bg-red-500 text-white rounded-lg shadow-xl border-2 border-gray-400 p-2">{errorMessage}</div>}
+                          {submissionMessage && <div className="bg-green-500 text-white rounded-lg shadow-xl border-2 border-gray-400 p-2">{submissionMessage}</div>}
                         </div>
+                          <button 
+                            onClick={handleRpeSubmit}
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+                          >
+                            Envoyer RPE
+                          </button>
+                        </div>
+                      </div>
                       )
                     ) : (
                       <p>Sélectionnez une activité pour voir les détails ou ajoutez-en une nouvelle.</p>

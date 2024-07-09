@@ -323,7 +323,8 @@ export default function Home(props) {
               <select value={selectedValueMeasure} onChange={handleSelectChangeMeasure} className="bg-white rounded-lg m-2 sm:m-4 w-auto shadow-xl border-2 border-gray-400 text-md sm:text-lg">
                 {videos.sort((a, b) => new Date(b.date_record) - new Date(a.date_record)).map(video => (
                   <option key={video.id_video} value={video.id_video}>
-                    {new Date(video.date_record).toLocaleString()}
+                    {/* {new Date(video.date_record).toLocaleString()} */}
+                    {video.date_record.slice(4, -7)}
                   </option>
                 ))}
               </select>
@@ -503,18 +504,6 @@ export default function Home(props) {
 
                         </div>
                       
-                      </div>
-
-                      
-                     
-                      <div className="mt-4 mr-4 mb-4 ml-4 sm:ml-0 bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-auto sm:w-1/6 text-center">
-                        <div className="text-2xl flex font-bold text-[#082431] justify-center items-center justify-items-center">
-                          Etat de forme
-                        </div>
-                        
-                        <div className="text-4xl p-2 flex font-bold text-[#082431] justify-center items-center justify-items-center">
-                        {Math.round(4*(video && video.measure_metric && video.measure_metric.average_constriction_velocity)) }%
-                        </div>
                       </div>
                       </div>
                       </div>
