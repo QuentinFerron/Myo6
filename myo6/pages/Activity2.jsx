@@ -165,7 +165,7 @@ export default function Home(props) {
   const handleSubmitNewActivity = async (e) => {
     e.preventDefault();
     
-    if (!selectedType || !selectedStartDate || !selectedDistance || !selectedElapsedTime) {
+    if (!selectedType || !selectedStartDate || !selectedElapsedTime) {
       setErrorMessage('Veuillez remplir tous les champs obligatoires');
       return;
     }
@@ -297,14 +297,9 @@ export default function Home(props) {
                               required 
                             />
                           </div>
-                        <div className="mb-2">
-                          <label className="font-bold">Distance : <span className="text-red-500">*</span></label>
-                          <input type="text" name="distance" value={selectedDistance} onChange={handleNewActivityChange} className="border rounded w-20 px-2" required /> m
-                        </div>
-                        {/* <div className="mb-2">
-                          <label className="font-bold">Durée : <span className="text-red-500">*</span></label>
-                          <input type="time" name="elapsed_time" value={selectedElapsedTime} onChange={handleNewActivityChange} className="border rounded px-2" /> 
-                        </div> */}
+                        
+
+
                         <div className="mb-2">
                           <label className="font-bold">Durée : <span className="text-red-500">*</span></label>
                           <input 
@@ -317,6 +312,17 @@ export default function Home(props) {
                             required 
                           />
                         </div>
+
+                        <div className="mb-2">
+                          <label className="font-bold">Distance :</label>
+                          <input type="text" name="distance" value={selectedDistance} onChange={handleNewActivityChange} className="border rounded w-20 px-2" required /> m
+                        </div>
+                        {/* <div className="mb-2">
+                          <label className="font-bold">Durée : <span className="text-red-500">*</span></label>
+                          <input type="time" name="elapsed_time" value={selectedElapsedTime} onChange={handleNewActivityChange} className="border rounded px-2" /> 
+                        </div> */}
+
+
                         <div className="mb-2">
                           <label className="font-bold">Vitesse moyenne : </label>
                           <input type="text" name="average_speed" value={selectedAverageSpeed} onChange={handleNewActivityChange} className="border rounded w-20 px-2" /> m/s
