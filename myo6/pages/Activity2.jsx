@@ -109,7 +109,6 @@ export default function Home(props) {
   const handleActivityChange = async (event) => {
     const index = event.target.value;
     setSelectedActivity(index);
-    setSelectedActivityRpe(0);
     
     if (index !== "") {
       const activityId = activities.id_activity_list[index];
@@ -121,8 +120,10 @@ export default function Home(props) {
       });
       const data = await res.json();
       setActivityDetails(data.activity_dict);
+      setSelectedActivityRpe(data.activity_dict.rpe || 0);
     } else {
       setActivityDetails(null);
+      setSelectedActivityRpe(0);
     }
   };
 

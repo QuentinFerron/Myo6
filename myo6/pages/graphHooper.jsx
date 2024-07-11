@@ -33,6 +33,8 @@ export default function Home(props) {
     console.log(baseUrl);
   }
 
+  const [daysToShow, setDaysToShow] = useState('30');
+
 const options = {
   responsive: true,
   plugins: {
@@ -98,10 +100,12 @@ const options = {
 //  const labels = data.map(item => item.Date);
 //  const atlData = data.map(item => item.ATL);
 
+const filteredData = daysToShow === 'all' ? data : data.slice(-daysToShow);
+
  const chartData = {
     // labels: labels,
     // labels: data.map((item) => new Date(item.Date).toLocaleDateString()), // Format dates for labels
-    labels: data.map(item => {
+    labels: filteredData.map(item => {
       const date = new Date(item.Date);
       return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear().toString().slice(-2)}`;
     }),
@@ -109,7 +113,7 @@ const options = {
       {
         label: 'Hooper',
         // data: atlData,
-        data: data.map(item => item.hooper_index),
+        data: filteredData.map(item => item.hooper_index),
         fill: false,
         backgroundColor: 'rgb(75, 192, 192)',
         borderColor: 'rgba(75, 192, 192, 0.8)',
@@ -120,10 +124,20 @@ const options = {
     ],
  };
 
+ const handleDaysChange = (event) => {
+  setDaysToShow(event.target.value);
+};
+
  return (
   <>
     {/* <div className="chart-container"> */}
     <div>
+    <select value={daysToShow} onChange={handleDaysChange}>
+        <option value="all">Toutes les données</option>
+        <option value="30">30 derniers jours</option>
+        <option value="14">14 derniers jours</option>
+        <option value="7">7 derniers jours</option>
+      </select>
       <Line data={chartData} options={options} />
     </div>
   </>
