@@ -23,20 +23,20 @@ export default function Home(props) {
   }
 
   const [users, setUsers] = useState([]);
-  const [selectedValue, setSelectedValue] = useState(0);
+  const [selectedValue, setSelectedValue] = useState('');
   const [Date2, setDate2] = useState('');
-  const [selectedOptionSleepQuality, setSelectedOptionSleepQuality] = useState(0);
-  const [selectedOptionTrainLastDay, setSelectedOptionTrainLastDay] = useState(0);
-  const [selectedOptionTrainPerf, setSelectedOptionTrainPerf] = useState(0);
-  const [selectedOptionPhysCond, setSelectedOptionPhysCond] = useState(0);
-  const [selectedOptionStress, setSelectedOptionStress] = useState(0);
-  const [selectedOptionMuscleSore, setSelectedOptionMuscleSore] = useState(0);
-  const [selectedOptionFatigueSubj, setSelectedOptionFatigueSubj] = useState(0);
-  const [selectedOptionInjuried, setSelectedOptionInjuried] = useState(0);
-  const [selectedOptionAlcohol, setSelectedOptionAlcohol] = useState(0);
-  const [selectedOptionMenstruation, setSelectedOptionMenstruation] = useState(0);
-  const [selectedOptionTravel, setSelectedOptionTravel] = useState(0);
-  const [selectedOptionSickness, setSelectedOptionSickness] = useState(0);
+  const [selectedOptionSleepQuality, setSelectedOptionSleepQuality] = useState('');
+  const [selectedOptionTrainLastDay, setSelectedOptionTrainLastDay] = useState('');
+  const [selectedOptionTrainPerf, setSelectedOptionTrainPerf] = useState('');
+  const [selectedOptionPhysCond, setSelectedOptionPhysCond] = useState('');
+  const [selectedOptionStress, setSelectedOptionStress] = useState('');
+  const [selectedOptionMuscleSore, setSelectedOptionMuscleSore] = useState('');
+  const [selectedOptionFatigueSubj, setSelectedOptionFatigueSubj] = useState('');
+  const [selectedOptionInjuried, setSelectedOptionInjuried] = useState('');
+  const [selectedOptionAlcohol, setSelectedOptionAlcohol] = useState('');
+  const [selectedOptionMenstruation, setSelectedOptionMenstruation] = useState('');
+  const [selectedOptionTravel, setSelectedOptionTravel] = useState('');
+  const [selectedOptionSickness, setSelectedOptionSickness] = useState('');
   const [rmssdLying, setRmssdLying] = useState('');
   const [lnrmssdLying, setLnrmssdLying] = useState('');
   const [lfLying, setLfLying] = useState('');
