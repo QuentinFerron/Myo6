@@ -64,11 +64,12 @@ const TrainingLoadHistogram = () => {
         label: 'Training Strain',
         data: filteredData.map(item => item['Training Strain'] || 0),
         borderColor: 'rgb(255, 0, 0)', // Rouge vif
-        backgroundColor: 'rgba(255, 0, 0, 0.2)',
+        backgroundColor: 'rgba(255, 0, 0, 1)',
         type: 'line',
         yAxisID: 'y',
         fill: false,
-        tension: 0.4
+        tension: 0.4,
+        pointRadius: 1.5
       },
 
       {
