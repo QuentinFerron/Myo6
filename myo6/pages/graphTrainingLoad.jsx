@@ -1,9 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { 
+  Chart as ChartJS, 
+  CategoryScale, 
+  LinearScale, 
+  BarElement, 
+  PointElement,
+  LineElement, 
+  Title, 
+  Tooltip, 
+  Legend 
+} from 'chart.js';import { Bar } from 'react-chartjs-2';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-
+ChartJS.register(
+  CategoryScale, 
+  LinearScale, 
+  BarElement, 
+  PointElement, 
+  LineElement,
+  Title, 
+  Tooltip, 
+  Legend
+);
 const TrainingLoadHistogram = () => {
   const [data, setData] = useState(null);
   const [daysToShow, setDaysToShow] = useState('14');
@@ -29,24 +46,73 @@ const TrainingLoadHistogram = () => {
       return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear().toString().slice(-2)}`;
     }),
     datasets: [
-      {
-        label: 'Daily Training Load',
-        data: filteredData.map(item => item['Daily Training load'] || 0),
-        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-        stack: 'Stack 0',
-        yAxisID: 'y',
-      },
+      // {
+      //   label: 'Daily Training Load',
+      //   data: filteredData.map(item => item['Daily Training load'] || 0),
+      //   backgroundColor: 'rgba(75, 192, 192, 0.6)',
+      //   stack: 'Stack 0',
+      //   yAxisID: 'y',
+      // },
+      // {
+      //   label: 'Training Strain',
+      //   data: filteredData.map(item => item['Training Strain'] || 0),
+      //   backgroundColor: 'rgba(153, 0, 255, 0.6)',
+      //   stack: 'Stack 0',
+      //   yAxisID: 'y',
+      // },
       {
         label: 'Training Strain',
         data: filteredData.map(item => item['Training Strain'] || 0),
-        backgroundColor: 'rgba(153, 0, 255, 0.6)',
-        stack: 'Stack 0',
+        borderColor: 'rgb(255, 0, 0)', // Rouge vif
+        backgroundColor: 'rgba(255, 0, 0, 0.2)',
+        type: 'line',
+        yAxisID: 'y',
+        fill: false,
+        tension: 0.4
+      },
+
+      {
+        label: 'Swim Load',
+        data: filteredData.map(item => item['Swim load'] || 0),
+        backgroundColor: 'rgb(0, 191, 255)',
+        stack: 'Stack 1',
         yAxisID: 'y',
       },
       {
+        label: 'Run Load',
+        data: filteredData.map(item => item['Run load'] || 0),
+        backgroundColor: 'rgb(255, 215, 0)',
+        stack: 'Stack 1',
+        yAxisID: 'y',
+      },
+      {
+        label: 'Strength Load',
+        data: filteredData.map(item => item['Strength load'] || 0),
+        backgroundColor: 'rgb(50, 205, 50)',
+        stack: 'Stack 1',
+        yAxisID: 'y',
+      },
+      {
+        label: 'Bike Load',
+        data: filteredData.map(item => item['Bike load'] || 0),
+        backgroundColor: 'rgb(148, 0, 211)',
+        stack: 'Stack 1',
+        yAxisID: 'y',
+      },
+      {
+        label: 'VirtualRide Load',
+        data: filteredData.map(item => item['VirtualRide load'] || 0),
+        backgroundColor: 'rgb(255, 140, 0)',
+        stack: 'Stack 1',
+        yAxisID: 'y',
+      },
+
+
+      
+      {
         label: 'Training Monotony',
         data: filteredData.map(item => item['Training Monotony'] || 0),
-        backgroundColor: 'rgba(153, 102, 255, 0.6)',
+        backgroundColor: 'rgb(70, 130, 180)',
         yAxisID: 'y1',
         type: 'bar',
       },
