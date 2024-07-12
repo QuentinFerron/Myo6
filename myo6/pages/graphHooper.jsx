@@ -38,10 +38,14 @@ export default function Home(props) {
 
   const options = {
     responsive: true,
+    interaction: {
+      mode: 'index',
+      intersect: false,
+    },
     plugins: {
       title: {
         display: true,
-        text: 'Score Personnalisé',
+        text: 'PRS 100 et RMSSD',
         font: {
           size: 20,
         },
@@ -60,19 +64,21 @@ export default function Home(props) {
         type: 'linear',
         display: true,
         position: 'left',
+        title: {
+          display: true,
+          text: 'PRS 100',
+        },
       },
       y1: {
-        ticks: {
-          beginAtZero: true,
-          callback: function(value, index, values) {
-            return (index === 2) ? "" : null;
-          },
-        },
         type: 'linear',
         display: true,
         position: 'right',
+        title: {
+          display: true,
+          text: 'RMSSD',
+        },
         grid: {
-          drawOnChartArea: true,
+          drawOnChartArea: false,
         },
       },
     },
@@ -93,8 +99,11 @@ export default function Home(props) {
 
   const filteredData = daysToShow === 'all' ? data : data.slice(-daysToShow);
 
-  const allHooperValuesZeroOrNull = filteredData.every(item => item.prs_100 === 0 || item.prs_100 === null);
-
+  const allDataZeroOrNull = filteredData.every(item => 
+    (item.prs_100 === 0 || item.prs_100 === null) && 
+    (item.rmssd_lying === 0 || item.rmssd_lying === null)
+  );
+  
   const chartData = {
     labels: filteredData.map(item => {
       const date = new Date(item.Date);
@@ -102,7 +111,7 @@ export default function Home(props) {
     }),
     datasets: [
       {
-        label: 'Hooper',
+        label: 'PRS 100',
         data: filteredData.map(item => item.prs_100),
         fill: false,
         backgroundColor: 'rgb(75, 192, 192)',
@@ -110,6 +119,18 @@ export default function Home(props) {
         spanGaps: true,
         tension: 0.2,
         pointRadius: 1.5,
+        yAxisID: 'y',
+      },
+      {
+        label: 'RMSSD',
+        data: filteredData.map(item => item.rmssd_lying),
+        fill: false,
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgba(255, 99, 132, 0.8)',
+        spanGaps: true,
+        tension: 0.2,
+        pointRadius: 1.5,
+        yAxisID: 'y1',
       },
     ],
   };
@@ -122,7 +143,7 @@ export default function Home(props) {
     return <div>Loading...</div>;
   }
 
-  if (error || data.length === 0 || allHooperValuesZeroOrNull) {
+  if (error || data.length === 0 || allDataZeroOrNull) {
     return <div>Pas de données</div>;
   }
 
