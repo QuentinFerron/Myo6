@@ -184,7 +184,7 @@ export default function Home(props) {
     const travel = parseInt(selectedOptionTravel, 10);
     const sickness = parseInt(selectedOptionSickness, 10);
     const weight = parseFloat(selectedWeight);
-    const sleeptime = parseInt(selectedSleepDuration, 10);
+    const sleeptime = selectedSleepDuration;
 
     const url_upload_form = 'https://myo6.duckdns.org/upload/form';
     const data_form = {
@@ -198,10 +198,10 @@ export default function Home(props) {
       "wakeup_time": selectedWakeupTime,
       "sleep_time": sleeptime,
       "weight": weight,
-      "rmssd_lying ": parseFloat(rmssdl),
-      "lnrmssd_lying ": parseFloat(lnrmssdl),
-      "lf_lying ": parseFloat(lfl),
-      "hf_lying ": parseFloat(hfl),
+      "rmssd_lying": parseFloat(rmssdl),
+      "lnrmssd_lying": parseFloat(lnrmssdl),
+      "lf_lying": parseFloat(lfl),
+      "hf_lying": parseFloat(hfl),
       "rmssd_standing": parseFloat(rmssds),
       "lnrmssd_standing": parseFloat(lnrmssds),
       "lf_standing": parseFloat(lfs),
