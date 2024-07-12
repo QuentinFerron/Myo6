@@ -27,6 +27,7 @@ export default function Home(props) {
   const [isBilanSelected, setIsBilanSelected] = useState(true);
   const [isVideo, setIsVideo] = useState(true);
   const [newTabSelected, setNewTabSelected] = useState(false);
+  const [isQuestionnaireSelected, setIsQuestionnaireSelected] = useState(false);
 
 //récupérer les utilisateurs
   async function getUser() {
@@ -76,29 +77,37 @@ export default function Home(props) {
             </select>
 
 
-          <div className="w-full flex h-10 bg-red-300">
-            <button className="w-1/3 bg-gray-500 hover:bg-gray-400 h-full flex justify-center items-center justify-items-center text-white transition duration-500 ease-in-out"
-              onClick={() => {setIsBilanSelected(true); setNewTabSelected(false);}}>
-              Bilan
-            </button>
+            <div className="w-full flex h-10 bg-red-300">
+              <button className="w-1/4 bg-gray-500 hover:bg-gray-400 h-full flex justify-center items-center justify-items-center text-white transition duration-500 ease-in-out text-xs md:text-sm lg:text-base xl:text-lg"
+                onClick={() => {setIsBilanSelected(true); setNewTabSelected(false); setIsQuestionnaireSelected(false);}}>
+                Bilan
+              </button>
 
-            <div className="w-1 bg-black h-full"></div>
+              <div className="w-1 bg-black h-full"></div>
 
-            <button className="w-1/3 bg-gray-500 hover:bg-gray-400 h-full flex justify-center items-center justify-items-center text-white transition duration-500 ease-in-out"
-              onClick={() => {setIsBilanSelected(false); setNewTabSelected(false);}}>
-              Mesures
-            </button>
+              <button className="w-1/4 bg-gray-500 hover:bg-gray-400 h-full flex justify-center items-center justify-items-center text-white transition duration-500 ease-in-out text-xs md:text-sm lg:text-base xl:text-lg"
+                onClick={() => {setIsBilanSelected(false); setNewTabSelected(false); setIsQuestionnaireSelected(false);}}>
+                Mesures
+              </button>
 
-            <div className="w-1 bg-black h-full"></div>
+              <div className="w-1 bg-black h-full"></div>
 
-            <button className="w-1/3 bg-gray-500 hover:bg-gray-400 h-full flex justify-center items-center justify-items-center text-white transition duration-500 ease-in-out"
-              onClick={() => {setIsBilanSelected(false); setNewTabSelected(true);}}>
-              Activités
-            </button>
-          </div>
+              <button className="w-1/4 bg-gray-500 hover:bg-gray-400 h-full flex justify-center items-center justify-items-center text-white transition duration-500 ease-in-out text-xs md:text-sm lg:text-base xl:text-lg"
+                onClick={() => {setIsBilanSelected(false); setNewTabSelected(true); setIsQuestionnaireSelected(false);}}>
+                Activités
+              </button>
+
+              <div className="w-1 bg-black h-full"></div>
+
+              <button className="w-1/4 bg-gray-500 hover:bg-gray-400 h-full flex justify-center items-center justify-items-center text-white transition duration-500 ease-in-out text-xs md:text-sm lg:text-base xl:text-lg"
+                onClick={() => {setIsBilanSelected(false); setNewTabSelected(false); setIsQuestionnaireSelected(true);}}>
+                Questionnaire
+              </button>
+            </div>
+
 
             {
-              isBilanSelected ? 
+              isBilanSelected ? (
               <div className='p-2'>
               <div className="flex ">
                 <div className="bg-white rounded-lg w-1/4 h-1/2 m-1 shadow-xl border-2 border-gray-400">
@@ -199,13 +208,18 @@ export default function Home(props) {
                </div>
                 </div>
 
-              :
-              newTabSelected ?
+               ) :
+              newTabSelected ? (
               <div className='h-screen'>
               <iframe src={baseUrl+ "Activity2?user_id="+ selectedValue } width="100%" height="100%" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
               </div>
 
-              :
+              ) : isQuestionnaireSelected ? (
+                <div className='h-screen'>
+                  <iframe src={baseUrl + "questionnairec?user_id=" + selectedValue} width="100%" height="100%" frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
+                </div>
+
+               ) :
               isVideo ? 
               (
               <div className='h-screen'>
@@ -213,7 +227,7 @@ export default function Home(props) {
               </div>
               ) : (
               <div className="flex w-full mt-3 m-1 justify-center items-center justify-items-center">
-                Pas de vidéo pour cet utilisateur
+                Pas de données pour cet utilisateur
                 </div>
               )
             }
