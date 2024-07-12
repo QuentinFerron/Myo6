@@ -9,7 +9,6 @@ import {
   Title,
   Tooltip,
   Legend,
-  BackgroundColorPlugin,
 } from 'chart.js';
 
 ChartJS.register(
@@ -23,7 +22,6 @@ ChartJS.register(
 );
 
 export default function Home(props) {
-
   let baseUrl = "s";
   if (props.DEBUG_MODE === 'true') {
     baseUrl = "http://localhost:3000/";
@@ -34,77 +32,70 @@ export default function Home(props) {
   }
 
   const [daysToShow, setDaysToShow] = useState('30');
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-const options = {
-  responsive: true,
-  plugins: {
-    title: {
-      display: true,
-      text: 'Score Personnalisé',
-      font: {
-        size: 20,
-      },
-    },
-    legend: {
-      position: 'top',
-    },
-  },
-  scales: {
-
-    x: {
-      
+  const options = {
+    responsive: true,
+    plugins: {
       title: {
         display: true,
-        // text: 'Date',
+        text: 'Score Personnalisé',
+        font: {
+          size: 20,
+        },
+      },
+      legend: {
+        position: 'top',
       },
     },
-    
+    scales: {
+      x: {
+        title: {
+          display: true,
+        },
+      },
       y: {
         type: 'linear',
         display: true,
         position: 'left',
-
       },
       y1: {
         ticks: {
-             beginAtZero: true,
-             callback: function(value, index, values) {
-               return (index === 2) ? "" : null;
-             },
-            },
+          beginAtZero: true,
+          callback: function(value, index, values) {
+            return (index === 2) ? "" : null;
+          },
+        },
         type: 'linear',
         display: true,
         position: 'right',
-        
-
-
-        // grid line settings
         grid: {
-          drawOnChartArea: true, // only want the grid lines for one axis to show up
+          drawOnChartArea: true,
         },
+      },
     },
-  },
-};
+  };
 
-
- const [data, setData] = useState([]);
-
- useEffect(() => {
+  useEffect(() => {
     fetch(baseUrl + 'api/getSpecificUserHooper?id_user=' + window.location.href.split("=")[1])
       .then(response => response.json())
-      .then(data => setData(data));
- }, []);
+      .then(data => {
+        setData(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError(true);
+        setLoading(false);
+      });
+  }, []);
 
+  const filteredData = daysToShow === 'all' ? data : data.slice(-daysToShow);
 
-// Préparation des données pour le graphique
-//  const labels = data.map(item => item.Date);
-//  const atlData = data.map(item => item.ATL);
+  const allHooperValuesZeroOrNull = filteredData.every(item => item.prs_100 === 0 || item.prs_100 === null);
 
-const filteredData = daysToShow === 'all' ? data : data.slice(-daysToShow);
-
- const chartData = {
-    // labels: labels,
-    // labels: data.map((item) => new Date(item.Date).toLocaleDateString()), // Format dates for labels
+  const chartData = {
     labels: filteredData.map(item => {
       const date = new Date(item.Date);
       return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear().toString().slice(-2)}`;
@@ -112,8 +103,7 @@ const filteredData = daysToShow === 'all' ? data : data.slice(-daysToShow);
     datasets: [
       {
         label: 'Hooper',
-        // data: atlData,
-        data: filteredData.map(item => item.hooper_index),
+        data: filteredData.map(item => item.prs_100),
         fill: false,
         backgroundColor: 'rgb(75, 192, 192)',
         borderColor: 'rgba(75, 192, 192, 0.8)',
@@ -122,30 +112,37 @@ const filteredData = daysToShow === 'all' ? data : data.slice(-daysToShow);
         pointRadius: 1.5,
       },
     ],
- };
+  };
 
- const handleDaysChange = (event) => {
-  setDaysToShow(event.target.value);
-};
+  const handleDaysChange = (event) => {
+    setDaysToShow(event.target.value);
+  };
 
- return (
-  <>
-    {/* <div className="chart-container"> */}
-    <div>
-    <select value={daysToShow} onChange={handleDaysChange}>
-        <option value="all">Toutes les données</option>
-        <option value="30">30 derniers jours</option>
-        <option value="14">14 derniers jours</option>
-        <option value="7">7 derniers jours</option>
-      </select>
-      <Line data={chartData} options={options} />
-    </div>
-  </>
- )
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error || data.length === 0 || allHooperValuesZeroOrNull) {
+    return <div>Pas de données</div>;
+  }
+
+  return (
+    <>
+      <div>
+        <select value={daysToShow} onChange={handleDaysChange}>
+          <option value="all">Toutes les données</option>
+          <option value="30">30 derniers jours</option>
+          <option value="14">14 derniers jours</option>
+          <option value="7">7 derniers jours</option>
+        </select>
+        <Line data={chartData} options={options} />
+      </div>
+    </>
+  );
 }
+
 export async function getServerSideProps() {
-  // fetch env.local variables named DEBUG_MODE
-console.log(process.env.DEBUG_MODE);
+  console.log(process.env.DEBUG_MODE);
   return {
     props: { DEBUG_MODE: process.env.DEBUG_MODE },
   };

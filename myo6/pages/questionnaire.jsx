@@ -185,6 +185,14 @@ export default function Home(props) {
     const sickness = parseInt(selectedOptionSickness, 10);
     const weight = parseFloat(selectedWeight);
     const sleeptime = selectedSleepDuration;
+    const rmssdl = parseFloat(rmssdLying);
+    const lnrmssdl = parseFloat(lnrmssdLying);
+    const lfl = parseFloat(lfLying);
+    const hfl = parseFloat(hfLying);
+    const rmssds = parseFloat(rmssdStanding);
+    const lnrmssds = parseFloat(lnrmssdStanding);
+    const lfs = parseFloat(lfStanding);
+    const hfs = parseFloat(hfStanding);
 
     const url_upload_form = 'https://myo6.duckdns.org/upload/form';
     const data_form = {
@@ -198,14 +206,14 @@ export default function Home(props) {
       "wakeup_time": selectedWakeupTime,
       "sleep_time": sleeptime,
       "weight": weight,
-      "rmssd_lying": parseFloat(rmssdl),
-      "lnrmssd_lying": parseFloat(lnrmssdl),
-      "lf_lying": parseFloat(lfl),
-      "hf_lying": parseFloat(hfl),
-      "rmssd_standing": parseFloat(rmssds),
-      "lnrmssd_standing": parseFloat(lnrmssds),
-      "lf_standing": parseFloat(lfs),
-      "hf_standing": parseFloat(hfs),
+      "rmssd_lying": rmssdl,
+      "lnrmssd_lying": lnrmssdl,
+      "lf_lying": lfl,
+      "hf_lying": hfl,
+      "rmssd_standing": rmssds,
+      "lnrmssd_standing": lnrmssds,
+      "lf_standing": lfs,
+      "hf_standing": hfs,
       "hr_rest": parseInt(fcr, 10),
       "prs_100": parseInt(recoveryState, 10),
       "train_lastday": trainLastDay,
