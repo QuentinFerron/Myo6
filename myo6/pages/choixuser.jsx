@@ -93,7 +93,7 @@ export default function Home(props) {
         </button>
       </div>
 
-      <div className="flex flex-wrap justify-center">
+      {/* <div className="flex flex-wrap justify-center">
         {sortedUsers.length > 0
           ? sortedUsers.map((user) => (
             <div
@@ -135,7 +135,7 @@ export default function Home(props) {
             ))}
       </div>
 
-            
+             */}
 
 
             {/* <div className="flex flex-wrap justify-center">
