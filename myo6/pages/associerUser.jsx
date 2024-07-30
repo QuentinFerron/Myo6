@@ -109,8 +109,43 @@ export default function Home(props) {
         type="text"
         value={serialNumber}
         onChange={(e) => setSerialNumber(e.target.value)}
+        placeholder="Adresse mail"
+        style={{ width: '190px',
+          textAlign: 'center' }}
+      />
+    </div>
+    </div>
+
+    <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+              <div className=" bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+
+
+      <p> Adresse mail : </p>
+  
+      <input
+        type="text"
+        value={serialNumber}
+        onChange={(e) => setSerialNumber(e.target.value)}
         placeholder="Saisissez le numéro"
-        style={{ width: '190px' }}
+        style={{ width: '190px',
+          textAlign: 'center' }}
+      />
+    </div>
+    </div>
+
+            <div className="w-full sm:w-1/2 p-2 justify-center items-center justify-items-center ml-auto mr-auto ">
+              <div className=" bg-white text-center rounded-lg shadow-xl border-2 mb-2  border-gray-400 p-2 justify-center items-center justify-items-center h-full">
+
+
+      <p> Mot de passe : </p>
+  
+      <input
+        type="text"
+        value={serialNumber}
+        onChange={(e) => setSerialNumber(e.target.value)}
+        placeholder="Mot de passe"
+        style={{ width: '190px',
+          textAlign: 'center' }}
       />
     </div>
     </div>
