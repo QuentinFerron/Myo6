@@ -184,7 +184,7 @@ export default function Home(props) {
     const travel = parseInt(selectedOptionTravel, 10);
     const sickness = parseInt(selectedOptionSickness, 10);
     const weight = parseFloat(selectedWeight);
-    const sleeptime = parseInt(selectedSleepDuration, 10);
+    const sleeptime = selectedSleepDuration;
     const rmssdl = parseFloat(rmssdLying);
     const lnrmssdl = parseFloat(lnrmssdLying);
     const lfl = parseFloat(lfLying);

@@ -16,14 +16,22 @@ export default function Home(props) {
     console.log(baseUrl);
   }
 
+  const [userId, setUserId] = useState([]);
   const [serialNumber, setSerialNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submissionMessage, setSubmissionMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+
+
   const isFormValid = () => {
-    return serialNumber && email && password;
+    if (
+      !serialNumber || !email || !password
+    ) {
+      return false;
+    }
+    return true;
   };
 
   const getUserId = async () => {
@@ -33,6 +41,7 @@ export default function Home(props) {
         const users = await response.json();
         const user = users.find(u => u.email === email && u.password === password);
         if (user) {
+          setUserId(user.id_user);
           return user.id_user;
         } else {
           setErrorMessage('Adresse e-mail ou mot de passe incorrect');
@@ -48,13 +57,26 @@ export default function Home(props) {
     }
   };
 
-  const associateDevice = async (userId) => {
-    const url_upload_form = 'https://myo6.duckdns.org/api/associate';
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!isFormValid()) {
+      setErrorMessage('Veuillez remplir tous les champs');
+      return;
+    }
+  
+    setErrorMessage('');
+
+    const id = await getUserId();
+    if (!id) return;
+
+    // const url_upload_form = 'https://myo6.duckdns.org/api/associate';
+    const url_upload_form = '';
     const data_form = {
-      'id_user': userId,
-      'serial_number': serialNumber
+      'id_user' : userId,
+      'serial_number' : serialNumber
     };
-    console.log('Données à envoyer:', data_form);
+    console.log(data_form);
 
     try {
       const response = await fetch(url_upload_form, {
@@ -72,31 +94,7 @@ export default function Home(props) {
       }
     } catch (error) {
       console.error('Erreur:', error);
-      setErrorMessage('Une erreur s\'est produite lors de l\'association');
-    }
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    if (!isFormValid()) {
-      setErrorMessage('Veuillez remplir tous les champs');
-      return;
-    }
-  
-    setErrorMessage('');
-    setSubmissionMessage('');
-
-    try {
-      const userId = await getUserId();
-      if (!userId) {
-        setErrorMessage('Impossible de récupérer l\'ID de l\'utilisateur');
-        return;
-      }
-      await associateDevice(userId);
-    } catch (error) {
-      console.error('Erreur:', error);
-      setErrorMessage('Une erreur s\'est produite lors du processus');
+      setErrorMessage('Une erreur s\'est produite verifier le numero de série du Myo6');
     }
   }
 
