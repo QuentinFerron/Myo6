@@ -180,32 +180,25 @@ export default function Home(props) {
                 
                 </div>
 
-              <div className="sm:flex ">
+              <div className="sm:flex flex-col sm:flex-row">
+  <div className="w-full sm:w-1/2 mt-3 m-1 bg-white rounded-lg flex justify-center items-center shadow-xl border-2 border-gray-400 h-96 sm:h-auto" style={{ aspectRatio: '16/9', maxHeight: '80vh' }}>
+    <iframe src={baseUrl + 'graphTrainingLoad?id_user=' + selectedValue} className="w-full h-full" frameBorder="0" allowFullScreen></iframe>
+  </div>
 
-              <div className="w-full sm:w-1/2 mt-3 m-1 bg-white rounded-lg flex justify-center items-center shadow-xl border-2 border-gray-400 h-80 sm:h-auto" style={{ aspectRatio: '16/9', maxHeight: '80vh' }}>
-                <iframe src={baseUrl + 'graphTrainingLoad?id_user=' + selectedValue} className="w-full h-full" frameBorder="0" allowFullScreen></iframe>
-              </div>
+  <div className="w-full sm:w-1/2 mt-3 m-1 bg-white rounded-lg flex justify-center items-center shadow-xl border-2 border-gray-400 h-96 sm:h-auto" style={{ aspectRatio: '16/9', maxHeight: '80vh' }}>
+    <iframe src={baseUrl + 'graphHooper?id_user='+ selectedValue } width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
+  </div>
+</div>
 
+<div className="sm:flex flex-col sm:flex-row">
+  <div className="w-full sm:w-1/3 mt-3 m-1 bg-white rounded-lg flex justify-center items-center shadow-xl border-2 border-gray-400 h-96 sm:h-auto" style={{ aspectRatio: '16/9', maxHeight: '80vh' }}>
+    <iframe src={baseUrl + 'graphWeeklyRadar?id_user='+ selectedValue } width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
+  </div>
 
-              <div className="w-full sm:w-1/2 mt-3 m-1 bg-white rounded-lg flex justify-center items-center shadow-xl border-2 border-gray-400 h-80 sm:h-auto" style={{ aspectRatio: '16/9', maxHeight: '80vh' }}>
-               <iframe src={baseUrl + 'graphHooper?id_user='+ selectedValue } width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
-
-               </div>
-
-               </div>
-
-               <div className="sm:flex ">
-
-               <div className="w-full sm:w-1/3 mt-3 m-1 bg-white rounded-lg flex justify-center items-center shadow-xl border-2 border-gray-400  aspect-ratio-16/9 sm:aspect-ratio-16/10 max-h-80vh sm:max-h-full">
-               <iframe src={baseUrl + 'graphWeeklyRadar?id_user='+ selectedValue } width="100%" height="100%" frameBorder="0" allowFullScreen></iframe>
-               </div>
-
-
-               <div className="w-full sm:w-1/2 mt-3 m-1 bg-white rounded-lg flex justify-center items-center shadow-xl border-2 border-gray-400  aspect-ratio-16/9 sm:aspect-ratio-16/10 max-h-80vh sm:max-h-full">
-               <iframe src={baseUrl + 'graphWeekly?id_user='+ selectedValue } style={{ width: '100%', height: '100%', objectFit: 'contain' }} frameBorder="0" allowFullScreen></iframe>
-               </div>
-
-               </div>
+  <div className="w-full sm:w-2/3 mt-3 m-1 bg-white rounded-lg flex justify-center items-center shadow-xl border-2 border-gray-400 h-96 sm:h-auto" style={{ aspectRatio: '16/9', maxHeight: '80vh' }}>
+    <iframe src={baseUrl + 'graphWeekly?id_user='+ selectedValue } style={{ width: '100%', height: '100%', objectFit: 'contain' }} frameBorder="0" allowFullScreen></iframe>
+  </div>
+</div>
                 </div>
 
                ) :

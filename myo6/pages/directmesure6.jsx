@@ -302,14 +302,14 @@ export default function Home(props) {
       
                           
                 <div className="sm:flex">
-                  <div className=" m-4  flex justify-center items-center justify-items-center w-auto sm:w-1/3 ">
+                  <div className=" sm:m-4  flex justify-center items-center justify-items-center w-auto sm:w-1/3 ">
                     <div className="text-xl font-bold text-[#082431] bg-white rounded-none shadow-xl border-2 w-full  border-gray-400 flex justify-center items-center justify-items-center">
                       <video  autoPlay muted>
                         <source src="https://myo6.duckdns.org/api/video/last_video/video_traitement.mp4?t=${new Date().getTime()}" width="auto"/>
                         </video>   
                     </div>
                   </div>
-                  <div className="m-4 flex justify-center items-center justify-items-center w-auto sm:w-1/2 h-1/2 sm:h-auto">
+                  <div className="mt-4 sm:m-4 flex justify-center items-center justify-items-center w-auto sm:w-1/2 h-1/2 sm:h-auto">
                     <div className="text-xl font-bold text-[#082431] bg-white rounded-lg shadow-xl border-2 w-full h-full border-gray-400 flex justify-center items-center justify-items-center">
                       {
                         chartData && options &&
@@ -326,15 +326,16 @@ export default function Home(props) {
               
 
                   <div className="sm:flex ">
-                    <div className="m-4  bg-white rounded-lg shadow-xl border-2  border-gray-400  justify-center items-center justify-items-center w-auto sm:w-5/6">
-                        <div className="text-lg sm:text-2xl flex font-bold text-[#082431] justify-center items-center justify-items-center">
+                    <div className="m-4 bg-white rounded-lg shadow-xl border-2 border-gray-400 w-auto sm:w-5/6 mx-auto">
+                      <div className="text-lg sm:text-2xl font-bold text-[#082431] text-center p-2">
                           Résultats
                         </div>
 
-                        <div className="sm:flex justify-center items-center justify-items-center text-center sm:text-left">
+                        <div className="flex flex-col sm:flex-row justify-center items-center sm:items-start text-center sm:text-left">
 
 
-                          <div className="text-base sm:text-lg">
+
+                        <div className="text-base sm:text-lg w-full sm:w-auto mb-4 sm:mb-0">
                           <div className="p-2 flex font-bold text-[#082431]">
                             Temps de réaction:
                             {'  '} 
@@ -352,7 +353,7 @@ export default function Home(props) {
                         </div>
 
 
-                        <div className="text-md sm:text-lg">
+                        <div className="text-md sm:text-lg w-full sm:w-auto mb-4 sm:mb-0">
                           <div className="p-2 flex font-bold text-[#082431]  ">
                             Vitesse de constriction moyenne: 
                             {'  '} 
@@ -369,7 +370,7 @@ export default function Home(props) {
                           </div>
                         </div>
 
-                        <div className="text-md sm:text-lg">
+                        <div className="text-md sm:text-lg w-full sm:w-auto">
                           <div className="p-2 flex font-bold text-[#082431]  ">
                             Aire de la pupille minimale:
                             {'  '} 

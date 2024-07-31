@@ -28,7 +28,7 @@ const RadarChart = () => {
 
         const data = await response.json();
 
-        const labels = [
+        const dataKeys = [
           'average_constriction_velocity',
           'average_dilation_velocity_75',
           'baseline',
@@ -37,17 +37,26 @@ const RadarChart = () => {
           'time_plateau',
         ];
 
+        const labelMapping = {
+          'average_constriction_velocity': 'Vitesse de\nconstriction \nmoyenne',
+          'average_dilation_velocity_75': 'Vitesse de\ndilatation \nmoyenne (75%)',
+          'baseline': 'Baseline',
+          'min_area': 'Surface\nminimale',
+          'reaction_time': 'Temps de\nréaction',
+          'time_plateau': 'Temps de\nplateau',
+        };
+
         const datasets = [
           {
             label: 'Semaine',
-            data: labels.map((label) => data[selectedOption][`7_day_${label}`]),
+            data: dataKeys.map((key) => data[selectedOption][`7_day_${key}`]),
             backgroundColor: 'rgba(0, 162, 235, 0.2)',
             borderColor: 'rgba(0, 162, 235, 1)',
             borderWidth: 1,
           },
           {
             label: 'Jour',
-            data: labels.map((label) => data[selectedOption][label]),
+            data: dataKeys.map((key) => data[selectedOption][key]),
             backgroundColor: 'rgba(54, 255, 235, 0.2)',
             borderColor: 'rgba(54, 255, 235, 1)',
             borderWidth: 1,
@@ -55,7 +64,7 @@ const RadarChart = () => {
         ];
 
         setChartData({
-          labels,
+          labels: dataKeys.map(key => labelMapping[key]),
           datasets,
         });
         setError(null); // Réinitialiser l'erreur si les données ont été récupérées avec succès
@@ -106,6 +115,14 @@ const RadarChart = () => {
           tickColor: 'rgba(0, 0, 0, 0.3)',
           tickLength: 8,
           tickWidth: 1,
+        },
+        pointLabels: {
+          font: {
+            size: 11,
+          },
+          callback: function(value) {
+            return value.split('\n');
+          }
         },
         ticks: {
           display: true,
