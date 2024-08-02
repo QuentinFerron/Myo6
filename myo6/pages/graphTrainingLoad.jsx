@@ -9,7 +9,8 @@ import {
   Title, 
   Tooltip, 
   Legend 
-} from 'chart.js';import { Bar } from 'react-chartjs-2';
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale, 
@@ -21,6 +22,7 @@ ChartJS.register(
   Tooltip, 
   Legend
 );
+
 const TrainingLoadHistogram = () => {
   const [data, setData] = useState(null);
   const [daysToShow, setDaysToShow] = useState('14');
@@ -46,24 +48,10 @@ const TrainingLoadHistogram = () => {
       return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear().toString().slice(-2)}`;
     }),
     datasets: [
-      // {
-      //   label: 'Daily Training Load',
-      //   data: filteredData.map(item => item['Daily Training load'] || 0),
-      //   backgroundColor: 'rgba(75, 192, 192, 0.6)',
-      //   stack: 'Stack 0',
-      //   yAxisID: 'y',
-      // },
-      // {
-      //   label: 'Training Strain',
-      //   data: filteredData.map(item => item['Training Strain'] || 0),
-      //   backgroundColor: 'rgba(153, 0, 255, 0.6)',
-      //   stack: 'Stack 0',
-      //   yAxisID: 'y',
-      // },
       {
         label: 'Training Strain',
         data: filteredData.map(item => item['Training Strain'] || 0),
-        borderColor: 'rgb(255, 0, 0)', // Rouge vif
+        borderColor: 'rgb(255, 0, 0)', 
         backgroundColor: 'rgba(255, 0, 0, 1)',
         type: 'line',
         yAxisID: 'y',
@@ -71,7 +59,6 @@ const TrainingLoadHistogram = () => {
         tension: 0.4,
         pointRadius: 1.5
       },
-
       {
         label: 'Swim Load',
         data: filteredData.map(item => item['Swim load'] || 0),
@@ -107,9 +94,6 @@ const TrainingLoadHistogram = () => {
         stack: 'Stack 1',
         yAxisID: 'y',
       },
-
-
-      
       {
         label: 'Training Monotony',
         data: filteredData.map(item => item['Training Monotony'] || 0),
@@ -122,6 +106,7 @@ const TrainingLoadHistogram = () => {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     interaction: {
       mode: 'index',
       intersect: false,
@@ -172,14 +157,16 @@ const TrainingLoadHistogram = () => {
   };
 
   return (
-    <div>
-      <select value={daysToShow} onChange={handleDaysChange}>
+    <div className="w-full h-full p-1 box-border">
+      <select value={daysToShow} onChange={handleDaysChange} className="mb-0 p-1 border rounded">
         <option value="all">Toutes les données</option>
         <option value="30">30 derniers jours</option>
         <option value="14">14 derniers jours</option>
         <option value="7">7 derniers jours</option>
       </select>
-      <Bar data={chartData} options={options} />
+      <div className="w-full h-96 md:h-[90vh]">
+        <Bar data={chartData} options={options} />
+      </div>
     </div>
   );
 };

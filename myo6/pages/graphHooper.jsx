@@ -38,6 +38,7 @@ export default function Home(props) {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     interaction: {
       mode: 'index',
       intersect: false,
@@ -149,14 +150,16 @@ export default function Home(props) {
 
   return (
     <>
-      <div>
-        <select value={daysToShow} onChange={handleDaysChange}>
+      <div className="w-full h-full p-1 box-border">
+        <select value={daysToShow} onChange={handleDaysChange} className="mb-0 p-1 border rounded">
           <option value="all">Toutes les données</option>
           <option value="30">30 derniers jours</option>
           <option value="14">14 derniers jours</option>
           <option value="7">7 derniers jours</option>
         </select>
+        <div className="w-full h-96 md:h-[91vh]">
         <Line data={chartData} options={options} />
+        </div>
       </div>
     </>
   );
