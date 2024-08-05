@@ -167,6 +167,7 @@ const ComboChart = () => {
   const labelsToHide = [,];
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     scales: {
       x: {
         type: 'category',
@@ -192,9 +193,9 @@ const ComboChart = () => {
   };
 
   return (
-    <div style={{ width: '100%', height: '100%' }}>
-      <div className="p-1">
-      <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
+    // <div style={{ width: '100%', height: '100%' }}>
+    <div className="w-full h-full p-1 box-border">
+      <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)} className="mb-0 p-1 border rounded">
         <option value="baseline">Référence</option>
         <option value="min_area">Aire minimale</option>
         <option value="max_area_dilation">Aire maximale</option>
@@ -209,11 +210,12 @@ const ComboChart = () => {
         <option value="max_constriction_velocity">Vitesse maximale de constriction</option>
         <option value="max_dilation_velocity">Vitesse maximale de dilatation</option>
       </select>
-      </div>
       {error ? (
         <p>{error}</p> // Afficher le message d'erreur si une erreur est présente
       ) : chartData ? (
+        <div className="w-full h-96 md:h-[91vh]">
         <Bar data={chartData} options={options} />
+        </div>
       ) : (
         <p>Chargement des données...</p> // Afficher un message de chargement si les données ne sont pas encore disponibles
       )}
