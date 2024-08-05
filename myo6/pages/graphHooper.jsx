@@ -100,11 +100,11 @@ export default function Home(props) {
 
   const filteredData = daysToShow === 'all' ? data : data.slice(-daysToShow);
 
-  const allDataZeroOrNull = filteredData.every(item => 
-    (item.prs_100 === 0 || item.prs_100 === null) && 
+  const allDataZeroOrNull = filteredData.every(item =>
+    (item.prs_100 === 0 || item.prs_100 === null) &&
     (item.rmssd_lying === 0 || item.rmssd_lying === null)
   );
-  
+
   const chartData = {
     labels: filteredData.map(item => {
       const date = new Date(item.Date);
@@ -158,12 +158,13 @@ export default function Home(props) {
           <option value="7">7 derniers jours</option>
         </select>
         <div className="w-full h-96 md:h-[91vh]">
-        <Line data={chartData} options={options} />
+          <Line data={chartData} options={options} />
         </div>
       </div>
     </>
   );
 }
+
 
 export async function getServerSideProps() {
   console.log(process.env.DEBUG_MODE);
